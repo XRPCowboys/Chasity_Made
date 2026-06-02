@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chasity Made — One-of-One Rock Denim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0a0908;
+    --ink-2:#100d0d;
+    --panel:#141010;
+    --bone:#ece4d6;
+    --bone-dim:#b7ac9c;
+    --ash:#8a8076;
+    --crimson:#cc1730;
+    --crimson-lo:#8d0f1f;
+    --blood:#5d0b16;
+    --gold:#c8a24a;
+    --gold-lo:#8f7333;
+    --line:rgba(236,228,214,0.12);
+    --line-2:rgba(236,228,214,0.06);
+    --shadow:0 30px 80px -30px rgba(0,0,0,0.9);
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"Oswald",system-ui,sans-serif;
+    --impact:"Anton",Impact,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--ink);color:var(--bone);
+    font-family:var(--sans);font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--crimson);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* film grain + texture overlay */
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:0.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px;}
+
+  /* type helpers */
+  .eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--crimson);}
+  .eyebrow.gold{color:var(--gold);}
+  .serif{font-family:var(--serif);}
+  .impact{font-family:var(--impact);text-transform:uppercase;line-height:.86;letter-spacing:-.005em;}
+
+  /* rhinestone shimmer text */
+  .stone{
+    background:linear-gradient(110deg,#fff 0%,#fbe9c0 18%,#c8a24a 34%,#fff 50%,#cc1730 64%,#fff 80%,#c8a24a 100%);
+    background-size:280% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shimmer 6s linear infinite;
+  }
+  @keyframes shimmer{to{background-position:-280% 0;}}
+  .spk-glow{filter:drop-shadow(0 0 6px rgba(204,23,48,.55));}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--sans);font-weight:600;
+    font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:16px 30px;border-radius:2px;
+    transition:transform .25s,background .25s,color .25s,box-shadow .25s;position:relative;}
+  .btn-primary{background:var(--crimson);color:#fff;box-shadow:0 10px 30px -10px rgba(204,23,48,.7);}
+  .btn-primary:hover{background:#e21f3a;transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--bone);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+  .btn-gold{background:var(--gold);color:#1a1206;}
+  .btn-gold:hover{background:#dab861;transform:translateY(-2px);}
+
+  /* badges */
+  .one-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold-lo);
+    color:var(--gold);font-weight:600;font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    padding:7px 14px;border-radius:100px;background:rgba(200,162,74,.06);}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--crimson);box-shadow:0 0 10px var(--crimson);
+    animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+  /* nav */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:8000;transition:background .4s,border-color .4s,padding .4s;
+    border-bottom:1px solid transparent;}
+  header.nav.solid{background:rgba(10,9,8,.82);backdrop-filter:blur(14px);border-color:var(--line-2);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;}
+  .brand{display:flex;flex-direction:column;line-height:1;}
+  .brand .b1{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--bone-dim);margin-bottom:2px;letter-spacing:.02em;}
+  .brand .b2{font-family:var(--sans);font-weight:700;font-size:22px;letter-spacing:.34em;}
+  .navlinks{display:flex;gap:30px;align-items:center;}
+  .navlinks a{font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);transition:color .2s;white-space:nowrap;}
+  .navlinks a:hover{color:var(--bone);}
+  .cart-btn{display:flex;align-items:center;gap:9px;border:1px solid var(--line);padding:9px 16px;border-radius:2px;
+    font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;transition:border-color .2s;}
+  .cart-btn:hover{border-color:var(--gold);}
+  .cart-count{background:var(--crimson);color:#fff;border-radius:100px;min-width:18px;height:18px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:11px;padding:0 5px;}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:90px;overflow:hidden;}
+  .hero-glow{position:absolute;inset:0;background:radial-gradient(60% 70% at 72% 50%,rgba(204,23,48,.16),transparent 60%),
+    radial-gradient(50% 60% at 20% 30%,rgba(200,162,74,.08),transparent 60%);}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%;}
+  .hero-copy{max-width:560px;}
+  .hero h1{font-family:var(--impact);font-size:clamp(60px,9vw,128px);margin:18px 0 0;color:var(--bone);}
+  .hero h1 .red{color:var(--crimson);}
+  .hero .lede{font-family:var(--serif);font-size:clamp(19px,2.1vw,24px);line-height:1.5;color:var(--bone-dim);
+    margin:24px 0 34px;max-width:480px;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-shot{position:relative;}
+  .hero-shot .frame{position:relative;border:1px solid var(--line);padding:14px;background:linear-gradient(160deg,#161111,#0c0a0a);
+    box-shadow:var(--shadow);}
+  .hero-shot img{width:100%;aspect-ratio:1068/1440;object-fit:cover;object-position:center 42%;height:560px;}
+  .hero-shot .tag{position:absolute;top:30px;left:-14px;background:var(--crimson);color:#fff;font-weight:700;
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;padding:9px 16px;box-shadow:0 8px 24px -8px rgba(0,0,0,.7);}
+  .hero-shot .price{position:absolute;bottom:30px;right:-14px;background:var(--ink-2);border:1px solid var(--gold-lo);
+    color:var(--gold);font-family:var(--serif);font-size:26px;font-weight:600;padding:10px 20px;}
+  .marquee-strip{position:absolute;bottom:0;left:0;right:0;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);
+    padding:14px 0;overflow:hidden;white-space:nowrap;background:rgba(0,0,0,.3);}
+  .marquee-strip .run{display:inline-block;animation:slide 28s linear infinite;}
+  .marquee-strip span{font-family:var(--impact);font-size:18px;letter-spacing:.06em;color:var(--ash);margin:0 26px;text-transform:uppercase;}
+  .marquee-strip span b{color:var(--crimson);}
+  @keyframes slide{to{transform:translateX(-50%);}}
+
+  /* section shell */
+  section.block{padding:120px 0;position:relative;}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:54px;}
+  .sec-head h2{font-family:var(--impact);font-size:clamp(36px,5.5vw,76px);margin:10px 0 0;color:var(--bone);}
+  .sec-head p{max-width:360px;font-family:var(--serif);font-size:18px;color:var(--bone-dim);line-height:1.5;margin:0;}
+
+  /* FEATURED product */
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .gallery .main{position:relative;border:1px solid var(--line);background:#0c0a0a;overflow:hidden;}
+  .gallery .main img{width:100%;height:640px;object-fit:cover;object-position:center 40%;transition:opacity .4s;}
+  .gallery .thumbs{display:flex;gap:12px;margin-top:14px;}
+  .gallery .thumbs button{flex:1;border:1px solid var(--line);background:#0c0a0a;overflow:hidden;padding:0;opacity:.5;transition:opacity .25s,border-color .25s;}
+  .gallery .thumbs button.active{opacity:1;border-color:var(--gold);}
+  .gallery .thumbs img{width:100%;height:96px;object-fit:cover;object-position:center 35%;}
+  .gallery .thumbs .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);padding:7px;text-align:center;}
+
+  .feat-info h3{font-family:var(--impact);font-size:clamp(40px,5vw,64px);margin:14px 0 6px;color:var(--bone);}
+  .feat-info .sub{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--bone-dim);}
+  .feat-price{display:flex;align-items:baseline;gap:14px;margin:26px 0;}
+  .feat-price .amt{font-family:var(--serif);font-size:40px;font-weight:600;color:var(--gold);}
+  .feat-price .note{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ash);}
+  .feat-blurb{font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--bone-dim);margin:0 0 28px;}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-2);border:1px solid var(--line-2);margin-bottom:30px;}
+  .detail-grid .cell{background:var(--ink);padding:18px 18px;}
+  .detail-grid .cell .t{font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone);margin-bottom:4px;}
+  .detail-grid .cell .d{font-family:var(--serif);font-size:15px;color:var(--ash);line-height:1.4;}
+  .specs{border-top:1px solid var(--line-2);margin-top:8px;}
+  .specs .row{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line-2);font-size:13px;}
+  .specs .row .k{color:var(--ash);letter-spacing:.12em;text-transform:uppercase;font-size:11px;}
+  .specs .row .v{color:var(--bone);font-family:var(--serif);font-size:16px;text-align:right;}
+  .claim-row{display:flex;gap:14px;align-items:center;margin-top:28px;flex-wrap:wrap;}
+
+  /* STORY */
+  .story{background:linear-gradient(180deg,var(--ink),#0c0908);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);}
+  .sell-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2);}
+  .sell{background:var(--ink);padding:38px 28px;transition:background .3s;}
+  .sell:hover{background:#130f0f;}
+  .sell .k{font-family:var(--impact);font-size:34px;color:var(--crimson-lo);}
+  .sell:hover .k{color:var(--crimson);}
+  .sell h4{font-family:var(--sans);font-weight:600;font-size:17px;letter-spacing:.06em;text-transform:uppercase;margin:18px 0 10px;color:var(--bone);}
+  .sell p{font-family:var(--serif);font-size:16px;line-height:1.55;color:var(--bone-dim);margin:0;}
+
+  /* ARCHIVE */
+  .arch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .arch{position:relative;border:1px solid var(--line);aspect-ratio:3/4;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+  .arch .denim{position:absolute;inset:0;opacity:.5;
+    background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 2px,transparent 2px 7px);}
+  .arch .sold{position:absolute;top:16px;right:16px;border:1px solid var(--line);color:var(--ash);
+    font-size:10px;letter-spacing:.28em;text-transform:uppercase;padding:6px 11px;}
+  .arch h4{font-family:var(--impact);font-size:24px;margin:0;color:var(--bone);position:relative;text-transform:uppercase;}
+  .arch .th{position:relative;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);margin-top:6px;}
+
+  /* COMMISSION */
+  .commission{background:radial-gradient(80% 120% at 50% 0%,rgba(204,23,48,.10),transparent 55%),var(--ink-2);
+    border-top:1px solid var(--line-2);}
+  .form-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start;}
+  .form-card{background:var(--panel);border:1px solid var(--line);padding:38px;box-shadow:var(--shadow);}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:9px;font-weight:500;}
+  .field input,.field select,.field textarea{width:100%;background:var(--ink);border:1px solid var(--line);color:var(--bone);
+    font-family:var(--serif);font-size:17px;padding:13px 15px;border-radius:2px;transition:border-color .2s;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .field .err{color:var(--crimson);font-size:12px;margin-top:6px;letter-spacing:.04em;}
+  .field.bad input,.field.bad select,.field.bad textarea{border-color:var(--crimson);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-ok{text-align:center;padding:30px 10px;}
+  .form-ok .mark{width:64px;height:64px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;}
+
+  /* CART drawer */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(3px);z-index:9100;opacity:0;
+    transition:opacity .35s;pointer-events:none;}
+  .scrim.open{opacity:1;pointer-events:auto;}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,92vw);background:var(--ink-2);z-index:9200;
+    border-left:1px solid var(--line);transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.1,1);
+    display:flex;flex-direction:column;}
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:24px 26px;border-bottom:1px solid var(--line-2);}
+  .drawer-head .t{font-family:var(--sans);font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:14px;}
+  .drawer-body{flex:1;overflow-y:auto;padding:26px;}
+  .drawer-foot{padding:24px 26px;border-top:1px solid var(--line-2);}
+  .cart-item{display:flex;gap:16px;border:1px solid var(--line);padding:14px;}
+  .cart-item img{width:84px;height:104px;object-fit:cover;object-position:center 35%;}
+  .cart-item .ci-name{font-family:var(--impact);font-size:22px;text-transform:uppercase;}
+  .cart-item .ci-sub{font-family:var(--serif);font-style:italic;color:var(--ash);font-size:14px;margin:2px 0 8px;}
+  .cart-item .ci-price{color:var(--gold);font-family:var(--serif);font-size:22px;}
+  .cart-empty{text-align:center;color:var(--ash);font-family:var(--serif);font-style:italic;font-size:18px;padding:60px 10px;}
+  .totals{display:flex;justify-content:space-between;margin-bottom:18px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);}
+  .totals .v{color:var(--gold);font-family:var(--serif);font-size:22px;}
+  .close-x{font-size:22px;line-height:1;color:var(--bone-dim);transition:color .2s;}
+  .close-x:hover{color:var(--bone);}
+
+  /* footer */
+  footer{border-top:1px solid var(--line-2);padding:64px 0 40px;}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;}
+  .foot-grid .fbrand .b2{font-family:var(--sans);font-weight:700;font-size:30px;letter-spacing:.3em;}
+  .foot-grid .fbrand .b1{font-family:var(--serif);font-style:italic;color:var(--bone-dim);}
+  .foot-links{display:flex;gap:60px;}
+  .foot-col h5{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ash);margin:0 0 14px;}
+  .foot-col a{display:block;color:var(--bone-dim);font-family:var(--serif);font-size:16px;margin-bottom:8px;transition:color .2s;}
+  .foot-col a:hover{color:var(--crimson);}
+  .foot-base{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;
+    color:var(--ash);font-size:12px;letter-spacing:.1em;flex-wrap:wrap;gap:10px;}
+
+  /* ── GOLD lettering + red sprinkle ─────────────────────────────── */
+  .gold-text,.hero h1,.sec-head h2,.feat-info h3,.arch h4,.feat-ok h3,.form-ok h3{
+    background:linear-gradient(176deg,#fdf3cf 0%,#eccf78 32%,#cda347 58%,#9c7a2f 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .hero h1 .red{
+    -webkit-text-fill-color:var(--crimson);color:var(--crimson);
+    filter:drop-shadow(0 0 18px rgba(204,23,48,.35));
+  }
+  .twinkle{position:absolute;color:var(--crimson);pointer-events:none;z-index:2;
+    filter:drop-shadow(0 0 5px rgba(204,23,48,.7));animation:tw 3.4s ease-in-out infinite;}
+  @keyframes tw{0%,100%{opacity:.2;transform:scale(.7) rotate(0deg);}50%{opacity:1;transform:scale(1.15) rotate(20deg);}}
+
+  /* ── WELCOME video ─────────────────────────────────────────────── */
+  .welcome{position:relative;padding:128px 0 30px;}
+  .welcome .lead{text-align:center;max-width:680px;margin:0 auto 36px;}
+  .welcome .lead h2{font-family:var(--impact);font-size:clamp(34px,4.4vw,58px);margin:14px 0 14px;}
+  .welcome .lead p{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--bone-dim);margin:0;}
+  .video-frame{position:relative;border:1px solid var(--gold-lo);padding:10px;background:linear-gradient(160deg,#161111,#0b0909);
+    box-shadow:var(--shadow);max-width:960px;margin:0 auto;}
+  .video-inner{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;}
+  .video-inner img{width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:.9;transition:transform .6s,opacity .4s;}
+  .video-frame:hover .video-inner img{transform:scale(1.04);}
+  .video-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    background:radial-gradient(circle at center,rgba(0,0,0,.1),rgba(8,7,10,.62));text-align:center;}
+  .play-btn{width:92px;height:92px;border-radius:50%;border:1.5px solid var(--gold);background:rgba(8,7,10,.42);
+    display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:transform .3s,background .3s,border-color .3s;}
+  .play-btn:hover{transform:scale(1.08);background:rgba(204,23,48,.55);border-color:#fff;}
+  .play-btn svg{margin-left:5px;}
+  .video-cap{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--bone);font-weight:600;}
+  .video-cap small{display:block;color:var(--ash);font-weight:400;letter-spacing:.2em;margin-top:7px;font-size:10px;}
+  .video-toast{position:absolute;bottom:18px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:rgba(8,7,10,.9);border:1px solid var(--gold-lo);color:var(--gold);font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;padding:9px 18px;border-radius:100px;transition:opacity .3s,transform .3s;pointer-events:none;}
+  .video-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ── DESIGNER ──────────────────────────────────────────────────── */
+  .designer{background:radial-gradient(70% 100% at 18% 0%,rgba(204,23,48,.10),transparent 55%),var(--ink-2);
+    border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);}
+  .designer-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center;}
+  .designer-photo{position:relative;border:1px solid var(--gold-lo);padding:12px;background:linear-gradient(160deg,#171111,#0b0909);box-shadow:var(--shadow);}
+  .designer-photo img{width:100%;height:620px;object-fit:cover;object-position:center 16%;}
+  .designer-photo .sig{position:absolute;bottom:30px;right:-16px;background:var(--crimson);color:#fff;
+    font-family:var(--serif);font-style:italic;font-size:22px;padding:8px 22px;box-shadow:0 8px 24px -8px rgba(0,0,0,.7);}
+  .designer-copy .quote{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.7vw,34px);line-height:1.35;color:var(--bone);margin:18px 0 26px;}
+  .designer-copy p{font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--bone-dim);margin:0 0 16px;}
+  .designer-stats{display:flex;gap:38px;margin-top:30px;flex-wrap:wrap;}
+  .designer-stats .st .n{font-family:var(--impact);font-size:42px;}
+  .designer-stats .st .l{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);margin-top:2px;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:30px;}
+    .hero-shot{max-width:440px;}
+    .feat,.form-wrap,.designer-grid{grid-template-columns:1fr;gap:40px;}
+    .sell-grid,.arch-grid{grid-template-columns:1fr 1fr;}
+    .sec-head{flex-direction:column;align-items:flex-start;}
+    .designer-photo img{height:520px;}
+  }
+  @media(max-width:1024px){
+    .navlinks{display:none;}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px;}.nav-inner{padding:16px 20px;}
+    .sell-grid,.arch-grid,.detail-grid,.row2{grid-template-columns:1fr;}
+    .hero-shot img{height:440px;}
+  }
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel">
+// ── By Chasity — content ───────────────────────────────────────────────
+const FEATURED = {
+  id: "gnr-4t",
+  name: "Paradise City",
+  subtitle: "Guns N' Roses tribute · upcycled kids' denim",
+  base: "OshKosh B'Gosh 4T denim jacket",
+  size: "Kids 4T",
+  price: 248,
+  oneOfOne: true,
+  front: "jacket-gnr-front.jpg",
+  back: "jacket-gnr-back.jpg",
+  blurb:
+    "A vintage OshKosh 4T reborn as a wearable shrine to Appetite-era rock. Hand-set rhinestone borders frame original band photo patches; enamel pins, an embroidered rose, hand-lettered lyrics and a crimson lace hem finish the piece.",
+  details: [
+    ["One of one", "No two pieces are ever the same."],
+    ["Hand-bedazzled", "Every rhinestone set by hand, edge to edge."],
+    ["Upcycled denim", "A rescued vintage jacket, given a second life."],
+    ["Made to last", "Reinforced patches & sealed embellishments."],
+  ],
+  specs: [
+    ["Base garment", "OshKosh B'Gosh · 4T"],
+    ["Theme", "Guns N' Roses"],
+    ["Embellishment", "Rhinestone · enamel pins · embroidery · lace"],
+    ["Lettering", "Hand-painted lyrics & member names"],
+    ["Condition", "Reworked vintage · excellent"],
+  ],
+};
+
+// The archive — proof that every piece sells once and never returns.
+const ARCHIVE = [
+  { id: "a1", name: "Shout at the Devil", theme: "Mötley Crüe", tone: "#6b1018" },
+  { id: "a2", name: "Back in Black", theme: "AC/DC", tone: "#3a3a3a" },
+  { id: "a3", name: "Master of Puppets", theme: "Metallica", tone: "#22303a" },
+  { id: "a4", name: "Rumours", theme: "Fleetwood Mac", tone: "#5a3618" },
+];
+
+const SELL = [
+  { k: "01", t: "One of one", d: "Each jacket is built a single time. When it's gone, it's gone — you'll never pass yourself on the street." },
+  { k: "02", t: "Bedazzled by hand", d: "Hundreds of rhinestones, pins and patches placed one at a time. The shimmer you see is hours of work." },
+  { k: "03", t: "Rescued denim", d: "We start with vintage jackets headed for the landfill and turn them into heirlooms." },
+  { k: "04", t: "Wearable rock history", d: "Album art, lyrics and band photos, stitched into something you can actually wear out." },
+];
+
+const BANDS = ["Guns N' Roses", "Mötley Crüe", "Metallica", "AC/DC", "Aerosmith", "Fleetwood Mac", "Surprise me"];
+const BASES = ["Kids denim jacket", "Adult denim jacket", "Denim vest", "I'll ship my own"];
+
+Object.assign(window, { FEATURED, ARCHIVE, SELL, BANDS, BASES });
+
+  </script>
+  <script type="text/babel">
+// ── By Chasity — shared components ─────────────────────────────────────
+const { useState, useEffect, useRef } = React;
+
+/* simple rhinestone / sparkle mark — 4-point glint, allowed simple geometry */
+function Sparkle({ size = 26, className = "" }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <linearGradient id="spk" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#f6e3b0" />
+          <stop offset="0.5" stopColor="#c8a24a" />
+          <stop offset="1" stopColor="#cc1730" />
+        </linearGradient>
+      </defs>
+      <path d="M50 2 L60 40 L98 50 L60 60 L50 98 L40 60 L2 50 L40 40 Z" fill="url(#spk)" />
+      <circle cx="50" cy="50" r="6" fill="#fff" opacity="0.9" />
+    </svg>
+  );
+}
+
+/* ── LOGO ─────────────────────────────────────────────────────────────
+   variants: "stacked" | "inline" | "mark"  */
+function Logo({ variant = "inline", scale = 1, glow = false }) {
+  const s = (n) => `${n * scale}px`;
+  if (variant === "mark") {
+    return <Sparkle size={28 * scale} />;
+  }
+  if (variant === "stacked") {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
+        <Sparkle size={34 * scale} className={glow ? "spk-glow" : ""} />
+        <span className="gold-text" style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: s(34),
+          letterSpacing: ".40em", paddingRight: ".40em", marginTop: s(12) }}>CHASITY</span>
+        <span className="gold-text" style={{ fontFamily: "var(--sans)", fontWeight: 400, fontSize: s(15),
+          letterSpacing: ".62em", paddingRight: ".62em", marginTop: s(5) }}>MADE</span>
+        <span style={{ display: "flex", alignItems: "center", gap: s(8), marginTop: s(12),
+          color: "var(--ash)", fontSize: s(9), letterSpacing: ".42em", textTransform: "uppercase" }}>
+          <i style={{ width: s(22), height: 1, background: "var(--gold-lo)", display: "inline-block" }}></i>
+          Hand-made · One of One
+          <i style={{ width: s(22), height: 1, background: "var(--gold-lo)", display: "inline-block" }}></i>
+        </span>
+      </div>
+    );
+  }
+  // inline
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: s(12) }}>
+      <Sparkle size={26 * scale} className={glow ? "spk-glow" : ""} />
+      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+        <span className="gold-text" style={{ fontFamily: "var(--sans)", fontWeight: 700, fontSize: s(22),
+          letterSpacing: ".30em", paddingRight: ".30em" }}>CHASITY</span>
+        <span className="gold-text" style={{ fontFamily: "var(--sans)", fontWeight: 400, fontSize: s(10.5),
+          letterSpacing: ".54em", paddingRight: ".54em", marginTop: s(4) }}>MADE</span>
+      </div>
+    </div>
+  );
+}
+
+/* scroll-reveal wrapper */
+function Reveal({ children, delay = 0, as: Tag = "div", className = "", ...rest }) {
+  const ref = useRef(null);
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setTimeout(() => setSeen(true), delay); io.disconnect(); } },
+      { threshold: 0.12 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+  return (
+    <Tag ref={ref} className={`reveal ${seen ? "in" : ""} ${className}`} {...rest}>
+      {children}
+    </Tag>
+  );
+}
+
+/* small inline icons */
+const Icon = {
+  cart: (p) => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" {...p}>
+      <path d="M3 3h2l2.4 12.3a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6" />
+      <circle cx="9" cy="20" r="1.3" /><circle cx="18" cy="20" r="1.3" />
+    </svg>
+  ),
+  arrow: (p) => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...p}>
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  ),
+};
+
+/* scattered red rhinestone sprinkles for a section (decorative) */
+function Sprinkles({ spots }) {
+  return (
+    <>
+      {spots.map((sp, i) => (
+        <span key={i} className="twinkle"
+          style={{ top: sp[0], left: sp[1], fontSize: (sp[2] || 14) + "px",
+            animationDelay: (i * 0.45) + "s" }}>✦</span>
+      ))}
+    </>
+  );
+}
+
+Object.assign(window, { Sparkle, Logo, Reveal, Icon, Sprinkles });
+
+  </script>
+  <script type="text/babel">
+// ── By Chasity — app ───────────────────────────────────────────────────
+const { useState, useEffect } = React;
+
+function Nav({ scrolled, count, onCart }) {
+  return (
+    <header className={`nav ${scrolled ? "solid" : ""}`}>
+      <div className="nav-inner">
+        <a href="#top"><Logo variant="inline" glow /></a>
+        <nav className="navlinks">
+          <a href="#drop">The Drop</a>
+          <a href="#designer">The Designer</a>
+          <a href="#story">The Craft</a>
+          <a href="#archive">Archive</a>
+          <a href="#commission">Commission</a>
+        </nav>
+        <button className="cart-btn" onClick={onCart}>
+          <Icon.cart /> Cart
+          {count > 0 && <span className="cart-count">{count}</span>}
+        </button>
+      </div>
+    </header>
+  );
+}
+
+function Welcome() {
+  const [toast, setToast] = useState(false);
+  const ping = () => { setToast(true); clearTimeout(window.__wt); window.__wt = setTimeout(() => setToast(false), 2600); };
+  return (
+    <section className="welcome wrap" id="top">
+      <Reveal className="lead">
+        <span className="eyebrow gold">A welcome from the designer</span>
+        <h2 className="impact gold-text">Hi, I'm Chasity</h2>
+        <p>Press play — let me tell you the story behind every stitch, stone and rescued scrap of denim.</p>
+      </Reveal>
+      <Reveal className="video-frame" delay={120}>
+        <div className="video-inner">
+          <img src="designer.jpg" alt="Chasity, designer" />
+          <div className="video-overlay">
+            <button className="play-btn" onClick={ping} aria-label="Play welcome video">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--gold)"><path d="M6 4l14 8-14 8z"/></svg>
+            </button>
+            <div className="video-cap">Designer's Welcome<small>Chasity Made · hand-made, one of one</small></div>
+          </div>
+          <div className={`video-toast ${toast ? "show" : ""}`}>✦ Welcome video coming soon</div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function Designer() {
+  return (
+    <section className="block designer" id="designer">
+      <div className="wrap designer-grid">
+        <Reveal className="designer-photo">
+          <img src="designer.jpg" alt="Chasity, designer and maker" />
+          <span className="sig">— Chasity</span>
+        </Reveal>
+        <Reveal className="designer-copy" delay={120}>
+          <span className="eyebrow gold">The hand behind the label</span>
+          <div className="quote serif">“I don't make clothes. I make the one thing nobody else in the room will be wearing.”</div>
+          <p>Chasity has spent years turning forgotten denim into wearable rock &amp; roll — every patch placed,
+            every rhinestone set, every lyric lettered by her own hand. No factory, no reprints, no two alike.</p>
+          <p>Each piece is a love letter to the music that raised her, built to be worn loud and kept forever.</p>
+          <div className="designer-stats">
+            <div className="st"><div className="n gold-text">100%</div><div className="l">Hand-made</div></div>
+            <div className="st"><div className="n gold-text">1 of 1</div><div className="l">Every piece</div></div>
+            <div className="st"><div className="n gold-text">0</div><div className="l">Reprints, ever</div></div>
+          </div>
+          <a className="btn btn-gold" href="#commission" style={{ marginTop: 30 }}>Commission a piece <Icon.arrow /></a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Hero({ onClaim }) {
+  return (
+    <section className="hero">
+      <div className="hero-glow"></div>
+      <Sprinkles spots={[["18%","6%",16],["30%","46%",11],["68%","3%",13],["12%","40%",10],["80%","52%",15],["52%","55%",10]]} />
+      <div className="wrap hero-grid">
+        <div className="hero-copy">
+          <span className="eyebrow">Hand-made · One of one · Wearable rock</span>
+          <h1 className="impact">
+            WEAR THE<br /><span className="red">RIOT.</span>
+          </h1>
+          <p className="lede">
+            Vintage denim, reborn by hand into one-of-a-kind tributes to the bands that built
+            rock &amp; roll. Bedazzled, stitched and lettered — never reprinted, never repeated.
+          </p>
+          <div className="hero-cta">
+            <button className="btn btn-primary" onClick={onClaim}>Claim the drop <Icon.arrow /></button>
+            <a className="btn btn-ghost" href="#commission">Commission your own</a>
+          </div>
+        </div>
+        <Reveal className="hero-shot" delay={150}>
+          <div className="frame">
+            <span className="tag">The Drop · {FEATURED.theme || "Live Now"}</span>
+            <img src={FEATURED.front} alt={FEATURED.name} />
+            <span className="price">${FEATURED.price}</span>
+          </div>
+        </Reveal>
+      </div>
+      <div className="marquee-strip">
+        <div className="run">
+          {Array.from({ length: 2 }).map((_, i) => (
+            <React.Fragment key={i}>
+              <span>One of one</span><span><b>✦</b></span>
+              <span>Hand bedazzled</span><span><b>✦</b></span>
+              <span>Upcycled vintage</span><span><b>✦</b></span>
+              <span>Never reprinted</span><span><b>✦</b></span>
+              <span>Wearable rock history</span><span><b>✦</b></span>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Featured({ onClaim, claimed }) {
+  const [view, setView] = useState("front");
+  const f = FEATURED;
+  const shots = [["front", f.front, "Front"], ["back", f.back, "Back"]];
+  return (
+    <section className="block wrap" id="drop">
+      <div className="sec-head">
+        <div>
+          <span className="eyebrow gold">The Drop · Available now</span>
+          <h2 className="impact">This Week's One&nbsp;of&nbsp;One</h2>
+        </div>
+        <p>When it sells, it's gone for good. No restock, no reprint — the next piece will be something else entirely.</p>
+      </div>
+      <div className="feat">
+        <Reveal className="gallery">
+          <div className="main">
+            {shots.map(([key, src]) => (
+              <img key={key} src={src} alt={`${f.name} ${key}`}
+                style={{ display: view === key ? "block" : "none" }} />
+            ))}
+          </div>
+          <div className="thumbs">
+            {shots.map(([key, src, label]) => (
+              <button key={key} className={view === key ? "active" : ""} onClick={() => setView(key)}>
+                <img src={src} alt={label} />
+                <div className="lbl">{label}</div>
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="feat-info" delay={120}>
+          <span className="one-badge"><span className="dot"></span>One of One · {f.size}</span>
+          <h3 className="impact">{f.name}</h3>
+          <div className="sub">{f.subtitle}</div>
+          <div className="feat-price">
+            <span className="amt">${f.price}</span>
+            <span className="note">Free insured shipping · ships in 3–5 days</span>
+          </div>
+          <p className="feat-blurb">{f.blurb}</p>
+
+          <div className="detail-grid">
+            {f.details.map(([t, d]) => (
+              <div className="cell" key={t}>
+                <div className="t">{t}</div>
+                <div className="d">{d}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="specs">
+            {f.specs.map(([k, v]) => (
+              <div className="row" key={k}><span className="k">{k}</span><span className="v">{v}</span></div>
+            ))}
+          </div>
+
+          <div className="claim-row">
+            <button className="btn btn-primary" onClick={onClaim} disabled={claimed}
+              style={claimed ? { opacity: .5, cursor: "default" } : {}}>
+              {claimed ? "Reserved in your bag" : "Claim this piece"} {!claimed && <Icon.arrow />}
+            </button>
+            <a className="btn btn-ghost" href="#commission">Want one like it?</a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Story() {
+  return (
+    <section className="block story" id="story">
+      <div className="wrap">
+        <div className="sec-head">
+          <div>
+            <span className="eyebrow">The Craft</span>
+            <h2 className="impact">Made by hand,<br />worn like armor</h2>
+          </div>
+          <p>Every jacket starts as a forgotten piece of denim and ends as something you'll keep forever.</p>
+        </div>
+        <Reveal className="sell-grid">
+          {SELL.map((s) => (
+            <div className="sell" key={s.k}>
+              <div className="k">{s.k}</div>
+              <h4>{s.t}</h4>
+              <p>{s.d}</p>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Archive() {
+  return (
+    <section className="block wrap" id="archive">
+      <div className="sec-head">
+        <div>
+          <span className="eyebrow gold">The Archive</span>
+          <h2 className="impact">Gone, but never forgotten</h2>
+        </div>
+        <p>Past one-of-ones, already claimed. Proof that nothing here comes around twice.</p>
+      </div>
+      <Reveal className="arch-grid">
+        {ARCHIVE.map((a) => (
+          <div className="arch" key={a.id}
+            style={{ background: `linear-gradient(160deg,${a.tone},#0b0908)` }}>
+            <div className="denim"></div>
+            <span className="sold">Sold</span>
+            <h4>{a.name}</h4>
+            <div className="th">{a.theme}</div>
+          </div>
+        ))}
+      </Reveal>
+    </section>
+  );
+}
+
+function Commission() {
+  const empty = { name: "", email: "", band: BANDS[0], base: BASES[0], size: "", notes: "" };
+  const [form, setForm] = useState(empty);
+  const [errs, setErrs] = useState({});
+  const [sent, setSent] = useState(false);
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  const submit = (e) => {
+    e.preventDefault();
+    const er = {};
+    if (!form.name.trim()) er.name = "Tell us who you are";
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) er.email = "Enter a valid email";
+    if (!form.size.trim()) er.size = "We need a size to start";
+    setErrs(er);
+    if (Object.keys(er).length === 0) setSent(true);
+  };
+
+  return (
+    <section className="block commission" id="commission">
+      <div className="wrap form-wrap">
+        <Reveal>
+          <span className="eyebrow">Commissions</span>
+          <h2 className="impact" style={{ fontSize: "clamp(40px,6vw,80px)", margin: "12px 0 22px", lineHeight: .9 }}>
+            Build me<br />your own
+          </h2>
+          <p className="serif" style={{ fontSize: 19, lineHeight: 1.6, color: "var(--bone-dim)", maxWidth: 380 }}>
+            Pick your band, your size, your base. I'll source the denim and bedazzle a one-of-a-kind piece
+            just for you. Commissions take 3–5 weeks and start at <span style={{ color: "var(--gold)" }}>$220</span>.
+          </p>
+          <div style={{ marginTop: 28, display: "flex", flexDirection: "column", gap: 14 }}>
+            {["You approve a mock-up before any stones go on","50% deposit to start, balance on completion","Sized for kids or adults"].map((t) => (
+              <div key={t} style={{ display: "flex", gap: 12, alignItems: "center", color: "var(--bone-dim)", fontFamily: "var(--serif)", fontSize: 17 }}>
+                <Sparkle size={15} /> {t}
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="form-card" delay={120}>
+          {sent ? (
+            <div className="form-ok">
+              <div className="mark">✦</div>
+              <h3 className="impact" style={{ fontSize: 34, margin: "0 0 10px" }}>Request received</h3>
+              <p className="serif" style={{ fontSize: 18, color: "var(--bone-dim)", lineHeight: 1.5 }}>
+                Thank you, {form.name.split(" ")[0]}. I'll be in touch at <b style={{ color: "var(--gold)" }}>{form.email}</b> within 48 hours
+                with a sketch for your {form.band} piece.
+              </p>
+              <button className="btn btn-ghost" style={{ marginTop: 22 }}
+                onClick={() => { setForm(empty); setSent(false); }}>Start another</button>
+            </div>
+          ) : (
+            <form onSubmit={submit} noValidate>
+              <div className="row2">
+                <div className={`field ${errs.name ? "bad" : ""}`}>
+                  <label>Your name</label>
+                  <input value={form.name} onChange={set("name")} placeholder="Chasity R." />
+                  {errs.name && <div className="err">{errs.name}</div>}
+                </div>
+                <div className={`field ${errs.email ? "bad" : ""}`}>
+                  <label>Email</label>
+                  <input value={form.email} onChange={set("email")} placeholder="you@email.com" />
+                  {errs.email && <div className="err">{errs.email}</div>}
+                </div>
+              </div>
+              <div className="row2">
+                <div className="field">
+                  <label>Band / theme</label>
+                  <select value={form.band} onChange={set("band")}>
+                    {BANDS.map((b) => <option key={b}>{b}</option>)}
+                  </select>
+                </div>
+                <div className="field">
+                  <label>Base garment</label>
+                  <select value={form.base} onChange={set("base")}>
+                    {BASES.map((b) => <option key={b}>{b}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div className={`field ${errs.size ? "bad" : ""}`}>
+                <label>Size</label>
+                <input value={form.size} onChange={set("size")} placeholder="e.g. Kids 4T, Adult M" />
+                {errs.size && <div className="err">{errs.size}</div>}
+              </div>
+              <div className="field">
+                <label>The vision</label>
+                <textarea value={form.notes} onChange={set("notes")}
+                  placeholder="Favorite album, colors, lyrics you want lettered, lace or no lace…" />
+              </div>
+              <button type="submit" className="btn btn-gold" style={{ width: "100%", justifyContent: "center" }}>
+                Send commission request <Icon.arrow />
+              </button>
+            </form>
+          )}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Cart({ open, item, onClose, onRemove }) {
+  const [step, setStep] = useState("bag");
+  useEffect(() => { if (!open) setTimeout(() => setStep("bag"), 400); }, [open]);
+  return (
+    <>
+      <div className={`scrim ${open ? "open" : ""}`} onClick={onClose}></div>
+      <aside className={`drawer ${open ? "open" : ""}`}>
+        <div className="drawer-head">
+          <span className="t">{step === "done" ? "Reserved" : "Your bag"}</span>
+          <button className="close-x" onClick={onClose}>✕</button>
+        </div>
+
+        {step === "done" ? (
+          <div className="drawer-body">
+            <div className="form-ok">
+              <div className="mark">✦</div>
+              <h3 className="impact" style={{ fontSize: 32, margin: "0 0 10px" }}>It's yours.</h3>
+              <p className="serif" style={{ fontSize: 18, color: "var(--bone-dim)", lineHeight: 1.5 }}>
+                <b style={{ color: "var(--gold)" }}>{item && item.name}</b> is reserved under your name and
+                pulled from the shop. Check your email for secure checkout — you have 24 hours to complete it.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="drawer-body">
+              {!item ? (
+                <div className="cart-empty">Your bag is empty.<br />The drop is waiting.</div>
+              ) : (
+                <div className="cart-item">
+                  <img src={item.front} alt={item.name} />
+                  <div style={{ flex: 1 }}>
+                    <div className="ci-name">{item.name}</div>
+                    <div className="ci-sub">{item.size} · one of one</div>
+                    <div className="ci-price">${item.price}</div>
+                    <button onClick={onRemove}
+                      style={{ marginTop: 10, color: "var(--ash)", fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", textDecoration: "underline" }}>
+                      Release
+                    </button>
+                  </div>
+                </div>
+              )}
+              {item && (
+                <p className="serif" style={{ color: "var(--ash)", fontStyle: "italic", fontSize: 15, marginTop: 18 }}>
+                  Held for you for 15 minutes. One-of-ones move fast.
+                </p>
+              )}
+            </div>
+            <div className="drawer-foot">
+              <div className="totals"><span>Total</span><span className="v">${item ? item.price : 0}</span></div>
+              <button className="btn btn-primary" style={{ width: "100%", justifyContent: "center", opacity: item ? 1 : .4 }}
+                disabled={!item} onClick={() => item && setStep("done")}>
+                Reserve &amp; checkout <Icon.arrow />
+              </button>
+            </div>
+          </>
+        )}
+      </aside>
+    </>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div className="wrap">
+        <div className="foot-grid">
+          <div className="fbrand">
+            <Logo variant="stacked" />
+          </div>
+          <div className="foot-links">
+            <div className="foot-col">
+              <h5>Shop</h5>
+              <a href="#drop">The Drop</a><a href="#archive">Archive</a><a href="#commission">Commissions</a>
+            </div>
+            <div className="foot-col">
+              <h5>Info</h5>
+              <a href="#story">The Craft</a><a href="#">Sizing &amp; care</a><a href="#">Shipping</a>
+            </div>
+            <div className="foot-col">
+              <h5>Follow</h5>
+              <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Etsy</a>
+            </div>
+          </div>
+        </div>
+        <div className="foot-base">
+          <span>© {new Date().getFullYear()} Chasity Made — every piece, one of one.</span>
+          <span>Handmade in the USA · Bedazzled with love</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  const [scrolled, setScrolled] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [item, setItem] = useState(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const claim = () => { setItem(FEATURED); setCartOpen(true); };
+
+  return (
+    <>
+      <Nav scrolled={scrolled} count={item ? 1 : 0} onCart={() => setCartOpen(true)} />
+      <Welcome />
+      <Hero onClaim={claim} />
+      <Featured onClaim={claim} claimed={!!item} />
+      <Designer />
+      <Story />
+      <Archive />
+      <Commission />
+      <Footer />
+      <Cart open={cartOpen} item={item} onClose={() => setCartOpen(false)} onRemove={() => setItem(null)} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+</html>
