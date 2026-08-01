@@ -22,7 +22,11 @@ a{color:inherit}
 .bj-grid3{grid-template-columns:1fr !important}
 table.bj-tbl{font-size:12px !important}
 .bj-footer{flex-direction:column !important;gap:12px !important;text-align:center !important}
+.bj-mobile-toggle{display:block !important}
 }
+.bj-mobile-toggle{display:none}
+.bj-mobile-toggle summary{list-style:none;cursor:pointer;font-size:26px;line-height:1;color:oklch(0.22 0.02 260);padding:4px 6px}
+.bj-mobile-toggle summary::-webkit-details-marker{display:none}
 summary{list-style:none;cursor:pointer}
 summary::-webkit-details-marker{display:none}
 </style>
@@ -51,6 +55,20 @@ summary::-webkit-details-marker{display:none}
       <a href="index.html" style="text-decoration:none">About</a>
       <a href="index.html#trial" style="text-decoration:none;background:oklch(0.62 0.2 38);color:#fff;padding:8px 16px;border-radius:6px">Start Free Trial</a>
     </div>
+    <details class="bj-mobile-toggle" style="position:relative">
+      <summary>☰</summary>
+      <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;min-width:200px;display:flex;flex-direction:column;gap:2px;z-index:70">
+          <a href="How It Works.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">How It Works</a>
+          <a href="For Studios.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">For Studios</a>
+          <a href="For Artists.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">For Artists</a>
+          <a href="Movies.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Movies</a>
+          <a href="Oil and Gas.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Oil &amp; Gas</a>
+          <a href="Patents.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Patents</a>
+          <a href="Pricing.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Pricing</a>
+          <a href="index.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">About</a>
+        <a href="index.html#trial" style="text-decoration:none;padding:12px 16px;border-radius:8px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:15px;text-align:center;margin-top:6px">Start Free Trial</a>
+      </div>
+    </details>
   </div>
 
   <div class="bj-section" style="padding:130px 56px 48px;text-align:center">
