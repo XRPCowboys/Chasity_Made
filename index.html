@@ -29,7 +29,7 @@ summary::-webkit-details-marker{display:none}
 function ssWhenReady(){
   var fill=document.getElementById('ss-timer-fill'),text=document.getElementById('ss-timer-text'),check=document.getElementById('ss-timer-check');
   if(!fill||!text||!check){requestAnimationFrame(ssWhenReady);return;}
-  var seq=[3,5,3,6],seqIdx=0,sec=0,target=seq[0];
+  var seq=[3,1,2,1,2,3,1],seqIdx=0,sec=0,target=seq[0];
   function render(){
     fill.style.width=Math.min(100,Math.round((sec/target)*100))+'%';
     text.textContent='Settling · '+sec+'.0s';
