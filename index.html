@@ -25,6 +25,34 @@ a{color:inherit}
 summary{list-style:none;cursor:pointer}
 summary::-webkit-details-marker{display:none}
 </style>
+<script>
+function ssWhenReady(){
+  var fill=document.getElementById('ss-timer-fill'),text=document.getElementById('ss-timer-text'),check=document.getElementById('ss-timer-check');
+  if(!fill||!text||!check){requestAnimationFrame(ssWhenReady);return;}
+  var seq=[3,5,3,6],seqIdx=0,sec=0,target=seq[0];
+  function render(){
+    fill.style.width=Math.min(100,Math.round((sec/target)*100))+'%';
+    text.textContent='Settling · '+sec+'.0s';
+    check.style.opacity=sec>=target?'1':'0';
+    if(sec>=target) text.textContent='Settled in '+target+'.0s';
+  }
+  function tick(){
+    if(sec<target){
+      sec++;render();
+      setTimeout(tick,650+Math.random()*450);
+    } else {
+      setTimeout(function(){
+        sec=0;seqIdx=(seqIdx+1)%seq.length;target=seq[seqIdx];
+        render();
+        setTimeout(tick,650+Math.random()*450);
+      },1400);
+    }
+  }
+  render();
+  setTimeout(tick,650+Math.random()*450);
+}
+ssWhenReady();
+</script>
 </helmet>
 
 <div style="width:100%;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background-image:linear-gradient(180deg,rgba(255,255,255,0.75) 0%,rgba(200,225,245,0.6) 45%,oklch(0.93 0.025 235) 75%),url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235)">
@@ -129,36 +157,5 @@ summary::-webkit-details-marker{display:none}
 </div>
 
 </x-dc>
-
-<script>
-(function(){
-  function run(){
-    var fill=document.getElementById('ss-timer-fill'),text=document.getElementById('ss-timer-text'),check=document.getElementById('ss-timer-check');
-    if(!fill){requestAnimationFrame(run);return;}
-    var seq=[3,5,3,6],seqIdx=0,sec=0,target=seq[0];
-    function render(){
-      fill.style.width=Math.min(100,Math.round((sec/target)*100))+'%';
-      text.textContent='Settling · '+sec+'.0s';
-      check.style.opacity=sec>=target?'1':'0';
-      if(sec>=target) text.textContent='Settled in '+target+'.0s';
-    }
-    function tick(){
-      if(sec<target){
-        sec++;render();
-        setTimeout(tick,650+Math.random()*450);
-      } else {
-        setTimeout(function(){
-          sec=0;seqIdx=(seqIdx+1)%seq.length;target=seq[seqIdx];
-          render();
-          setTimeout(tick,650+Math.random()*450);
-        },1400);
-      }
-    }
-    render();
-    setTimeout(tick,650+Math.random()*450);
-  }
-  run();
-})();
-</script>
 
 </body></html>
