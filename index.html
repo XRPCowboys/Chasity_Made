@@ -53,7 +53,16 @@ summary::-webkit-details-marker{display:none}
   </div>
 
   <div class="bj-section" style="padding:130px 56px 160px;text-align:center">
-    <img src="title-get-paid-in-seconds.png" style="width:100%;max-width:700px;height:auto;margin:0 auto 24px;display:block">
+    <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:56px;line-height:1.05;margin:0 auto 20px;max-width:820px;color:oklch(0.2 0.02 260)">Get paid in <span style="color:oklch(0.62 0.2 38)">seconds.</span></h1>
+    <div style="max-width:340px;margin:0 auto 28px;text-align:left;background:rgba(255,255,255,0.7);border-radius:10px;padding:16px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <span id="ss-timer-text" style="font-family:'Inter',sans-serif;font-weight:700;font-size:14px;color:oklch(0.3 0.02 260)">Settling · 0.0s</span>
+        <span id="ss-timer-check" style="color:oklch(0.55 0.2 145);font-weight:800;font-size:14px;opacity:0;transition:opacity 0.25s ease">✓ Settled</span>
+      </div>
+      <div style="height:8px;background:oklch(0.9 0.01 260);border-radius:999px;overflow:hidden">
+        <div id="ss-timer-fill" style="height:100%;width:0%;background:oklch(0.62 0.2 38);border-radius:999px;transition:width 0.5s ease"></div>
+      </div>
+    </div>
     <p style="font-size:22px;line-height:1.6;color:oklch(0.28 0.03 250);max-width:780px;margin:0 auto 32px">SplitSecond Royalties locks a guaranteed <strong style="color:oklch(0.62 0.2 38);text-transform:uppercase;font-size:28px">15% NET ROYALTY</strong> straight into the song's digital IP — settled in <strong style="color:oklch(0.62 0.2 38);text-transform:uppercase;font-size:28px">SECONDS</strong>, audited and automatic. No quarterly statements. No recoupment black box.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
       <a href="index.html#trial" style="text-decoration:none;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:16px;padding:16px 30px;border-radius:8px">Start Free Trial — No Cost</a>
@@ -121,5 +130,35 @@ summary::-webkit-details-marker{display:none}
 
 </x-dc>
 
+<script>
+(function(){
+  function run(){
+    var fill=document.getElementById('ss-timer-fill'),text=document.getElementById('ss-timer-text'),check=document.getElementById('ss-timer-check');
+    if(!fill){requestAnimationFrame(run);return;}
+    var seq=[3,5,3,6],seqIdx=0,sec=0,target=seq[0];
+    function render(){
+      fill.style.width=Math.min(100,Math.round((sec/target)*100))+'%';
+      text.textContent='Settling · '+sec+'.0s';
+      check.style.opacity=sec>=target?'1':'0';
+      if(sec>=target) text.textContent='Settled in '+target+'.0s';
+    }
+    function tick(){
+      if(sec<target){
+        sec++;render();
+        setTimeout(tick,650+Math.random()*450);
+      } else {
+        setTimeout(function(){
+          sec=0;seqIdx=(seqIdx+1)%seq.length;target=seq[seqIdx];
+          render();
+          setTimeout(tick,650+Math.random()*450);
+        },1400);
+      }
+    }
+    render();
+    setTimeout(tick,650+Math.random()*450);
+  }
+  run();
+})();
+</script>
 
 </body></html>
