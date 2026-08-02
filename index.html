@@ -75,6 +75,19 @@ function ssWhenReady(){
   setTimeout(tick,650+Math.random()*450);
 }
 ssWhenReady();
+function ssTilesWhenReady(){
+  var tiles=document.querySelectorAll('.bj-tile');
+  if(!tiles.length){requestAnimationFrame(ssTilesWhenReady);return;}
+  tiles.forEach(function(t){
+    if(t.dataset.ssBound)return;
+    t.dataset.ssBound='1';
+    t.addEventListener('mouseenter',function(){
+      tiles.forEach(function(o){o.classList.remove('bj-tile-expanded')});
+      t.classList.add('bj-tile-expanded');
+    });
+  });
+}
+ssTilesWhenReady();
 </script>
 </helmet>
 
@@ -205,17 +218,6 @@ ssWhenReady();
       </a>
     </div>
   </div>
-  <script>
-  (function(){
-    var tiles=document.querySelectorAll('.bj-tile');
-    tiles.forEach(function(t){
-      t.addEventListener('mouseenter',function(){
-        tiles.forEach(function(o){o.classList.remove('bj-tile-expanded')});
-        t.classList.add('bj-tile-expanded');
-      });
-    });
-  })();
-  </script>
 
   <div id="trial" class="bj-section" style="padding:64px 56px;text-align:center">
     <h2 style="font-family:'Fredoka',sans-serif;font-size:32px;font-weight:700;margin:0 0 12px;color:oklch(0.2 0.02 260)">Schedule an Institutional Consultation.</h2>
