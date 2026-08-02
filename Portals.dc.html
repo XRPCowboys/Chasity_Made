@@ -22,6 +22,14 @@ a:hover{color:oklch(0.55 0.2 38)}
 .bj-grid2{grid-template-columns:1fr !important}
 .bj-footer{flex-direction:column !important;gap:12px !important;text-align:center !important}
 .bj-mobile-toggle{display:block !important}
+.bj-logo-link{margin-left:-30px !important;min-width:0 !important;flex-shrink:1 !important}
+.bj-logo-img{width:150px !important;height:150px !important;top:-4px !important}
+.bj-logo-text{margin-left:100px !important;font-size:17px !important;overflow:hidden !important;text-overflow:ellipsis !important}
+}
+@media (max-width:420px){
+.bj-logo-link{margin-left:-16px !important}
+.bj-logo-img{width:110px !important;height:110px !important;top:0px !important}
+.bj-logo-text{margin-left:72px !important;font-size:14px !important}
 }
 .bj-mobile-toggle{display:none}
 .bj-mobile-toggle summary{list-style:none;cursor:pointer;font-size:26px;line-height:1;color:oklch(0.22 0.02 260);padding:4px 6px}
@@ -34,9 +42,9 @@ summary::-webkit-details-marker{display:none}
 <div style="width:100%;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background-image:url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235)">
 
   <div class="bj-nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.5)">
-    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-56px">
-      <img src="10482.png" style="position:absolute;top:-20px;left:0;width:280px;height:280px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
-      <div style="margin-left:185px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
+    <a href="index.html" class="bj-logo-link" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-56px">
+      <img src="10482.png" class="bj-logo-img" style="position:absolute;top:-20px;left:0;width:280px;height:280px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
+      <div class="bj-logo-text" style="margin-left:185px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
     </a>
     <div class="bj-nav-links" style="display:flex;gap:20px;font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260);align-items:center;white-space:nowrap">
       <a href="index.html#proof" style="text-decoration:none">How It Works</a>
@@ -47,7 +55,7 @@ summary::-webkit-details-marker{display:none}
     </div>
     <details class="bj-mobile-toggle" style="position:relative">
       <summary>☰</summary>
-      <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;min-width:220px;display:flex;flex-direction:column;gap:2px;z-index:70">
+      <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;min-width:220px;max-width:calc(100vw - 32px);display:flex;flex-direction:column;gap:2px;z-index:70">
         <a href="index.html#proof" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">How It Works</a>
         <a href="Portals.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Our Portals</a>
         <a href="Funding.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Get Funded</a>
