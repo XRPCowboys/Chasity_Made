@@ -44,6 +44,9 @@ html{scroll-behavior:smooth}
 .bj-mobile-toggle summary::-webkit-details-marker{display:none}
 summary{list-style:none;cursor:pointer}
 summary::-webkit-details-marker{display:none}
+.bj-tile:hover{background:oklch(0.99 0.01 235 / 55%) !important;box-shadow:0 8px 22px rgba(0,0,0,0.14) !important}
+.bj-tile-more{max-height:0;opacity:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s ease}
+.bj-tile-expanded .bj-tile-more{max-height:400px;opacity:1}
 </style>
 <script>
 function ssWhenReady(){
@@ -168,32 +171,51 @@ ssWhenReady();
 
   <div class="bj-section" style="padding:16px 56px 72px">
     <div class="bj-grid4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1280px;margin:0 auto">
-      <div id="tile-music" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px">
+      <a href="Music Catalogs.dc.html" id="tile-music" class="bj-tile" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px;text-decoration:none;color:inherit;cursor:pointer;transition:background 0.2s ease,box-shadow 0.2s ease">
         <div style="font-family:'Fredoka',sans-serif;font-size:18px;font-weight:700;color:oklch(0.22 0.02 260)">Music Catalogs</div>
         <p style="font-size:13.5px;line-height:1.55;color:oklch(0.32 0.02 260);margin:0">Stop waiting 12 months for legacy distributor and label accounting to clear your streaming yields.</p>
-        <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">SplitSecond Royalties clears incoming monthly streaming proceeds directly at our gateway bank account, automatically routing a permanent 35% net split to Owners and 15% net split to partner recording studios completely fee-free&mdash;and settled in seconds.</p>
-        <a href="Music Catalogs.dc.html" style="text-decoration:none;color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Music Deep-Dive &rarr;</a>
-      </div>
-      <div id="tile-film" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px">
+        <div class="bj-tile-more">
+          <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">SplitSecond Royalties clears incoming monthly streaming proceeds directly at our gateway bank account, automatically routing a permanent 35% net split to Owners and 15% net split to partner recording studios completely fee-free&mdash;and settled in seconds.</p>
+        </div>
+        <span style="color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Music Deep-Dive &rarr;</span>
+      </a>
+      <a href="Film and Video.dc.html" id="tile-film" class="bj-tile" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px;text-decoration:none;color:inherit;cursor:pointer;transition:background 0.2s ease,box-shadow 0.2s ease">
         <div style="font-family:'Fredoka',sans-serif;font-size:18px;font-weight:700;color:oklch(0.22 0.02 260)">Film &amp; Video</div>
         <p style="font-size:13.5px;line-height:1.55;color:oklch(0.32 0.02 260);margin:0">Bypass "Hollywood accounting" and distribute synchronization fees and backend box-office splits on autopilot.</p>
-        <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">Production companies and independent film distributors wait months to collect backend points behind uncoordinated international reporting lines. SSR locks a secure 15% net royalty split directly into the movie's master files, routing sync fees and theatrical revenues straight to stakeholders in seconds.</p>
-        <a href="Film and Video.dc.html" style="text-decoration:none;color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Film Deep-Dive &rarr;</a>
-      </div>
-      <div id="tile-energy" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px">
+        <div class="bj-tile-more">
+          <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">Production companies and independent film distributors wait months to collect backend points behind uncoordinated international reporting lines. SSR locks a secure 15% net royalty split directly into the movie's master files, routing sync fees and theatrical revenues straight to stakeholders in seconds.</p>
+        </div>
+        <span style="color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Film Deep-Dive &rarr;</span>
+      </a>
+      <a href="Energy and Leases.dc.html" id="tile-energy" class="bj-tile" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px;text-decoration:none;color:inherit;cursor:pointer;transition:background 0.2s ease,box-shadow 0.2s ease">
         <div style="font-family:'Fredoka',sans-serif;font-size:18px;font-weight:700;color:oklch(0.22 0.02 260)">Energy &amp; Mineral Leases</div>
         <p style="font-size:13.5px;line-height:1.55;color:oklch(0.32 0.02 260);margin:0">Eradicate manual accounting errors, payment reconciliation disputes, and paper check delays for landowners.</p>
-        <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">Over 50% of energy royalties are still paid via physical paper checks, plagued by postal delays and high administrative costs. SSR integrates directly with physical wellhead flow-meters to automatically calculate, split, and route cleared digital dollars directly to stakeholder accounts.</p>
-        <a href="Energy and Leases.dc.html" style="text-decoration:none;color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Energy Deep-Dive &rarr;</a>
-      </div>
-      <div id="tile-patents" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px">
+        <div class="bj-tile-more">
+          <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">Over 50% of energy royalties are still paid via physical paper checks, plagued by postal delays and high administrative costs. SSR integrates directly with physical wellhead flow-meters to automatically calculate, split, and route cleared digital dollars directly to stakeholder accounts.</p>
+        </div>
+        <span style="color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Energy Deep-Dive &rarr;</span>
+      </a>
+      <a href="Patents and Brands.dc.html" id="tile-patents" class="bj-tile" style="background:oklch(0.98 0.01 235 / 30%);border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(0,0,0,0.08);border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column;gap:10px;scroll-margin-top:100px;text-decoration:none;color:inherit;cursor:pointer;transition:background 0.2s ease,box-shadow 0.2s ease">
         <div style="font-family:'Fredoka',sans-serif;font-size:18px;font-weight:700;color:oklch(0.22 0.02 260)">Patents &amp; Brands</div>
         <p style="font-size:13.5px;line-height:1.55;color:oklch(0.32 0.02 260);margin:0">Stop spending corporate capital on manual audits to track down international wholesale manufacturing volumes.</p>
-        <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">Tracking down unit shipping volumes from foreign contract manufacturers is a massive administrative drain. Our platform connects directly to global shipping registries and bills of lading, programmatically calculating and distributing exact royalty splits the second delivery milestones are cleared.</p>
-        <a href="Patents and Brands.dc.html" style="text-decoration:none;color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Patents Deep-Dive &rarr;</a>
-      </div>
+        <div class="bj-tile-more">
+          <p style="font-size:13.5px;line-height:1.55;color:oklch(0.35 0.02 260);margin:0">Tracking down unit shipping volumes from foreign contract manufacturers is a massive administrative drain. Our platform connects directly to global shipping registries and bills of lading, programmatically calculating and distributing exact royalty splits the second delivery milestones are cleared.</p>
+        </div>
+        <span style="color:oklch(0.62 0.2 38);font-weight:700;font-size:13.5px;margin-top:auto">Click for Patents Deep-Dive &rarr;</span>
+      </a>
     </div>
   </div>
+  <script>
+  (function(){
+    var tiles=document.querySelectorAll('.bj-tile');
+    tiles.forEach(function(t){
+      t.addEventListener('mouseenter',function(){
+        tiles.forEach(function(o){o.classList.remove('bj-tile-expanded')});
+        t.classList.add('bj-tile-expanded');
+      });
+    });
+  })();
+  </script>
 
   <div id="trial" class="bj-section" style="padding:64px 56px;text-align:center">
     <h2 style="font-family:'Fredoka',sans-serif;font-size:32px;font-weight:700;margin:0 0 12px;color:oklch(0.2 0.02 260)">Schedule an Institutional Consultation.</h2>
