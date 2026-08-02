@@ -24,6 +24,9 @@ a{color:inherit}
 .bj-footer{flex-direction:column !important;gap:12px !important;text-align:center !important}
 .bj-mobile-toggle{display:block !important;flex-shrink:0 !important}
 .bj-grid4{grid-template-columns:1fr !important}
+.bj-selector{display:grid !important;grid-template-columns:1fr 1fr !important;gap:12px !important;max-width:420px !important;padding:18px 16px !important}
+.bj-selector a{display:flex !important;align-items:center;justify-content:center;text-align:center;background:rgba(255,255,255,0.15);border-radius:8px;padding:12px 8px !important;font-size:13px !important;line-height:1.3}
+.bj-selector-dot{display:none !important}
 .bj-logo-link{margin-left:-30px !important;min-width:0 !important;flex-shrink:1 !important}
 .bj-logo-img{width:150px !important;height:150px !important;top:-4px !important}
 .bj-logo-text{margin-left:100px !important;font-size:17px !important;overflow:hidden !important;text-overflow:ellipsis !important}
@@ -122,11 +125,11 @@ ssWhenReady();
 
   <div class="bj-selector" style="display:flex;gap:28px;justify-content:center;align-items:center;flex-wrap:wrap;font-size:15px;font-weight:700;color:#fff;background:oklch(0.62 0.2 38);padding:16px 40px;max-width:720px;margin:2px auto 0;border-radius:10px">
     <a href="#tile-music" style="text-decoration:none;color:#fff">Music Catalogs</a>
-    <span style="color:#fff">·</span>
+    <span class="bj-selector-dot" style="color:#fff">·</span>
     <a href="#tile-film" style="text-decoration:none;color:#fff">Film &amp; Video</a>
-    <span style="color:#fff">·</span>
+    <span class="bj-selector-dot" style="color:#fff">·</span>
     <a href="#tile-energy" style="text-decoration:none;color:#fff">Energy &amp; Mineral Leases</a>
-    <span style="color:#fff">·</span>
+    <span class="bj-selector-dot" style="color:#fff">·</span>
     <a href="#tile-patents" style="text-decoration:none;color:#fff">Patents &amp; Brands</a>
   </div>
 
