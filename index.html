@@ -39,6 +39,9 @@ a{color:inherit}
 html{scroll-behavior:smooth}
 .bj-selector a{transition:color 0.15s ease,transform 0.15s ease,background 0.15s ease}
 .bj-selector a:hover{transform:scale(1.08);background:rgba(255,255,255,0.35) !important}
+@media (min-width:1151px){
+.bj-selector a:hover{transform:none;background:none !important;text-decoration:underline !important;text-underline-offset:4px}
+}
 .bj-selector a:hover{color:oklch(0.15 0.01 260) !important}
 .bj-mobile-toggle{display:none}
 .bj-mobile-toggle summary{list-style:none;cursor:pointer;font-size:26px;line-height:1;color:oklch(0.22 0.02 260);padding:4px 6px}
