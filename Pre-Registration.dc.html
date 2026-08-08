@@ -43,9 +43,9 @@ summary::-webkit-details-marker{display:none}
 <div style="width:100%;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background-image:url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235)">
 
   <div class="bj-nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.5)">
-    <a href="index.html" class="bj-logo-link" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-56px">
-      <img src="10482.png" class="bj-logo-img" style="position:absolute;top:-20px;left:0;width:280px;height:280px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
-      <div class="bj-logo-text" style="margin-left:185px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
+    <a href="index.html" class="bj-logo-link" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-40px">
+      <img src="10482.png" class="bj-logo-img" style="position:absolute;top:-14px;left:0;width:196px;height:196px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
+      <div class="bj-logo-text" style="margin-left:130px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
     </a>
     <div class="bj-nav-links" style="display:flex;gap:20px;font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260);align-items:center;white-space:nowrap">
       <a href="index.html#proof" style="text-decoration:none">How It Works</a>
@@ -137,6 +137,15 @@ summary::-webkit-details-marker{display:none}
                 </select>
               </div>
             </div>
+            <div style="margin-top:16px">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">State / Territory of Residence *</label>
+              <select value="{{ d.state }}" onChange="{{ h.state }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
+                <option value="">Select…</option>
+                <sc-for list="{{ stateOptions }}" as="st" hint-placeholder-count="3">
+                  <option value="{{ st }}">{{ st }}</option>
+                </sc-for>
+              </select>
+            </div>
           </sc-if>
 
           <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ false }}">
@@ -163,12 +172,51 @@ summary::-webkit-details-marker{display:none}
             </div>
             <sc-if value="{{ hasIndustry }}" hint-placeholder-val="{{ false }}">
               <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">2. Select Your Operational Stakeholder Role *</label>
-              <select value="{{ d.role }}" onChange="{{ h.role }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
+              <select value="{{ d.role }}" onChange="{{ h.role }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
                 <option value="">Select your role…</option>
                 <sc-for list="{{ roleOptions }}" as="opt" hint-placeholder-count="3">
                   <option value="{{ opt.v }}">{{ opt.l }}</option>
                 </sc-for>
               </select>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">3. Primary User Classification *</label>
+              <select value="{{ d.primaryClassification }}" onChange="{{ h.primaryClassification }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+                <option value="">Select…</option>
+                <option value="Creator">Creator (Artist, Songwriter, Filmmaker, Inventor, Landowner)</option>
+                <option value="B2B Operating Partner">B2B Operating Partner (Recording Studio, Post-Production House, Contract Manufacturer, Well Operator)</option>
+                <option value="Project Backer">Project Backer (Private Investor / Supporter)</option>
+              </select>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+                <div>
+                  <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">4. Total active assets owned</label>
+                  <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:0 0 8px">e.g., released master tracks, film prints, leased wells, active patents</p>
+                  <input type="number" min="0" placeholder="e.g., 24" value="{{ d.catalogCount }}" onChange="{{ h.catalogCount }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+                </div>
+                <div>
+                  <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">5. Estimated monthly volume</label>
+                  <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:0 0 8px">Streams, video views, lease production, or manufacturing units</p>
+                  <input type="number" min="0" placeholder="e.g., 15000" value="{{ d.monthlyVolume }}" onChange="{{ h.monthlyVolume }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+                </div>
+              </div>
+
+              <sc-if value="{{ showAffiliations }}" hint-placeholder-val="{{ false }}">
+                <div style="background:oklch(0.97 0.01 235);border-radius:10px;padding:18px;margin-top:4px">
+                  <div style="font-weight:700;font-size:13.5px;margin-bottom:10px;color:oklch(0.2 0.02 260)">Industry Affiliations (optional)</div>
+                  <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">Independent Distributor(s)</label>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:16px">
+                    <sc-for list="{{ distributorOptions }}" as="opt" hint-placeholder-count="3">
+                      <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ opt.checked }}" onChange="{{ opt.toggle }}" style="width:16px;height:16px">{{ opt.label }}</label>
+                    </sc-for>
+                  </div>
+                  <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">Performance Registry / Agency</label>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
+                    <sc-for list="{{ registryOptions }}" as="opt" hint-placeholder-count="3">
+                      <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ opt.checked }}" onChange="{{ opt.toggle }}" style="width:16px;height:16px">{{ opt.label }}</label>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
             </sc-if>
           </sc-if>
 
@@ -375,8 +423,9 @@ class Component extends DCLogic {
     step: 0,
     submitted: false,
     data: {
-      firstName:'', lastName:'', businessEmail:'', companyName:'', entityType:'', country:'United States',
-      industry:'', role:'',
+      firstName:'', lastName:'', businessEmail:'', companyName:'', entityType:'', country:'United States', state:'',
+      industry:'', role:'', primaryClassification:'', catalogCount:'', monthlyVolume:'',
+      distributors:{}, registries:{},
       catalogSize:'', hasISRC:false, hasISWC:false, hasIPI:false, needsHelp:false,
       streamThreshold:'', distributor:'', distributorOther:'',
       videoAssetType:'', mfnStatus:'', filmDistribution:'', hashReady:'',
@@ -392,11 +441,49 @@ class Component extends DCLogic {
   mkField(name) { return (e) => this.setField(name, e.target.value); }
   mkChoice(name, value) { return () => this.setField(name, value); }
   mkToggle(name) { return () => this.setField(name, !this.state.data[name]); }
+  mkMultiToggle(group, key) {
+    return () => this.setState(s => ({ data: { ...s.data, [group]: { ...s.data[group], [key]: !s.data[group][key] } } }));
+  }
 
   goStep(n) { this.setState({ step: n }); }
   next() { this.goStep(Math.min(this.state.step + 1, 3)); }
   back() { this.goStep(Math.max(this.state.step - 1, 0)); }
-  submit() { this.setState({ submitted: true }); }
+
+  async submit() {
+    const d = this.state.data;
+    const payload = {
+      first_name: d.firstName, last_name: d.lastName, business_email: d.businessEmail,
+      company_name: d.companyName, entity_type: d.entityType, country: d.country,
+      state: d.state, industry: d.industry, role: d.role,
+      primary_classification: d.primaryClassification, catalog_count: d.catalogCount ? Number(d.catalogCount) : null,
+      monthly_volume: d.monthlyVolume ? Number(d.monthlyVolume) : null,
+      distributors_selected: Object.keys(d.distributors).filter(k => d.distributors[k]),
+      registries_selected: Object.keys(d.registries).filter(k => d.registries[k]),
+      catalog_size: d.catalogSize, has_isrc: d.hasISRC, has_iswc: d.hasISWC, has_ipi: d.hasIPI, needs_help: d.needsHelp,
+      stream_threshold: d.streamThreshold, distributor: d.distributor, distributor_other: d.distributorOther,
+      video_asset_type: d.videoAssetType, mfn_status: d.mfnStatus, film_distribution: d.filmDistribution, hash_ready: d.hashReady,
+      active_wells: d.activeWells, scada_compatible: d.scadaCompatible, jib_automation: d.jibAutomation,
+      division_orders: d.divisionOrders, land_deeds: d.landDeeds, gis_surveys: d.gisSurveys,
+      licensing_focus: d.licensingFocus, shipment_verification: d.shipmentVerification, escrow_releases: d.escrowReleases,
+      patent_coordinates: d.patentCoordinates, payment_lag: d.paymentLag, ach: d.ach, wire: d.wire, checks: d.checks,
+      split_sheets: d.splitSheets, waitlist_priority: d.waitlistPriority
+    };
+    this.setState({ submitted: true });
+    try {
+      const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
+      const SUPABASE_KEY = 'sb_publishable_vkx6lvvUQdvuDEvSvlR-1A_dHYlu0MD';
+      await fetch(`${SUPABASE_URL}/rest/v1/pre_registrations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+    } catch (e) { console.error('Supabase submit failed', e); }
+  }
 
   pillStyle(sel) {
     const orange = 'oklch(0.62 0.2 38)';
@@ -439,8 +526,15 @@ class Component extends DCLogic {
     };
     const roleOptions = roleOptionsByIndustry[d.industry] || [];
 
-    const canStep0 = !!(d.firstName && d.lastName && emailValid && d.companyName && d.entityType && d.country);
-    const canStep1 = !!(d.industry && d.role);
+    const STATES = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming','Puerto Rico','U.S. Virgin Islands','Guam','American Samoa','Northern Mariana Islands'];
+    const DISTRIBUTORS = ['DistroKid','FUGA','CD Baby','Symphonic','Too Lost','Catapult','Other/None'];
+    const REGISTRIES = ['ASCAP','BMI','SESAC','GMR','The MLC','SoundExchange','Other/None'];
+    const showAffiliations = d.primaryClassification === 'Creator' || d.primaryClassification === 'B2B Operating Partner';
+    const distributorOptions = DISTRIBUTORS.map(name => ({ label: name, checked: !!d.distributors[name], toggle: this.mkMultiToggle('distributors', name) }));
+    const registryOptions = REGISTRIES.map(name => ({ label: name, checked: !!d.registries[name], toggle: this.mkMultiToggle('registries', name) }));
+
+    const canStep0 = !!(d.firstName && d.lastName && emailValid && d.companyName && d.entityType && d.country && d.state);
+    const canStep1 = !!(d.industry && d.role && d.primaryClassification && d.catalogCount !== '' && d.monthlyVolume !== '');
     let canStep2 = false;
     if (d.industry === 'MUSIC') canStep2 = !!(d.catalogSize && d.streamThreshold);
     if (d.industry === 'FILM') canStep2 = !!(d.videoAssetType && d.mfnStatus && d.filmDistribution && d.hashReady);
@@ -455,8 +549,10 @@ class Component extends DCLogic {
     const h = {
       firstName: this.mkField('firstName'), lastName: this.mkField('lastName'),
       businessEmail: this.mkField('businessEmail'), companyName: this.mkField('companyName'),
-      entityType: this.mkField('entityType'), country: this.mkField('country'),
-      role: this.mkField('role'), catalogSize: this.mkField('catalogSize'),
+      entityType: this.mkField('entityType'), country: this.mkField('country'), state: this.mkField('state'),
+      role: this.mkField('role'), primaryClassification: this.mkField('primaryClassification'),
+      catalogCount: this.mkField('catalogCount'), monthlyVolume: this.mkField('monthlyVolume'),
+      catalogSize: this.mkField('catalogSize'),
       distributor: this.mkField('distributor'), distributorOther: this.mkField('distributorOther'),
       videoAssetType: this.mkField('videoAssetType'), activeWells: this.mkField('activeWells'),
       licensingFocus: this.mkField('licensingFocus'), patentCoordinates: this.mkField('patentCoordinates'),
@@ -484,7 +580,8 @@ class Component extends DCLogic {
     };
 
     return {
-      d, roleOptions, submitted, notSubmitted: !submitted,
+      d, roleOptions, stateOptions: STATES, showAffiliations, distributorOptions, registryOptions,
+      submitted, notSubmitted: !submitted,
       isStep0: step===0, isStep1: step===1, isStep2: step===2, isStep3: step===3,
       isMusic: d.industry==='MUSIC', isFilm: d.industry==='FILM', isOilGas: d.industry==='OIL_GAS', isPatent: d.industry==='PATENT',
       hasIndustry: !!d.industry,
