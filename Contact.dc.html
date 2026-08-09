@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+@media (max-width:1150px){
+.bj-nav{padding:10px 20px !important}
+.bj-nav-links{display:none !important}
+.bj-mobile-toggle{display:block !important;flex-shrink:0 !important}
+.bj-footer{flex-direction:column !important;gap:12px !important;text-align:center !important}
+.bj-logo-link{margin-left:-30px !important;min-width:0 !important;flex-shrink:1 !important}
+.bj-logo-img{width:150px !important;height:150px !important;top:-4px !important}
+.bj-logo-text{margin-left:100px !important;font-size:17px !important;overflow:hidden !important;text-overflow:ellipsis !important}
+.bj-card{padding:28px 20px !important;margin:24px 16px !important}
+}
+@media (max-width:420px){
+.bj-logo-link{margin-left:-16px !important}
+.bj-logo-img{width:110px !important;height:110px !important;top:0px !important}
+.bj-logo-text{margin-left:72px !important;font-size:14px !important}
+}
+.bj-mobile-toggle{display:none}
+.bj-mobile-toggle summary{list-style:none;cursor:pointer;font-size:26px;line-height:1;color:oklch(0.22 0.02 260);padding:4px 6px}
+.bj-mobile-toggle summary::-webkit-details-marker{display:none}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+.bj-input:focus,.bj-textarea:focus,.bj-select:focus{outline:none;border-color:oklch(0.62 0.2 38) !important}
+</style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background-image:url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235);display:flex;flex-direction:column">
+
+  <div class="bj-nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.5)">
+    <a href="index.html" class="bj-logo-link" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-40px">
+      <img src="10482.png" class="bj-logo-img" style="position:absolute;top:-6px;left:0;width:137px;height:137px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
+      <div class="bj-logo-text" style="margin-left:92px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
+    </a>
+    <div class="bj-nav-links" style="display:flex;gap:20px;font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260);align-items:center;white-space:nowrap">
+      <a href="index.html#proof" style="text-decoration:none">How It Works</a>
+      <a href="Portals.dc.html" style="text-decoration:none">Our Portals</a>
+      <a href="Funding.dc.html" style="text-decoration:none">Get Funded</a>
+      <a href="Get Started.dc.html" style="text-decoration:none">Onboarding</a>
+      <a href="Pre-Registration.dc.html" style="text-decoration:none;background:oklch(0.62 0.2 38);color:#fff;padding:10px 18px;border-radius:6px">Start Pre-Registration</a>
+    </div>
+    <details class="bj-mobile-toggle" style="position:relative">
+      <summary>☰</summary>
+      <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;width:max(220px,0px);max-width:calc(100vw - 32px);display:flex;flex-direction:column;gap:2px;z-index:70">
+        <a href="index.html#proof" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">How It Works</a>
+        <a href="Portals.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Our Portals</a>
+        <a href="Funding.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Get Funded</a>
+        <a href="Get Started.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Onboarding</a>
+        <a href="Pre-Registration.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:15px;text-align:center;margin-top:6px">Start Pre-Registration</a>
+      </div>
+    </details>
+  </div>
+
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px">
+    <div class="bj-card" style="background:rgba(255,255,255,0.92);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,0.12);padding:44px 48px;max-width:520px;width:100%">
+      <h1 style="font-family:'Fredoka',sans-serif;font-size:28px;font-weight:700;margin:0 0 8px;color:oklch(0.2 0.02 260)">Get in Touch</h1>
+      <p style="font-size:14.5px;line-height:1.6;color:oklch(0.4 0.02 260);margin:0 0 28px">Have a general question? Send us a message and our team will follow up directly.</p>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <p style="font-size:16px;line-height:1.6;color:oklch(0.2 0.02 260);margin:0;padding:20px 0">Thank you for reaching out. A member of our enterprise integration team will contact you within 24 business hours.</p>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form name="contact" data-netlify="true" onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:16px">
+          <input type="hidden" name="form-name" value="contact" />
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:13px;font-weight:600;color:oklch(0.35 0.02 260)">Full Name</label>
+            <input class="bj-input" type="text" name="name" required="{{ true }}" style="font-family:'Inter',sans-serif;font-size:14.5px;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.01 235);background:#fff;color:oklch(0.22 0.02 260)" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:13px;font-weight:600;color:oklch(0.35 0.02 260)">Work Email</label>
+            <input class="bj-input" type="email" name="email" required="{{ true }}" style="font-family:'Inter',sans-serif;font-size:14.5px;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.01 235);background:#fff;color:oklch(0.22 0.02 260)" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:13px;font-weight:600;color:oklch(0.35 0.02 260)">I am a...</label>
+            <select class="bj-select" name="role" required="{{ true }}" style="font-family:'Inter',sans-serif;font-size:14.5px;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.01 235);background:#fff;color:oklch(0.22 0.02 260)">
+              <option value="">Select one</option>
+              <option value="Creator / Asset Owner">Creator / Asset Owner</option>
+              <option value="Recording Studio / Operating Partner">Recording Studio / Operating Partner</option>
+              <option value="Private Accredited Backer">Private Accredited Backer</option>
+              <option value="Other / General Inquiry">Other / General Inquiry</option>
+            </select>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:13px;font-weight:600;color:oklch(0.35 0.02 260)">Message</label>
+            <textarea class="bj-textarea" name="message" required="{{ true }}" placeholder="How can we help you?" rows="4" style="font-family:'Inter',sans-serif;font-size:14.5px;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.01 235);background:#fff;color:oklch(0.22 0.02 260);resize:vertical"></textarea>
+          </div>
+          <button type="submit" style="margin-top:6px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:15px;padding:14px 24px;border:none;border-radius:8px;font-family:'Inter',sans-serif;cursor:pointer">Send Message</button>
+        </form>
+      </sc-if>
+    </div>
+  </div>
+
+  <div class="bj-footer" style="padding:36px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:oklch(0.35 0.02 260)">
+    <div>© 2026 SplitSecond Royalties</div>
+    <div style="display:flex;gap:20px"><a href="index.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Home</a><a href="Get Started.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Onboarding</a><a href="Funding.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Get Funded</a><a href="Contact.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Contact</a></div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { submitted: false };
+  handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const body = new URLSearchParams(new FormData(form)).toString();
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+      .catch(() => {});
+    this.setState({ submitted: true });
+  }
+  renderVals() {
+    return {
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      handleSubmit: (e) => this.handleSubmit(e)
+    };
+  }
+}
+</script>
+</body>
+</html>
