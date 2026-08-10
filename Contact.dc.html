@@ -112,7 +112,8 @@ summary::-webkit-details-marker{display:none}
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = { submitted: false };
- handleSubmit(e) {
+
+  handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const body = new URLSearchParams(new FormData(form)).toString();
@@ -120,6 +121,14 @@ class Component extends DCLogic {
       .catch(() => {});
     this.setState({ submitted: true });
   }
+
+  renderVals() {
+    return {
+      submitted: this.state.submitted,
+      handleSubmit: this.handleSubmit.bind(this)
+    };
+  }
+}
 </script>
 </body>
 </html>
