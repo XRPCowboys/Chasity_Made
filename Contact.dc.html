@@ -115,33 +115,9 @@ class Component extends DCLogic {
  handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const formData = new FormData(form);
-    
-    // DEBUG POPUP 1: Show what data is actually being captured
-    const dataObject = {};
-    formData.forEach((value, key) => { dataObject[key] = value; });
-    alert("CAPTURED DATA:\n" + JSON.stringify(dataObject, null, 2));
-
-    formData.set('form-name', 'contact');
-    const body = new URLSearchParams(formData).toString();
-    
-    fetch('/', { 
-      method: 'POST', 
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, 
-      body 
-    })
-    .then(response => {
-      // DEBUG POPUP 2: Show if Netlify accepted it
-      if (response.ok) {
-        alert("SUCCESS: Netlify accepted the submission!");
-      } else {
-        alert("ERROR: Netlify rejected the submission. Status code: " + response.status);
-      }
-    })
-    .catch(err => {
-      alert("NETWORK ERROR: " + err.message);
-    });
-    
+    const body = new URLSearchParams(new FormData(form)).toString();
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+      .catch(() => {});
     this.setState({ submitted: true });
   }
 </script>
