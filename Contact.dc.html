@@ -115,9 +115,10 @@ class Component extends DCLogic {
   handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const body = new URLSearchParams(new FormData(form)).toString();
-    body.append('form-name', 'contact');
-  fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+    const params = new URLSearchParams(new FormData(form));
+    params.append('form-name', 'contact');
+    const body = params.toString();
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
       .catch(() => {});
     this.setState({ submitted: true });
   }
