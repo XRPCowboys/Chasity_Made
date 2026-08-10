@@ -112,13 +112,11 @@ summary::-webkit-details-marker{display:none}
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = { submitted: false };
-  handleSubmit(e) {
+ handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const params = new URLSearchParams(new FormData(form));
-    params.append('form-name', 'contact');
-    const body = params.toString();
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+    const body = new URLSearchParams(new FormData(form)).toString() + "&form-name=contact";
+    fetch(window.location.pathname, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
       .catch(() => {});
     this.setState({ submitted: true });
   }
