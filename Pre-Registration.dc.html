@@ -448,10 +448,16 @@ class Component extends DCLogic {
         { label: 'Distribution Networks (DistroKid, Major/Independent Label Portals)', group: 'distributors', items: ['DistroKid','Major/Independent Record Label Portal'] }
       ],
       OIL_GAS: [
-        { label: 'First Purchasers & Midstream Marketers (LACT Custody)', group: 'distributors', items: ['Midstream Pipelines','Crude Oil Marketers','Natural Gas Processing Plant Operators (LACT)'] },
-        { label: 'Operator Revenue Systems (JOA Accounting)', group: 'distributors', items: ['Operator Clearing Accounts','Joint Operating Agreement (JOA) Accounting Systems'] },
-        { label: 'Title & Land Management', group: 'registries', items: ['Division Order Accounting Systems','County Land Registries','NADOA Portal'] },
-        { label: 'Regulatory & Taxing Authorities', group: 'registries', items: ['State Severance Tax Portals','Ad Valorem Tax Withholding Portals'] }
+        { label: 'Professional Associations', group: 'distributors', items: ['NARO (National Association of Royalty Owners)','AAPL (American Association of Professional Landmen)','NADOA (National Association of Division Order Analysts)','COPAS (Council of Petroleum Accountants Societies)','IPAA (Independent Petroleum Association of America)','Other/None'] },
+        { label: 'Revenue & Data Portals', group: 'registries', items: ['EnergyLink / EnergyNet (formerly Oildex)','MineralView / MineralWeb','County Land Registries (Deeds, Title Opinions)','State Regulatory Portals (e.g., TX RRC, OK CC)','First Purchaser & Midstream Portals','Other/None'] }
+      ],
+      FILM: [
+        { label: 'Guilds & Unions', group: 'distributors', items: ['SAG-AFTRA (Screen Actors Guild)','WGA (Writers Guild of America)','DGA (Directors Guild of America)','PGA (Producers Guild of America)','AGICOA (Audiovisual Collective Management)','Other/None'] },
+        { label: 'Distribution & Payroll Portals', group: 'registries', items: ['myEP / Entertainment Partners (Residuals Tracking)','Filmhub','CineCircle / Film Festival Portals','IMDbPro / Box Office Mojo','Other/None'] }
+      ],
+      PATENT: [
+        { label: 'Professional IP Associations', group: 'distributors', items: ['LES (Licensing Executives Society)','INTA (International Trademark Association)','IPO (Intellectual Property Owners Association)','AIPLA (American Intellectual Property Law Association)','WIPO (World Intellectual Property Organization)','Other/None'] },
+        { label: 'Registry & IP Management Portals', group: 'registries', items: ['USPTO (United States Patent and Trademark Office)','EPO (European Patent Office)','Clarivate / CPA Global IP Renewals','Anaqua IP Management Platform','PatSnap / IPfolio','Other/None'] }
       ]
     };
     return CATEGORIES[industry] || [];
@@ -548,20 +554,39 @@ class Component extends DCLogic {
     const REGISTRIES = ['ASCAP','BMI','SESAC','GMR','The MLC','SoundExchange','Other/None'];
     const isOilGasNow = d.industry === 'OIL_GAS';
     const isMusicNow = d.industry === 'MUSIC';
-    const showAffiliations = (d.primaryClassification === 'Creator' || d.primaryClassification === 'B2B Operating Partner') && (isMusicNow || isOilGasNow);
+    const showAffiliations = (d.primaryClassification === 'Creator' || d.primaryClassification === 'B2B Operating Partner') && !!d.industry;
     const affiliationCategories = this.affiliationCategoriesFor(d.industry).map(cat => ({
       label: cat.label,
       items: cat.items.map(name => ({ label: name, checked: !!d.affiliations[name], toggle: this.mkMultiToggle('affiliations', name) }))
     }));
-    const q44Text = isOilGasNow
-      ? "4.4 Would you like to request an immediate audit of your active spacing units to check for assets currently held in revenue suspense or outstanding interest penalties? *"
-      : "4.4 Would you like to prioritize a diagnostic catalog scan to search for historical unmatched mechanical royalties? *";
-    const q44OptionPriority = isOilGasNow
-      ? "Yes, apply for priority diagnostic onboarding (Analyze county land registries and Division Order Title Opinions for unresolved title defects, missing W-9s, or uncollected balances)."
-      : "Yes, apply for priority catalog audit (Scan mechanical rights databases like the MLC to claim unallocated distributions before they are distributed pro-rata to major publishers).";
-    const q44OptionStandard = isOilGasNow
-      ? "No, simply register my royalty/working interests for standard automated distribution setup."
-      : "No, simply register my catalog for standard smart contract split-routing.";
+    const isFilmNow = d.industry === 'FILM';
+    const isPatentNow = d.industry === 'PATENT';
+    const Q44 = {
+      MUSIC: {
+        text: "4.4 Would you like to prioritize a diagnostic catalog scan to search for historical unmatched mechanical royalties? *",
+        priority: "Yes, apply for priority catalog audit (Scan mechanical rights databases like the MLC to claim unallocated distributions before they are distributed pro-rata to major publishers).",
+        standard: "No, simply register my catalog for standard smart contract split-routing."
+      },
+      OIL_GAS: {
+        text: "4.4 Would you like to request an immediate audit of your active spacing units to check for assets currently held in revenue suspense or outstanding interest penalties? *",
+        priority: "Yes, apply for priority diagnostic onboarding (Analyze county land registries and Division Order Title Opinions for unresolved title defects, missing W-9s, or uncollected balances).",
+        standard: "No, simply register my royalty/working interests for standard automated distribution setup."
+      },
+      FILM: {
+        text: "4.4 Would you like to request an immediate audit of your theatrical, television, or streaming projects to identify unclaimed residuals or unpaid backend profit-share participations? *",
+        priority: "Yes, apply for priority backend audit (Perform cross-platform automated monitoring of domestic/foreign syndication, SVOD, and AVOD streams to detect underreporting, and audit guild databases for unclaimed residuals).",
+        standard: "No, simply register my titles for standard smart contract split-routing."
+      },
+      PATENT: {
+        text: "4.4 Would you like to authorize a forensic royalty audit of your active licensing contracts to search for underreported sales or unauthorized usage? *",
+        priority: "Yes, apply for priority licensing audit (Review licensee accounting records, regional sales limits, and distribution channels to identify uncollected licensing fees and verify manufacturing run volume).",
+        standard: "No, simply register my patent/brand assets for standard smart contract split-routing."
+      }
+    };
+    const q44 = Q44[d.industry] || Q44.MUSIC;
+    const q44Text = q44.text;
+    const q44OptionPriority = q44.priority;
+    const q44OptionStandard = q44.standard;
 
     const canStep0 = !!(d.firstName && d.lastName && emailValid && d.companyName && d.entityType && d.country && d.state);
     const canStep1 = !!(d.industry && d.role && d.primaryClassification && d.catalogCount !== '' && d.monthlyVolume !== '');
