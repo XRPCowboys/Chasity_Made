@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#dceaf7"/><circle cx="50" cy="42" r="22" fill="#e8571f"/><text x="50" y="80" font-size="14" fill="#1a2033" text-anchor="middle" font-family="sans-serif">SS</text></svg></template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+a:hover{color:oklch(0.55 0.2 38)}
+input,select{font-family:'Inter',sans-serif}
+input:focus,select:focus{outline:2px solid oklch(0.62 0.2 38);outline-offset:1px}
+@media (max-width:1150px){
+.bj-nav{padding:10px 20px !important}
+.bj-nav-links{display:none !important}
+.bj-section{padding:24px 24px !important}
+.bj-footer{flex-direction:column !important;gap:12px !important;text-align:center !important}
+.bj-mobile-toggle{display:block !important}
+.bj-logo-link{margin-left:-30px !important;min-width:0 !important;flex-shrink:1 !important}
+.bj-logo-img{width:150px !important;height:150px !important;top:-4px !important}
+.bj-logo-text{margin-left:100px !important;font-size:17px !important;overflow:hidden !important;text-overflow:ellipsis !important}
+}
+@media (max-width:420px){
+.bj-logo-link{margin-left:-16px !important}
+.bj-logo-img{width:110px !important;height:110px !important;top:0px !important}
+.bj-logo-text{margin-left:72px !important;font-size:14px !important}
+}
+.bj-mobile-toggle{display:none}
+.bj-mobile-toggle summary{list-style:none;cursor:pointer;font-size:26px;line-height:1;color:oklch(0.22 0.02 260);padding:4px 6px}
+.bj-mobile-toggle summary::-webkit-details-marker{display:none}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+
+<div style="width:100%;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background-image:url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235)">
+
+  <div class="bj-nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.5)">
+    <a href="index.html" class="bj-logo-link" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-40px">
+      <img src="10482.png" class="bj-logo-img" style="position:absolute;top:-6px;left:0;width:137px;height:137px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
+      <div class="bj-logo-text" style="margin-left:92px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
+    </a>
+    <div class="bj-nav-links" style="display:flex;gap:20px;font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260);align-items:center;white-space:nowrap">
+      <a href="index.html#proof" style="text-decoration:none">How It Works</a>
+      <a href="Portals.dc.html" style="text-decoration:none">Our Portals</a>
+      <a href="Funding.dc.html" style="text-decoration:none">Get Funded</a>
+      <a href="Get Started.dc.html" style="text-decoration:none;color:oklch(0.62 0.2 38)">Onboarding</a>
+      <a href="Pre-Registration.dc.html" style="text-decoration:none;background:oklch(0.62 0.2 38);color:#fff;padding:10px 18px;border-radius:6px">Start Pre-Registration</a>
+    </div>
+    <details class="bj-mobile-toggle" style="position:relative">
+      <summary>☰</summary>
+      <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;min-width:220px;max-width:calc(100vw - 32px);display:flex;flex-direction:column;gap:2px;z-index:70">
+        <a href="index.html#proof" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">How It Works</a>
+        <a href="Portals.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Our Portals</a>
+        <a href="Funding.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Get Funded</a>
+        <a href="Get Started.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Onboarding</a>
+        <a href="Pre-Registration.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:15px;text-align:center;margin-top:6px">Start Pre-Registration</a>
+      </div>
+    </details>
+  </div>
+
+  <div class="bj-section" style="padding:56px 56px 24px;text-align:center">
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:oklch(0.62 0.2 38)">B2B PRE-REGISTRATION</div>
+    <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:36px;line-height:1.15;margin:12px auto 14px;max-width:760px;color:oklch(0.2 0.02 260)">Reserve Your Spot on the Waitlist</h1>
+    <p style="font-size:16px;line-height:1.6;color:oklch(0.3 0.02 260);max-width:600px;margin:0 auto">Tell us about your business so we can pre-register for your software license and prepare your custom white-labeled environment before our Mainnet launch.</p>
+  </div>
+
+  <div class="bj-section" style="padding:24px 24px 24px">
+    <div style="max-width:720px;margin:0 auto">
+
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px">
+          <div style="height:6px;border-radius:3px;background:{{ bar0 }}"></div>
+          <div style="height:6px;border-radius:3px;background:{{ bar1 }}"></div>
+          <div style="height:6px;border-radius:3px;background:{{ bar2 }}"></div>
+          <div style="height:6px;border-radius:3px;background:{{ bar3 }}"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;color:oklch(0.45 0.02 260);margin-bottom:24px">
+          <span>Entity Info</span><span>Industry &amp; Role</span><span>Technical Details</span><span>Financials</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.92);border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.12);padding:36px">
+
+          <sc-if value="{{ isStep0 }}" hint-placeholder-val="{{ true }}">
+            <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin-bottom:4px;color:oklch(0.2 0.02 260)">Legal Entity &amp; Representative Information</div>
+            <p style="font-size:13px;color:oklch(0.42 0.02 260);margin:0 0 24px">This information is used to run background KYB, KYC, and U.S. OFAC sanctions screening.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+              <div>
+                <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">First Name *</label>
+                <input type="text" placeholder="e.g., John" value="{{ d.firstName }}" onChange="{{ h.firstName }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+              </div>
+              <div>
+                <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">Last Name *</label>
+                <input type="text" placeholder="e.g., Smith" value="{{ d.lastName }}" onChange="{{ h.lastName }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+              </div>
+            </div>
+            <div style="margin-bottom:16px">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">Business Email *</label>
+              <input type="email" placeholder="e.g., john@studio.com" value="{{ d.businessEmail }}" onChange="{{ h.businessEmail }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid {{ emailBorder }};font-size:14px">
+              <sc-if value="{{ showEmailWarning }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:11.5px;color:oklch(0.55 0.18 30);margin-top:6px">Enter a valid email address for verification.</div>
+              </sc-if>
+            </div>
+            <div style="margin-bottom:16px">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">Company Name *</label>
+              <input type="text" placeholder="e.g., Blue Sky Recording Studios LLC" value="{{ d.companyName }}" onChange="{{ h.companyName }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div>
+                <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">Legal Entity Type *</label>
+                <select value="{{ d.entityType }}" onChange="{{ h.entityType }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
+                  <option value="">Select…</option>
+                  <option value="LLC">LLC</option>
+                  <option value="Corporation">Corporation</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Sole Proprietorship">Sole Proprietorship</option>
+                  <option value="Individual">Individual</option>
+                </select>
+              </div>
+              <div>
+                <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">Country of Registration *</label>
+                <select value="{{ d.country }}" onChange="{{ h.country }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
+                  <option value="United States">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Germany">Germany</option>
+                  <option value="France">France</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-top:16px">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">State / Territory of Residence *</label>
+              <select value="{{ d.state }}" onChange="{{ h.state }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
+                <option value="">Select…</option>
+                <sc-for list="{{ stateOptions }}" as="st" hint-placeholder-count="3">
+                  <option value="{{ st }}">{{ st }}</option>
+                </sc-for>
+              </select>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin-bottom:4px;color:oklch(0.2 0.02 260)">Stakeholder Role Segmentation</div>
+            <p style="font-size:13px;color:oklch(0.42 0.02 260);margin:0 0 20px">This determines your secure sub-tenancy portal, wallet configuration, and on-chain split-sheets.</p>
+            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:10px">1. Select Your Primary Industry *</label>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:24px">
+              <div onClick="{{ h.industryMusic }}" style="{{ musicCardStyle }}">
+                <div style="font-weight:700;font-size:13.5px;margin-bottom:2px">Music &amp; Audio Catalogs</div>
+                <div style="font-size:11.5px;opacity:0.8">Primary Launch Vertical</div>
+              </div>
+              <div onClick="{{ h.industryFilm }}" style="{{ filmCardStyle }}">
+                <div style="font-weight:700;font-size:13.5px;margin-bottom:2px">Movies, Film, &amp; Video Rights</div>
+                <div style="font-size:11.5px;opacity:0.8">Launch Vertical</div>
+              </div>
+              <div onClick="{{ h.industryOilGas }}" style="{{ oilGasCardStyle }}">
+                <div style="font-weight:700;font-size:13.5px;margin-bottom:2px">Oil &amp; Gas Lease Royalties</div>
+                <div style="font-size:11.5px;opacity:0.8">Launch Vertical</div>
+              </div>
+              <div onClick="{{ h.industryPatent }}" style="{{ patentCardStyle }}">
+                <div style="font-weight:700;font-size:13.5px;margin-bottom:2px">Patent &amp; Brand Licensing</div>
+                <div style="font-size:11.5px;opacity:0.8">Launch Vertical</div>
+              </div>
+            </div>
+            <sc-if value="{{ hasIndustry }}" hint-placeholder-val="{{ false }}">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">2. Select Your Operational Stakeholder Role *</label>
+              <select value="{{ d.role }}" onChange="{{ h.role }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+                <option value="">Select your role…</option>
+                <sc-for list="{{ roleOptions }}" as="opt" hint-placeholder-count="3">
+                  <option value="{{ opt.v }}">{{ opt.l }}</option>
+                </sc-for>
+              </select>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">3. Primary User Classification *</label>
+              <select value="{{ d.primaryClassification }}" onChange="{{ h.primaryClassification }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+                <option value="">Select…</option>
+                <option value="Creator">Creator (Artist, Songwriter, Filmmaker, Inventor, Landowner)</option>
+                <option value="B2B Operating Partner">B2B Operating Partner (Recording Studio, Post-Production House, Contract Manufacturer, Well Operator)</option>
+                <option value="Project Backer">Project Backer (Private Investor / Supporter)</option>
+              </select>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+                <div>
+                  <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">4. Total active assets owned</label>
+                  <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:0 0 8px">e.g., released master tracks, film prints, leased wells, active patents</p>
+                  <input type="number" min="0" placeholder="e.g., 24" value="{{ d.catalogCount }}" onChange="{{ h.catalogCount }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+                </div>
+                <div>
+                  <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">5. Estimated monthly volume</label>
+                  <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:0 0 8px">Streams, video views, lease production, or manufacturing units</p>
+                  <input type="number" min="0" placeholder="e.g., 15000" value="{{ d.monthlyVolume }}" onChange="{{ h.monthlyVolume }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+                </div>
+              </div>
+
+              <sc-if value="{{ showAffiliations }}" hint-placeholder-val="{{ false }}">
+                <div style="background:oklch(0.97 0.01 235);border-radius:10px;padding:18px;margin-top:4px">
+                  <div style="font-weight:700;font-size:13.5px;margin-bottom:10px;color:oklch(0.2 0.02 260)">Industry Affiliations &amp; Interfaces (optional)</div>
+                  <sc-for list="{{ affiliationCategories }}" as="cat" hint-placeholder-count="2">
+                    <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">{{ cat.label }}</label>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:16px">
+                      <sc-for list="{{ cat.items }}" as="opt" hint-placeholder-count="3">
+                        <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ opt.checked }}" onChange="{{ opt.toggle }}" style="width:16px;height:16px">{{ opt.label }}</label>
+                      </sc-for>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </sc-if>
+          </sc-if>
+
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin-bottom:4px;color:oklch(0.2 0.02 260)">Technical Ingress &amp; Metadata</div>
+            <p style="font-size:13px;color:oklch(0.42 0.02 260);margin:0 0 22px">Details specific to your industry, used to configure your ingestion pipeline.</p>
+
+            <sc-if value="{{ isMusic }}" hint-placeholder-val="{{ false }}">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.1 Approximate size of your active catalog? *</label>
+              <select value="{{ d.catalogSize }}" onChange="{{ h.catalogSize }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+                <option value="">Select…</option>
+                <option value="1-5">Single / EP (1–5 tracks)</option>
+                <option value="6-50">Small Catalog (6–50 tracks)</option>
+                <option value="51-250">Medium Catalog (51–250 tracks)</option>
+                <option value="251+">Large Catalog (251+ tracks)</option>
+              </select>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.2 Do you currently have registered metadata for your tracks? (Select all)</label>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.hasISRC }}" onChange="{{ h.toggleISRC }}" style="width:17px;height:17px">Yes, I have Master International Standard Recording Codes (ISRC)</label>
+                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.hasISWC }}" onChange="{{ h.toggleISWC }}" style="width:17px;height:17px">Yes, I have Composition International Standard Musical Work Codes (ISWC)</label>
+                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.hasIPI }}" onChange="{{ h.toggleIPI }}" style="width:17px;height:17px">Yes, I have Songwriter Interested Party Information (IPI/CAE) numbers</label>
+                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.needsHelp }}" onChange="{{ h.toggleHelp }}" style="width:17px;height:17px">No, I need assistance registering and aligning my track metadata (to prevent mechanical royalties from getting trapped in MLC "black box" pools)</label>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.3 Does your primary music catalog average at least 1,000 streams annually per track on Spotify? *</label>
+              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">This check is critical to avoid Spotify's threshold reallocation rule, which redirects yields of tracks under 1,000 streams to mainstream catalogs.</p>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                <div onClick="{{ h.streamAll }}" style="{{ streamAllStyle }}">Yes, 100% of my active catalog exceeds 1,000 rolling annual streams.</div>
+                <div onClick="{{ h.streamSome }}" style="{{ streamSomeStyle }}">Yes, some of my active catalog exceeds this threshold.</div>
+                <div onClick="{{ h.streamNone }}" style="{{ streamNoneStyle }}">No, my catalog consists primarily of unreleased or long-tail works.</div>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.4 Current Digital Distributor</label>
+              <select value="{{ d.distributor }}" onChange="{{ h.distributor }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
+                <option value="">Select…</option>
+                <option value="DistroKid">DistroKid</option>
+                <option value="FUGA">FUGA</option>
+                <option value="CD Baby">CD Baby</option>
+                <option value="TuneCore">TuneCore</option>
+                <option value="Symphonic">Symphonic</option>
+                <option value="Too Lost">Too Lost</option>
+                <option value="Other">Other</option>
+              </select>
+              <sc-if value="{{ isOtherDistributor }}" hint-placeholder-val="{{ false }}">
+                <input type="text" placeholder="Specify distributor" value="{{ d.distributorOther }}" onChange="{{ h.distributorOther }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-top:10px">
+              </sc-if>
+            </sc-if>
+
+            <sc-if value="{{ isFilm }}" hint-placeholder-val="{{ false }}">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.5 What type of video assets are you migrating? *</label>
+              <select value="{{ d.videoAssetType }}" onChange="{{ h.videoAssetType }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+                <option value="">Select…</option>
+                <option value="Feature-Length Films">Feature-Length Films</option>
+                <option value="Episodic TV / Web Series">Episodic TV / Web Series</option>
+                <option value="Commercial Sync Catalogs">Commercial Sync Catalogs</option>
+                <option value="Post-Production / VFX Vault Archive">Post-Production / VFX Vault Archive</option>
+              </select>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.6 Do your active synchronization agreements contain active MFN (Most Favored Nations) clauses? *</label>
+              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">Ensures Composition and Master fees remain equal across distribution networks.</p>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:20px">
+                <div onClick="{{ h.mfnYes }}" style="{{ mfnYesStyle }}">Yes, MFN parity clauses are active across our agreements.</div>
+                <div onClick="{{ h.mfnNo }}" style="{{ mfnNoStyle }}">No, composition and master rates are negotiated independently.</div>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.7 Do you have secured domestic or international distribution contracts in place? *</label>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                <div onClick="{{ h.filmDistYes }}" style="{{ filmDistYesStyle }}">Yes, our works are actively distributed (Theatrical, Streaming, Cable, or TV Broadcast).</div>
+                <div onClick="{{ h.filmDistNo }}" style="{{ filmDistNoStyle }}">No, our projects are currently independent or in post-production.</div>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.8 Are your master film files ready for secure cryptographic hashing? *</label>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div onClick="{{ h.hashYes }}" style="{{ hashYesStyle }}">Yes, we have digital master video files ready for secure AES-256 cloud encryption and DLT timestamping.</div>
+                <div onClick="{{ h.hashNo }}" style="{{ hashNoStyle }}">No, our master archives are currently physical or un-encrypted.</div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isOilGas }}" hint-placeholder-val="{{ false }}">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.9 How many active, producing wells do you currently operate or hold an interest in? *</label>
+              <input type="number" min="0" placeholder="e.g., 12" value="{{ d.activeWells }}" onChange="{{ h.activeWells }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:20px">
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.10 Do your active wells utilize SCADA production monitoring software? *</label>
+              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">Required for real-time wellhead-to-wallet SCADA API flow logging with zero drilling downtime.</p>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:20px">
+                <div onClick="{{ h.scadaYes }}" style="{{ scadaYesStyle }}">Yes, we have active SCADA systems in place with read-only API capability.</div>
+                <div onClick="{{ h.scadaNo }}" style="{{ scadaNoStyle }}">No, we track production volumes manually.</div>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.11 Do you require automated calculation and collection of monthly Joint Interest Billings (JIB) and operational expenses among joint-venture partners? *</label>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                <div onClick="{{ h.jibYes }}" style="{{ jibYesStyle }}">Yes, we need automated B2B expense-sharing and tax withholding calculations.</div>
+                <div onClick="{{ h.jibNo }}" style="{{ jibNoStyle }}">No, we only require basic royalty split-sheet execution.</div>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.12 Which of the following documents do you have digitized and ready for secure upload? (Select all)</label>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.divisionOrders }}" onChange="{{ h.toggleDivisionOrders }}" style="width:17px;height:17px">Signed Division Orders (Tract Payout Parameters)</label>
+                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.landDeeds }}" onChange="{{ h.toggleLandDeeds }}" style="width:17px;height:17px">Registered County Land Deeds</label>
+                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.gisSurveys }}" onChange="{{ h.toggleGisSurveys }}" style="width:17px;height:17px">GIS Geological Surveys</label>
+              </div>
+              <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:10px 0 0">Accepted formats: .csv, .xlsx, .pdf, .jpg, .png. You'll be able to upload these after your account is approved.</p>
+            </sc-if>
+
+            <sc-if value="{{ isPatent }}" hint-placeholder-val="{{ false }}">
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.13 What is the primary focus of your licensing program? *</label>
+              <select value="{{ d.licensingFocus }}" onChange="{{ h.licensingFocus }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+                <option value="">Select…</option>
+                <option value="Utility / Design Patents">Utility / Design Patents</option>
+                <option value="Brand Trademark & Franchise Licensing">Brand Trademark &amp; Franchise Licensing</option>
+                <option value="Proprietary Software / Codebase Licensing">Proprietary Software / Codebase Licensing</option>
+              </select>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.14 Does your B2B contract require tracking manufacturing volumes or shipping container milestones to execute splits? *</label>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                <div onClick="{{ h.shipYes }}" style="{{ shipYesStyle }}">Yes, we want our platform to connect directly with manufacturer ERP databases and global shipping registries (customs logs, bills of lading).</div>
+                <div onClick="{{ h.shipNo }}" style="{{ shipNoStyle }}">No, we only bill on flat, time-based, or self-reported quarterly royalties.</div>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.15 Do you want to mathematically lock licensing payouts in secure on-chain escrows until customs bills of lading and delivery milestones are verified? *</label>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                <div onClick="{{ h.escrowYes }}" style="{{ escrowYesStyle }}">Yes, activate milestone-based smart escrow releases.</div>
+                <div onClick="{{ h.escrowNo }}" style="{{ escrowNoStyle }}">No, issue standard immediate stablecoin splits.</div>
+              </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.16 Patent Registration Coordinates</label>
+              <input type="text" placeholder="e.g., USPTO Patent Number, Trademark Registry Key" value="{{ d.patentCoordinates }}" onChange="{{ h.patentCoordinates }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+            </sc-if>
+          </sc-if>
+
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin-bottom:4px;color:oklch(0.2 0.02 260)">Financial Integration &amp; Waitlist</div>
+            <p style="font-size:13px;color:oklch(0.42 0.02 260);margin:0 0 22px">This prepares your fiat-to-stablecoin payment paths and secure MPC wallet.</p>
+
+            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">4.1 What is your current payment settlement time lag? *</label>
+            <select value="{{ d.paymentLag }}" onChange="{{ h.paymentLag }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+              <option value="">Select…</option>
+              <option value="Under 30 days">Under 30 days</option>
+              <option value="1 to 3 months">1 to 3 months</option>
+              <option value="4 to 6 months">4 to 6 months</option>
+              <option value="6 to 12 months+">6 to 12 months+ (Opaque Distributor Delay)</option>
+            </select>
+
+            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">4.2 How do you currently receive or distribute payouts? (Select all)</label>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.ach }}" onChange="{{ h.toggleAch }}" style="width:17px;height:17px">Legacy ACH / Direct Deposit</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.wire }}" onChange="{{ h.toggleWire }}" style="width:17px;height:17px">International Bank Wires</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.checks }}" onChange="{{ h.toggleChecks }}" style="width:17px;height:17px">Physical Paper Checks (More than half of the industry standard)</label>
+            </div>
+
+            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">4.3 Do you have signed, written split-sheets or joint-venture agreements finalized for all collaborators? *</label>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+              <div onClick="{{ h.splitYes }}" style="{{ splitYesStyle }}">Yes, all of our active splits are fully signed and documented.</div>
+              <div onClick="{{ h.splitNo }}" style="{{ splitNoStyle }}">No, we need template support to formalize split sheets with our collaborators.</div>
+            </div>
+
+            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">{{ q44Text }}</label>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div onClick="{{ h.waitYes }}" style="{{ waitYesStyle }}">{{ q44OptionPriority }}</div>
+              <div onClick="{{ h.waitNo }}" style="{{ waitNoStyle }}">{{ q44OptionStandard }}</div>
+            </div>
+          </sc-if>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid oklch(0.9 0.01 235)">
+            <sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ h.back }}" style="background:none;border:1.5px solid oklch(0.8 0.02 235);color:oklch(0.35 0.02 260);font-weight:600;font-size:14px;padding:12px 22px;border-radius:8px;cursor:pointer">Back</button>
+            </sc-if>
+            <sc-if value="{{ hideBack }}" hint-placeholder-val="{{ true }}"><div></div></sc-if>
+            <sc-if value="{{ showNext }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ h.next }}" disabled="{{ nextDisabled }}" style="{{ nextButtonStyle }}">Next</button>
+            </sc-if>
+            <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ h.submit }}" disabled="{{ nextDisabled }}" style="{{ nextButtonStyle }}">Submit Registration</button>
+            </sc-if>
+          </div>
+
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="background:rgba(255,255,255,0.92);border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.12);padding:48px 40px;text-align:center">
+          <div style="width:56px;height:56px;border-radius:50%;background:oklch(0.62 0.2 38);color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">✓</div>
+          <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:22px;margin-bottom:14px;color:oklch(0.2 0.02 260)">You're on the list</div>
+          <p style="font-size:14.5px;line-height:1.7;color:#000;max-width:480px;margin:0 auto">Thank you for registering with SplitSecond Royalties! Your B2B operator account has been waitlisted. Our onboarding team is reviewing your industry metadata parameters and will reach out to help you configure your secure, non-custodial Multi-Party Computation (MPC) wallet environment before we go live on Mainnet.</p>
+          <a href="index.html" style="text-decoration:none;display:inline-block;margin-top:24px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:14px;padding:14px 26px;border-radius:8px">Return Home</a>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+
+  <div class="bj-footer" style="padding:36px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:oklch(0.35 0.02 260)">
+    <div>© 2026 SplitSecond Royalties</div>
+    <div style="display:flex;gap:20px"><a href="index.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Home</a><a href="Get Started.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Onboarding</a><a href="Portals.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Our Portals</a><a href="Contact.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Contact</a></div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    step: 0,
+    submitted: false,
+    data: {
+      firstName:'', lastName:'', businessEmail:'', companyName:'', entityType:'', country:'United States', state:'',
+      industry:'', role:'', primaryClassification:'', catalogCount:'', monthlyVolume:'',
+      distributors:{}, registries:{}, affiliations:{},
+      catalogSize:'', hasISRC:false, hasISWC:false, hasIPI:false, needsHelp:false,
+      streamThreshold:'', distributor:'', distributorOther:'',
+      videoAssetType:'', mfnStatus:'', filmDistribution:'', hashReady:'',
+      activeWells:'', scadaCompatible:'', jibAutomation:'', divisionOrders:false, landDeeds:false, gisSurveys:false,
+      licensingFocus:'', shipmentVerification:'', escrowReleases:'', patentCoordinates:'',
+      paymentLag:'', ach:false, wire:false, checks:false, splitSheets:'', waitlistPriority:''
+    }
+  };
+
+  setField(name, value) {
+    this.setState(s => ({ data: { ...s.data, [name]: value } }));
+  }
+  mkField(name) { return (e) => this.setField(name, e.target.value); }
+  mkChoice(name, value) { return () => this.setField(name, value); }
+  mkToggle(name) { return () => this.setField(name, !this.state.data[name]); }
+  mkMultiToggle(group, key) {
+    return () => this.setState(s => ({ data: { ...s.data, [group]: { ...s.data[group], [key]: !s.data[group][key] } } }));
+  }
+  affiliationCategoriesFor(industry) {
+    const CATEGORIES = {
+      MUSIC: [
+        { label: 'Digital Streaming Platforms (DSPs: Spotify, Apple Music, Amazon Music)', group: 'distributors', items: ['Spotify','Apple Music','Amazon Music'] },
+        { label: 'Collective Management & PROs (ASCAP, BMI, SoundExchange, The MLC)', group: 'registries', items: ['ASCAP','BMI','SoundExchange','The MLC'] },
+        { label: 'Distribution Networks (DistroKid, Major/Independent Label Portals)', group: 'distributors', items: ['DistroKid','Major/Independent Record Label Portal'] }
+      ],
+      OIL_GAS: [
+        { label: 'Professional Associations', group: 'distributors', items: ['NARO (National Association of Royalty Owners)','AAPL (American Association of Professional Landmen)','NADOA (National Association of Division Order Analysts)','COPAS (Council of Petroleum Accountants Societies)','IPAA (Independent Petroleum Association of America)','Other/None'] },
+        { label: 'Revenue & Data Portals', group: 'registries', items: ['EnergyLink / EnergyNet (formerly Oildex)','MineralView / MineralWeb','County Land Registries (Deeds, Title Opinions)','State Regulatory Portals (e.g., TX RRC, OK CC)','First Purchaser & Midstream Portals','Other/None'] }
+      ],
+      FILM: [
+        { label: 'Guilds & Unions', group: 'distributors', items: ['SAG-AFTRA (Screen Actors Guild)','WGA (Writers Guild of America)','DGA (Directors Guild of America)','PGA (Producers Guild of America)','AGICOA (Audiovisual Collective Management)','Other/None'] },
+        { label: 'Distribution & Payroll Portals', group: 'registries', items: ['myEP / Entertainment Partners (Residuals Tracking)','Filmhub','CineCircle / Film Festival Portals','IMDbPro / Box Office Mojo','Other/None'] }
+      ],
+      PATENT: [
+        { label: 'Professional IP Associations', group: 'distributors', items: ['LES (Licensing Executives Society)','INTA (International Trademark Association)','IPO (Intellectual Property Owners Association)','AIPLA (American Intellectual Property Law Association)','WIPO (World Intellectual Property Organization)','Other/None'] },
+        { label: 'Registry & IP Management Portals', group: 'registries', items: ['USPTO (United States Patent and Trademark Office)','EPO (European Patent Office)','Clarivate / CPA Global IP Renewals','Anaqua IP Management Platform','PatSnap / IPfolio','Other/None'] }
+      ]
+    };
+    return CATEGORIES[industry] || [];
+  }
+  _affiliationsByGroup(d, group) {
+    const cats = this.affiliationCategoriesFor(d.industry).filter(c => c.group === group);
+    const items = cats.flatMap(c => c.items);
+    return items.filter(item => d.affiliations[item]);
+  }
+
+  goStep(n) { this.setState({ step: n }); }
+  next() { this.goStep(Math.min(this.state.step + 1, 3)); }
+  back() { this.goStep(Math.max(this.state.step - 1, 0)); }
+
+  async submit() {
+    const d = this.state.data;
+    const payload = {
+      first_name: d.firstName, last_name: d.lastName, business_email: d.businessEmail,
+      company_name: d.companyName, entity_type: d.entityType, country: d.country,
+      state: d.state, industry: d.industry, role: d.role,
+      primary_classification: d.primaryClassification, catalog_count: d.catalogCount ? Number(d.catalogCount) : null,
+      monthly_volume: d.monthlyVolume ? Number(d.monthlyVolume) : null,
+      distributors_selected: this._affiliationsByGroup(d, 'distributors'),
+      registries_selected: this._affiliationsByGroup(d, 'registries'),
+      catalog_size: d.catalogSize, has_isrc: d.hasISRC, has_iswc: d.hasISWC, has_ipi: d.hasIPI, needs_help: d.needsHelp,
+      stream_threshold: d.streamThreshold, distributor: d.distributor, distributor_other: d.distributorOther,
+      video_asset_type: d.videoAssetType, mfn_status: d.mfnStatus, film_distribution: d.filmDistribution, hash_ready: d.hashReady,
+      active_wells: d.activeWells, scada_compatible: d.scadaCompatible, jib_automation: d.jibAutomation,
+      division_orders: d.divisionOrders, land_deeds: d.landDeeds, gis_surveys: d.gisSurveys,
+      licensing_focus: d.licensingFocus, shipment_verification: d.shipmentVerification, escrow_releases: d.escrowReleases,
+      patent_coordinates: d.patentCoordinates, payment_lag: d.paymentLag, ach: d.ach, wire: d.wire, checks: d.checks,
+      split_sheets: d.splitSheets, waitlist_priority: d.waitlistPriority
+    };
+    this.setState({ submitted: true });
+    try {
+      const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
+      const SUPABASE_KEY = 'sb_publishable_vkx6lvvUQdvuDEvSvlR-1A_dHYlu0MD';
+      await fetch(`${SUPABASE_URL}/rest/v1/pre_registrations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+    } catch (e) { console.error('Supabase submit failed', e); }
+  }
+
+  pillStyle(sel) {
+    const orange = 'oklch(0.62 0.2 38)';
+    return sel
+      ? `padding:12px 16px;border-radius:8px;border:1.5px solid ${orange};cursor:pointer;font-size:13px;font-weight:700;text-align:left;background:${orange};color:#fff;transition:all .15s;line-height:1.5`
+      : `padding:12px 16px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);cursor:pointer;font-size:13px;font-weight:500;text-align:left;background:#fff;color:oklch(0.3 0.02 260);transition:all .15s;line-height:1.5`;
+  }
+  cardStyle(sel) {
+    const orange = 'oklch(0.62 0.2 38)';
+    return sel
+      ? `padding:18px;border-radius:10px;border:2px solid ${orange};cursor:pointer;background:oklch(0.97 0.03 38);color:oklch(0.2 0.02 260);transition:all .15s`
+      : `padding:18px;border-radius:10px;border:2px solid oklch(0.88 0.02 235);cursor:pointer;background:#fff;color:oklch(0.3 0.02 260);transition:all .15s`;
+  }
+
+  renderVals() {
+    const d = this.state.data;
+    const step = this.state.step;
+    const submitted = this.state.submitted;
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.businessEmail);
+
+    const roleOptionsByIndustry = {
+      MUSIC: [
+        {v:'CREATOR_ARTIST_SONGWRITER', l:'Independent Creator / Recording Artist / Songwriter'},
+        {v:'B2B_OPERATING_PARTNER_STUDIO', l:'Recording Studio / Production Company (B2B Operating Partner)'},
+        {v:'RECORD_LABEL_ADMINISTRATOR', l:'Independent Record Label / Catalog Administrator'}
+      ],
+      FILM: [
+        {v:'FILMMAKER_RIGHTS_OWNER', l:'Independent Filmmaker / Rights Owner'},
+        {v:'POST_PRODUCTION_HOUSE', l:'Post-Production House (VFX, Editing, Sound Design)'},
+        {v:'FILM_DISTRIBUTOR_AGENT', l:'Film Distributor / Sales Agent'}
+      ],
+      OIL_GAS: [
+        {v:'MINERAL_RIGHTS_LANDOWNER', l:'Mineral Rights Landowner / Trust Beneficiary'},
+        {v:'WELLHEAD_OPERATOR_JV_PARTNER', l:'Wellhead Operator / Joint Venture Partner'}
+      ],
+      PATENT: [
+        {v:'INVENTOR_PATENT_LICENSOR', l:'Inventor / Patent Licensor'},
+        {v:'CONTRACT_MANUFACTURER_DISTRIBUTOR', l:'Contract Manufacturer / Distributor'}
+      ]
+    };
+    const roleOptions = roleOptionsByIndustry[d.industry] || [];
+
+    const STATES = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming','Puerto Rico','U.S. Virgin Islands','Guam','American Samoa','Northern Mariana Islands'];
+    const DISTRIBUTORS = ['DistroKid','FUGA','CD Baby','Symphonic','Too Lost','Catapult','Other/None'];
+    const REGISTRIES = ['ASCAP','BMI','SESAC','GMR','The MLC','SoundExchange','Other/None'];
+    const isOilGasNow = d.industry === 'OIL_GAS';
+    const isMusicNow = d.industry === 'MUSIC';
+    const showAffiliations = (d.primaryClassification === 'Creator' || d.primaryClassification === 'B2B Operating Partner') && !!d.industry;
+    const affiliationCategories = this.affiliationCategoriesFor(d.industry).map(cat => ({
+      label: cat.label,
+      items: cat.items.map(name => ({ label: name, checked: !!d.affiliations[name], toggle: this.mkMultiToggle('affiliations', name) }))
+    }));
+    const isFilmNow = d.industry === 'FILM';
+    const isPatentNow = d.industry === 'PATENT';
+    const Q44 = {
+      MUSIC: {
+        text: "4.4 Would you like to prioritize a diagnostic catalog scan to search for historical unmatched mechanical royalties? *",
+        priority: "Yes, apply for priority catalog audit (Scan mechanical rights databases like the MLC to claim unallocated distributions before they are distributed pro-rata to major publishers).",
+        standard: "No, simply register my catalog for standard smart contract split-routing."
+      },
+      OIL_GAS: {
+        text: "4.4 Would you like to request an immediate audit of your active spacing units to check for assets currently held in revenue suspense or outstanding interest penalties? *",
+        priority: "Yes, apply for priority diagnostic onboarding (Analyze county land registries and Division Order Title Opinions for unresolved title defects, missing W-9s, or uncollected balances).",
+        standard: "No, simply register my royalty/working interests for standard automated distribution setup."
+      },
+      FILM: {
+        text: "4.4 Would you like to request an immediate audit of your theatrical, television, or streaming projects to identify unclaimed residuals or unpaid backend profit-share participations? *",
+        priority: "Yes, apply for priority backend audit (Perform cross-platform automated monitoring of domestic/foreign syndication, SVOD, and AVOD streams to detect underreporting, and audit guild databases for unclaimed residuals).",
+        standard: "No, simply register my titles for standard smart contract split-routing."
+      },
+      PATENT: {
+        text: "4.4 Would you like to authorize a forensic royalty audit of your active licensing contracts to search for underreported sales or unauthorized usage? *",
+        priority: "Yes, apply for priority licensing audit (Review licensee accounting records, regional sales limits, and distribution channels to identify uncollected licensing fees and verify manufacturing run volume).",
+        standard: "No, simply register my patent/brand assets for standard smart contract split-routing."
+      }
+    };
+    const q44 = Q44[d.industry] || Q44.MUSIC;
+    const q44Text = q44.text;
+    const q44OptionPriority = q44.priority;
+    const q44OptionStandard = q44.standard;
+
+    const canStep0 = !!(d.firstName && d.lastName && emailValid && d.companyName && d.entityType && d.country && d.state);
+    const canStep1 = !!(d.industry && d.role && d.primaryClassification && d.catalogCount !== '' && d.monthlyVolume !== '');
+    let canStep2 = false;
+    if (d.industry === 'MUSIC') canStep2 = !!(d.catalogSize && d.streamThreshold);
+    if (d.industry === 'FILM') canStep2 = !!(d.videoAssetType && d.mfnStatus && d.filmDistribution && d.hashReady);
+    if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.jibAutomation);
+    if (d.industry === 'PATENT') canStep2 = !!(d.licensingFocus && d.shipmentVerification && d.escrowReleases);
+    const canStep3 = !!(d.paymentLag && d.splitSheets && d.waitlistPriority);
+    const canProceed = [canStep0, canStep1, canStep2, canStep3][step];
+
+    const orange = 'oklch(0.62 0.2 38)';
+    const grey = 'oklch(0.82 0.01 235)';
+
+    const h = {
+      firstName: this.mkField('firstName'), lastName: this.mkField('lastName'),
+      businessEmail: this.mkField('businessEmail'), companyName: this.mkField('companyName'),
+      entityType: this.mkField('entityType'), country: this.mkField('country'), state: this.mkField('state'),
+      role: this.mkField('role'), primaryClassification: this.mkField('primaryClassification'),
+      catalogCount: this.mkField('catalogCount'), monthlyVolume: this.mkField('monthlyVolume'),
+      catalogSize: this.mkField('catalogSize'),
+      distributor: this.mkField('distributor'), distributorOther: this.mkField('distributorOther'),
+      videoAssetType: this.mkField('videoAssetType'), activeWells: this.mkField('activeWells'),
+      licensingFocus: this.mkField('licensingFocus'), patentCoordinates: this.mkField('patentCoordinates'),
+      paymentLag: this.mkField('paymentLag'),
+
+      industryMusic: this.mkChoice('industry','MUSIC'), industryFilm: this.mkChoice('industry','FILM'),
+      industryOilGas: this.mkChoice('industry','OIL_GAS'), industryPatent: this.mkChoice('industry','PATENT'),
+
+      streamAll: this.mkChoice('streamThreshold','ALL'), streamSome: this.mkChoice('streamThreshold','SOME'), streamNone: this.mkChoice('streamThreshold','NONE'),
+      mfnYes: this.mkChoice('mfnStatus','YES'), mfnNo: this.mkChoice('mfnStatus','NO'),
+      filmDistYes: this.mkChoice('filmDistribution','YES'), filmDistNo: this.mkChoice('filmDistribution','NO'),
+      hashYes: this.mkChoice('hashReady','YES'), hashNo: this.mkChoice('hashReady','NO'),
+      scadaYes: this.mkChoice('scadaCompatible','YES'), scadaNo: this.mkChoice('scadaCompatible','NO'),
+      jibYes: this.mkChoice('jibAutomation','YES'), jibNo: this.mkChoice('jibAutomation','NO'),
+      shipYes: this.mkChoice('shipmentVerification','YES'), shipNo: this.mkChoice('shipmentVerification','NO'),
+      escrowYes: this.mkChoice('escrowReleases','YES'), escrowNo: this.mkChoice('escrowReleases','NO'),
+      splitYes: this.mkChoice('splitSheets','YES'), splitNo: this.mkChoice('splitSheets','NO'),
+      waitYes: this.mkChoice('waitlistPriority','YES'), waitNo: this.mkChoice('waitlistPriority','NO'),
+
+      toggleISRC: this.mkToggle('hasISRC'), toggleISWC: this.mkToggle('hasISWC'), toggleIPI: this.mkToggle('hasIPI'), toggleHelp: this.mkToggle('needsHelp'),
+      toggleDivisionOrders: this.mkToggle('divisionOrders'), toggleLandDeeds: this.mkToggle('landDeeds'), toggleGisSurveys: this.mkToggle('gisSurveys'),
+      toggleAch: this.mkToggle('ach'), toggleWire: this.mkToggle('wire'), toggleChecks: this.mkToggle('checks'),
+
+      next: () => this.next(), back: () => this.back(), submit: () => this.submit()
+    };
+
+    return {
+      d, roleOptions, stateOptions: STATES, showAffiliations, affiliationCategories, q44Text, q44OptionPriority, q44OptionStandard,
+      submitted, notSubmitted: !submitted,
+      isStep0: step===0, isStep1: step===1, isStep2: step===2, isStep3: step===3,
+      isMusic: d.industry==='MUSIC', isFilm: d.industry==='FILM', isOilGas: d.industry==='OIL_GAS', isPatent: d.industry==='PATENT',
+      hasIndustry: !!d.industry,
+      isOtherDistributor: d.distributor==='Other',
+      emailBorder: (d.businessEmail && !emailValid) ? 'oklch(0.6 0.18 30)' : 'oklch(0.85 0.02 235)',
+      showEmailWarning: !!(d.businessEmail && !emailValid),
+      bar0: orange, bar1: step>=1?orange:grey, bar2: step>=2?orange:grey, bar3: step>=3?orange:grey,
+      showBack: step>0, hideBack: step===0, showNext: step<3,
+      nextDisabled: !canProceed,
+      nextButtonStyle: canProceed
+        ? `background:${orange};border:none;color:#fff;font-weight:700;font-size:14px;padding:12px 26px;border-radius:8px;cursor:pointer`
+        : `background:oklch(0.9 0.01 235);border:none;color:oklch(0.6 0.01 235);font-weight:700;font-size:14px;padding:12px 26px;border-radius:8px;cursor:not-allowed`,
+      musicCardStyle: this.cardStyle(d.industry==='MUSIC'), filmCardStyle: this.cardStyle(d.industry==='FILM'),
+      oilGasCardStyle: this.cardStyle(d.industry==='OIL_GAS'), patentCardStyle: this.cardStyle(d.industry==='PATENT'),
+      streamAllStyle: this.pillStyle(d.streamThreshold==='ALL'), streamSomeStyle: this.pillStyle(d.streamThreshold==='SOME'), streamNoneStyle: this.pillStyle(d.streamThreshold==='NONE'),
+      mfnYesStyle: this.pillStyle(d.mfnStatus==='YES'), mfnNoStyle: this.pillStyle(d.mfnStatus==='NO'),
+      filmDistYesStyle: this.pillStyle(d.filmDistribution==='YES'), filmDistNoStyle: this.pillStyle(d.filmDistribution==='NO'),
+      hashYesStyle: this.pillStyle(d.hashReady==='YES'), hashNoStyle: this.pillStyle(d.hashReady==='NO'),
+      scadaYesStyle: this.pillStyle(d.scadaCompatible==='YES'), scadaNoStyle: this.pillStyle(d.scadaCompatible==='NO'),
+      jibYesStyle: this.pillStyle(d.jibAutomation==='YES'), jibNoStyle: this.pillStyle(d.jibAutomation==='NO'),
+      shipYesStyle: this.pillStyle(d.shipmentVerification==='YES'), shipNoStyle: this.pillStyle(d.shipmentVerification==='NO'),
+      escrowYesStyle: this.pillStyle(d.escrowReleases==='YES'), escrowNoStyle: this.pillStyle(d.escrowReleases==='NO'),
+      splitYesStyle: this.pillStyle(d.splitSheets==='YES'), splitNoStyle: this.pillStyle(d.splitSheets==='NO'),
+      waitYesStyle: this.pillStyle(d.waitlistPriority==='YES'), waitNoStyle: this.pillStyle(d.waitlistPriority==='NO'),
+      h
+    };
+  }
+}
+</script>
+</body>
+</html>
