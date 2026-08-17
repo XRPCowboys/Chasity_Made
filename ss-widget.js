@@ -21,21 +21,17 @@ function ssWhenReady(){
   var ci=0;
   function run(){
     var combo=combos[ci%combos.length];ci++;
-    for(var r=0;r<4;r++){
-      rowEls[r].style.opacity='0';
-      labelEls[r].textContent='';
-      amtEls[r].textContent='';
-    }
     totalEl.style.color='oklch(0.6 0.19 145)';
-    totalEl.textContent='';
+    for(var h=combo.length;h<4;h++){rowEls[h].style.opacity='0';labelEls[h].textContent='';amtEls[h].textContent='';}
     var sum=0;
     combo.forEach(function(item,i){
+      rowEls[i].style.opacity='0';
       setTimeout(function(){
         labelEls[i].textContent=item[0];
         amtEls[i].textContent='+$'+item[1].toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
         rowEls[i].style.opacity='1';
         sum+=item[1];
-      },i*450);
+      },i*450+120);
     });
     setTimeout(function(){
       totalEl.textContent='$'+sum.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
