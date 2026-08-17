@@ -51,34 +51,7 @@ summary::-webkit-details-marker{display:none}
 .bj-tile{transform:scale(1);z-index:1}
 .bj-tile:hover{background:oklch(0.99 0.01 235 / 55%) !important;box-shadow:0 14px 34px rgba(0,0,0,0.2) !important;transform:scale(1.06);z-index:5}
 </style>
-<script>
-function ssWhenReady(){
-  var fill=document.getElementById('ss-timer-fill'),text=document.getElementById('ss-timer-text'),check=document.getElementById('ss-timer-check');
-  if(!fill||!text||!check){requestAnimationFrame(ssWhenReady);return;}
-  var seq=[3,1,2,1,2,3,1],seqIdx=0,sec=0,target=seq[0];
-  function render(){
-    fill.style.width=Math.min(100,Math.round((sec/target)*100))+'%';
-    text.textContent='Settling · '+sec+'.0s';
-    check.style.opacity=sec>=target?'1':'0';
-    if(sec>=target) text.textContent='Settled in '+target+'.0s';
-  }
-  function tick(){
-    if(sec<target){
-      sec++;render();
-      setTimeout(tick,650+Math.random()*450);
-    } else {
-      setTimeout(function(){
-        sec=0;seqIdx=(seqIdx+1)%seq.length;target=seq[seqIdx];
-        render();
-        setTimeout(tick,650+Math.random()*450);
-      },1400);
-    }
-  }
-  render();
-  setTimeout(tick,650+Math.random()*450);
-}
-ssWhenReady();
-</script>
+<script src="ss-widget.js"></script>
 </helmet>
 
 <div style="width:100%;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background-image:url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235)">
@@ -109,18 +82,21 @@ ssWhenReady();
 
   <div class="bj-section" style="padding:12px 56px 24px;text-align:center">
     <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:52px;line-height:1.08;margin:0 auto 13px;max-width:880px;color:oklch(0.2 0.02 260)">The Moment Royalties Drop</h1>
-    <div style="display:inline-flex;flex-direction:column;gap:20px;background:oklch(0.98 0.01 235 / 55%);color:#fff;font-family:'Inter',sans-serif;border-radius:20px;padding:32px 44px;margin-bottom:14px;width:100%;max-width:420px;box-sizing:border-box;text-align:left">
-      <div style="display:flex;align-items:center;gap:14px;font-weight:700;font-size:20px">
-        <span style="width:26px;height:26px;border-radius:7px;background:oklch(0.68 0.19 145);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">✓</span>
-        <span style="color:oklch(0.62 0.2 38)">Cleared &amp; Converted</span>
+    <div style="display:inline-flex;flex-direction:column;gap:8px;background:oklch(0.98 0.01 235 / 55%);color:#fff;font-family:'Inter',sans-serif;border-radius:20px;padding:18px 44px 20px;margin-bottom:14px;width:100%;max-width:420px;height:150px;box-sizing:border-box;text-align:left;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px">
+        <span style="width:20px;height:20px;border-radius:6px;background:oklch(0.68 0.19 145);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px">✓</span>
+        <span style="color:oklch(0.62 0.2 38)">Verified &amp; Disbursed</span>
       </div>
       <div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-          <span id="ss-timer-text" style="font-weight:700;font-size:18px;color:oklch(0.2 0.02 260)">Settling · 0.0s</span>
-          <span id="ss-timer-check" style="color:oklch(0.7 0.2 145);font-weight:800;font-size:17px;opacity:0;transition:opacity 0.25s ease">✓ Settled</span>
+        <div id="ss-rows" style="display:flex;flex-direction:column;gap:2px;margin-bottom:1px;font-family:'Courier New',monospace;font-size:10px;line-height:1.15">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;opacity:1;transition:opacity 0.35s ease" id="ss-r0"><span id="ss-l0" style="color:#000;font-weight:700;white-space:nowrap;width:190px;display:inline-block">Mechanical royalty</span><span id="ss-a0" style="font-weight:700;color:oklch(0.62 0.2 38);white-space:nowrap;padding-left:12px">+$412.10</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;opacity:1;transition:opacity 0.35s ease" id="ss-r1"><span id="ss-l1" style="color:#000;font-weight:700;white-space:nowrap;width:190px;display:inline-block">Performance royalty</span><span id="ss-a1" style="font-weight:700;color:oklch(0.62 0.2 38);white-space:nowrap;padding-left:12px">+$88.40</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;opacity:1;transition:opacity 0.35s ease" id="ss-r2"><span id="ss-l2" style="color:#000;font-weight:700;white-space:nowrap;width:190px;display:inline-block">Sync royalty</span><span id="ss-a2" style="font-weight:700;color:oklch(0.62 0.2 38);white-space:nowrap;padding-left:12px">+$310.00</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;opacity:1;transition:opacity 0.35s ease" id="ss-r3"><span id="ss-l3" style="color:#000;font-weight:700;white-space:nowrap;width:190px;display:inline-block">Backend residual</span><span id="ss-a3" style="font-weight:700;color:oklch(0.62 0.2 38);white-space:nowrap;padding-left:12px">+$394.05</span></div>
         </div>
-        <div style="height:11px;background:rgba(255,255,255,0.15);border-radius:999px;overflow:hidden">
-          <div id="ss-timer-fill" style="height:100%;width:0%;background:oklch(0.68 0.2 38);border-radius:999px;transition:width 0.5s ease"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,0,0,0.08);padding-top:4px;font-family:'Courier New',monospace;line-height:1.15">
+          <span style="font-weight:800;font-size:13px;color:oklch(0.6 0.19 145)">Distributed</span>
+          <span id="ss-total" style="color:oklch(0.6 0.19 145);font-weight:800;font-size:13px">$1,204.55</span>
         </div>
       </div>
     </div>
