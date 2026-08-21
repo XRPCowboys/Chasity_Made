@@ -330,7 +330,7 @@ summary::-webkit-details-marker{display:none}
               <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12b Net Revenue Interest (NRI) Division Order: 8-decimal validation *</label>
               <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">Enter each interest holder's decimal share (0.00000000 format). The sum of all interests must equal exactly 1.00000000.</p>
               <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
-                <sc-for list="{{ d.nriRows }}" as="row" hint-placeholder-count="2">
+                <sc-for list="{{ nriRows }}" as="row" hint-placeholder-count="2">
                   <div style="display:grid;grid-template-columns:1fr 140px auto;gap:8px;align-items:center">
                     <input type="text" placeholder="Interest holder name" value="{{ row.name }}" onChange="{{ row.setName }}" style="padding:10px 12px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13px">
                     <input type="text" placeholder="0.00000000" value="{{ row.interest }}" onChange="{{ row.setInterest }}" style="padding:10px 12px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13px;font-family:monospace">
