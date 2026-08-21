@@ -123,7 +123,7 @@ summary::-webkit-details-marker{display:none}
                   <option value="LLC">LLC</option>
                   <option value="Corporation">Corporation</option>
                   <option value="Partnership">Partnership</option>
-                  <option value="Sole Proprietorship">Sole Proprietorship</option>
+                  <option value="Single Owner Corporate Account">Single Owner Corporate Account</option>
                   <option value="Individual">Individual</option>
                 </select>
               </div>
@@ -665,7 +665,16 @@ class Component extends DCLogic {
     const h = {
       firstName: this.mkField('firstName'), lastName: this.mkField('lastName'),
       businessEmail: this.mkField('businessEmail'), companyName: this.mkField('companyName'),
-      entityType: this.mkField('entityType'), country: this.mkField('country'), state: this.mkField('state'),
+      entityType: (e) => {
+        const v = e.target.value;
+        if (v === 'Single Owner Corporate Account') {
+          this.setState(s => ({ accountType: 'CORPORATE', data: { ...s.data, entityType: v, industry: 'OIL_GAS' } }));
+          try { localStorage.setItem('ssr_account_type', 'CORPORATE'); } catch (err) {}
+        } else {
+          this.setState(s => ({ data: { ...s.data, entityType: v } }));
+        }
+      },
+      country: this.mkField('country'), state: this.mkField('state'),
       role: this.mkField('role'), primaryClassification: this.mkField('primaryClassification'),
       catalogCount: this.mkField('catalogCount'), monthlyVolume: this.mkField('monthlyVolume'),
       catalogSize: this.mkField('catalogSize'),
