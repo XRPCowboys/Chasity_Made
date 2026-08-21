@@ -4,7 +4,7 @@ function ssWhenReady(){
   var rowEls=[document.getElementById('ss-r0'),document.getElementById('ss-r1'),document.getElementById('ss-r2'),document.getElementById('ss-r3')];
   var labelEls=[document.getElementById('ss-l0'),document.getElementById('ss-l1'),document.getElementById('ss-l2'),document.getElementById('ss-l3')];
   var amtEls=[document.getElementById('ss-a0'),document.getElementById('ss-a1'),document.getElementById('ss-a2'),document.getElementById('ss-a3')];
-  if(!totalEl||!rowEls[0]){requestAnimationFrame(ssWhenReady);return;}
+  if(!totalEl||!rowEls[0]){setTimeout(ssWhenReady,150);return;}
   window.__ssStarted=true;
   var combos=[
     [["Mechanical royalty",412.10],["Performance royalty",4820.40],["Sync royalty",68500.00],["Backend residual",94000.05]],
@@ -22,17 +22,25 @@ function ssWhenReady(){
   function run(){
     var combo=combos[ci%combos.length];ci++;
     totalEl.style.color='oklch(0.6 0.19 145)';
-    for(var h=combo.length;h<4;h++){rowEls[h].style.opacity='0';labelEls[h].textContent='';amtEls[h].textContent='';}
     var sum=0;
-    combo.forEach(function(item,i){
-      rowEls[i].style.opacity='0';
-      setTimeout(function(){
-        labelEls[i].textContent=item[0];
-        amtEls[i].textContent='+$'+item[1].toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-        rowEls[i].style.opacity='1';
-        sum+=item[1];
-      },i*450+120);
-    });
+    for(var j=0;j<4;j++){
+      (function(i){
+        setTimeout(function(){
+          rowEls[i].style.opacity='0';
+          setTimeout(function(){
+            if(i<combo.length){
+              labelEls[i].textContent=combo[i][0];
+              amtEls[i].textContent='+$'+combo[i][1].toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+              rowEls[i].style.opacity='1';
+              sum+=combo[i][1];
+            } else {
+              labelEls[i].textContent='';
+              amtEls[i].textContent='';
+            }
+          },150);
+        },i*350);
+      })(j);
+    }
     setTimeout(function(){
       totalEl.textContent='$'+sum.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
       var flashes=0;
