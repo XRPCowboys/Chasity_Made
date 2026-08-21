@@ -50,7 +50,6 @@ summary::-webkit-details-marker{display:none}
     <div class="bj-nav-links" style="display:flex;gap:20px;font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260);align-items:center;white-space:nowrap">
       <a href="index.html#proof" style="text-decoration:none">How It Works</a>
       <a href="Portals.dc.html" style="text-decoration:none">Our Portals</a>
-      <a href="Funding.dc.html" style="text-decoration:none">Get Funded</a>
       <a href="Get Started.dc.html" style="text-decoration:none;color:oklch(0.62 0.2 38)">Onboarding</a>
       <a href="Pre-Registration.dc.html" style="text-decoration:none;background:oklch(0.62 0.2 38);color:#fff;padding:10px 18px;border-radius:6px">Start Pre-Registration</a>
     </div>
@@ -59,7 +58,6 @@ summary::-webkit-details-marker{display:none}
       <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;min-width:220px;max-width:calc(100vw - 32px);display:flex;flex-direction:column;gap:2px;z-index:70">
         <a href="index.html#proof" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">How It Works</a>
         <a href="Portals.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Our Portals</a>
-        <a href="Funding.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Get Funded</a>
         <a href="Get Started.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Onboarding</a>
         <a href="Pre-Registration.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:15px;text-align:center;margin-top:6px">Start Pre-Registration</a>
       </div>
@@ -89,6 +87,9 @@ summary::-webkit-details-marker{display:none}
         <div style="background:rgba(255,255,255,0.92);border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.12);padding:36px">
 
           <sc-if value="{{ isStep0 }}" hint-placeholder-val="{{ true }}">
+            <sc-if value="{{ hasAccountType }}" hint-placeholder-val="{{ false }}">
+              <div style="display:inline-flex;align-items:center;gap:8px;background:oklch(0.97 0.03 38);color:oklch(0.4 0.15 38);font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;margin-bottom:14px">{{ accountTypeBadge }}</div>
+            </sc-if>
             <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin-bottom:4px;color:oklch(0.2 0.02 260)">Legal Entity &amp; Representative Information</div>
             <p style="font-size:13px;color:oklch(0.42 0.02 260);margin:0 0 24px">This information is used to run background KYB, KYC, and U.S. OFAC sanctions screening.</p>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
@@ -184,7 +185,7 @@ summary::-webkit-details-marker{display:none}
                 <option value="">Select…</option>
                 <option value="Creator">Creator (Artist, Songwriter, Filmmaker, Inventor, Landowner)</option>
                 <option value="B2B Operating Partner">B2B Operating Partner (Recording Studio, Post-Production House, Contract Manufacturer, Well Operator)</option>
-                <option value="Project Backer">Project Backer (Private Investor / Supporter)</option>
+                <option value="Project Supporter">Project Supporter (Accredited Supporter)</option>
               </select>
 
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
@@ -260,6 +261,13 @@ summary::-webkit-details-marker{display:none}
               <sc-if value="{{ isOtherDistributor }}" hint-placeholder-val="{{ false }}">
                 <input type="text" placeholder="Specify distributor" value="{{ d.distributorOther }}" onChange="{{ h.distributorOther }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-top:10px">
               </sc-if>
+
+              <div style="background:oklch(0.97 0.01 235);border-radius:10px;padding:16px;margin-top:20px">
+                <label style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.55;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.lodDualChannel }}" onChange="{{ h.toggleLodDualChannel }}" style="width:17px;height:17px;margin-top:1px">I authorize generation of a Dual-Channel Letter of Direction (LOD) to execute PRO-level settlement rules: Channel A (Performance) routes the Publisher's Share 76% to the SSR Software Fee / 24% to the Project Support Pool, leaving the Writer's Share untouched. Channel B (Mechanical) splits MLC mechanicals 38.0% SSR / 50.0% Creator / 12.0% Project Support Pool. *</label>
+              </div>
+              <div style="background:oklch(0.97 0.01 235);border-radius:10px;padding:16px;margin-top:10px">
+                <label style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.55;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.minThresholdConsent }}" onChange="{{ h.toggleMinThresholdConsent }}" style="width:17px;height:17px;margin-top:1px">I consent to the automated back-office screen, which excludes underperforming tracks averaging under 1,000 rolling annual streams. *</label>
+              </div>
             </sc-if>
 
             <sc-if value="{{ isFilm }}" hint-placeholder-val="{{ false }}">
@@ -316,6 +324,33 @@ summary::-webkit-details-marker{display:none}
                 <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.gisSurveys }}" onChange="{{ h.toggleGisSurveys }}" style="width:17px;height:17px">GIS Geological Surveys</label>
               </div>
               <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:10px 0 0">Accepted formats: .csv, .xlsx, .pdf, .jpg, .png. You'll be able to upload these after your account is approved.</p>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12b Net Revenue Interest (NRI) Division Order — 8-decimal validation *</label>
+              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">Enter each interest holder's decimal share (0.00000000 format). The sum of all interests must equal exactly 1.00000000.</p>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+                <sc-for list="{{ d.nriRows }}" as="row" hint-placeholder-count="2">
+                  <div style="display:grid;grid-template-columns:1fr 140px auto;gap:8px;align-items:center">
+                    <input type="text" placeholder="Interest holder name" value="{{ row.name }}" onChange="{{ row.setName }}" style="padding:10px 12px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13px">
+                    <input type="text" placeholder="0.00000000" value="{{ row.interest }}" onChange="{{ row.setInterest }}" style="padding:10px 12px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13px;font-family:monospace">
+                    <button onClick="{{ row.remove }}" style="background:none;border:1.5px solid oklch(0.85 0.02 235);color:oklch(0.5 0.02 260);border-radius:8px;padding:9px 12px;cursor:pointer;font-size:12px">Remove</button>
+                  </div>
+                </sc-for>
+              </div>
+              <button onClick="{{ h.addNriRow }}" style="background:none;border:1.5px dashed oklch(0.7 0.02 235);color:oklch(0.4 0.02 260);border-radius:8px;padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;margin-bottom:8px">+ Add Interest Holder</button>
+              <div style="font-size:12.5px;font-weight:700;color:{{ nriSumColor }}">Sum of interests: {{ nriSumDisplay }} {{ nriSumStatus }}</div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12c Severance Tax Withholding — Asset State *</label>
+              <select value="{{ d.severanceTaxState }}" onChange="{{ h.severanceTaxState }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
+                <option value="">Select…</option>
+                <option value="Texas">Texas (4.6% crude oil / 7.5% natural gas)</option>
+                <option value="Oklahoma">Oklahoma</option>
+                <option value="New Mexico">New Mexico</option>
+                <option value="North Dakota">North Dakota</option>
+                <option value="Other">Other</option>
+              </select>
+              <sc-if value="{{ isTexasSeverance }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:8px 0 0">Backend will automatically withhold and reserve 4.6% on crude oil and 7.5% on natural gas before stablecoin payout routing.</p>
+              </sc-if>
             </sc-if>
 
             <sc-if value="{{ isPatent }}" hint-placeholder-val="{{ false }}">
@@ -341,6 +376,14 @@ summary::-webkit-details-marker{display:none}
 
               <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.16 Patent Registration Coordinates</label>
               <input type="text" placeholder="e.g., USPTO Patent Number, Trademark Registry Key" value="{{ d.patentCoordinates }}" onChange="{{ h.patentCoordinates }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.17 ERP Database Sync Endpoint</label>
+              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 8px">Read-only API endpoint to sync with the manufacturer's ERP database to track wholesale run volumes.</p>
+              <input type="text" placeholder="e.g., https://erp.manufacturer.com/api/v1" value="{{ d.erpEndpoint }}" onChange="{{ h.erpEndpoint }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.18 Bill of Lading (BOL) Metadata — Milestone Escrow Trigger</label>
+              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 8px">Used as the on-chain XRPL escrow release trigger once freight clears customs ports of entry.</p>
+              <input type="text" placeholder="BOL number / customs port of entry" value="{{ d.bolMetadata }}" onChange="{{ h.bolMetadata }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
             </sc-if>
           </sc-if>
 
@@ -409,6 +452,10 @@ summary::-webkit-details-marker{display:none}
     <div>© 2026 SplitSecond Royalties</div>
     <div style="display:flex;gap:20px"><a href="index.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Home</a><a href="Get Started.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Onboarding</a><a href="Portals.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Our Portals</a><a href="Contact.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Contact</a></div>
   </div>
+  <div class="bj-section" style="padding:0 56px 28px">
+    <div style="max-width:1180px;margin:0 auto;background:oklch(0.94 0.01 235);border:1.5px solid oklch(0.85 0.02 235);border-radius:10px;padding:16px 22px;font-size:11.5px;line-height:1.6;color:oklch(0.4 0.02 260)">Split Second Royalties LLC is strictly a B2B Software-as-a-Service (SaaS) technology provider. We are not a broker-dealer, investment advisor, custodian, or financial intermediary. The company does not raise capital, sponsor project-level pools, or hold custody of client funds. All white-label instances are managed independently by our licensed operating partners on isolated cloud subdomains.</div>
+  </div>
+
 
 </div>
 
@@ -418,6 +465,7 @@ class Component extends DCLogic {
   state = {
     step: 0,
     submitted: false,
+    accountType: (typeof localStorage !== 'undefined' && localStorage.getItem('ssr_account_type')) || '',
     data: {
       firstName:'', lastName:'', businessEmail:'', companyName:'', entityType:'', country:'United States', state:'',
       industry:'', role:'', primaryClassification:'', catalogCount:'', monthlyVolume:'',
@@ -426,8 +474,10 @@ class Component extends DCLogic {
       streamThreshold:'', distributor:'', distributorOther:'',
       videoAssetType:'', mfnStatus:'', filmDistribution:'', hashReady:'',
       activeWells:'', scadaCompatible:'', jibAutomation:'', divisionOrders:false, landDeeds:false, gisSurveys:false,
-      licensingFocus:'', shipmentVerification:'', escrowReleases:'', patentCoordinates:'',
-      paymentLag:'', ach:false, wire:false, checks:false, splitSheets:'', waitlistPriority:''
+      licensingFocus:'', shipmentVerification:'', escrowReleases:'', patentCoordinates:'', erpEndpoint:'', bolMetadata:'',
+      paymentLag:'', ach:false, wire:false, checks:false, splitSheets:'', waitlistPriority:'',
+      lodDualChannel:false, minThresholdConsent:false, severanceTaxState:'',
+      nriRows:[{name:'',interest:''},{name:'',interest:''}]
     }
   };
 
@@ -468,6 +518,10 @@ class Component extends DCLogic {
     return items.filter(item => d.affiliations[item]);
   }
 
+  addNriRow() { this.setState(s => ({ data: { ...s.data, nriRows: [...s.data.nriRows, {name:'',interest:''}] } })); }
+  removeNriRow(i) { this.setState(s => ({ data: { ...s.data, nriRows: s.data.nriRows.filter((_,idx)=>idx!==i) } })); }
+  setNriRow(i, key, value) { this.setState(s => ({ data: { ...s.data, nriRows: s.data.nriRows.map((r,idx)=> idx===i ? {...r,[key]:value} : r) } })); }
+
   goStep(n) { this.setState({ step: n }); }
   next() { this.goStep(Math.min(this.state.step + 1, 3)); }
   back() { this.goStep(Math.max(this.state.step - 1, 0)); }
@@ -488,8 +542,12 @@ class Component extends DCLogic {
       active_wells: d.activeWells, scada_compatible: d.scadaCompatible, jib_automation: d.jibAutomation,
       division_orders: d.divisionOrders, land_deeds: d.landDeeds, gis_surveys: d.gisSurveys,
       licensing_focus: d.licensingFocus, shipment_verification: d.shipmentVerification, escrow_releases: d.escrowReleases,
-      patent_coordinates: d.patentCoordinates, payment_lag: d.paymentLag, ach: d.ach, wire: d.wire, checks: d.checks,
-      split_sheets: d.splitSheets, waitlist_priority: d.waitlistPriority
+      patent_coordinates: d.patentCoordinates, erp_endpoint: d.erpEndpoint, bol_metadata: d.bolMetadata,
+      payment_lag: d.paymentLag, ach: d.ach, wire: d.wire, checks: d.checks,
+      split_sheets: d.splitSheets, waitlist_priority: d.waitlistPriority,
+      account_type: this.state.accountType,
+      lod_dual_channel: d.lodDualChannel, min_threshold_consent: d.minThresholdConsent, severance_tax_state: d.severanceTaxState,
+      nri_division_orders: d.nriRows.filter(r => r.name || r.interest)
     };
     this.setState({ submitted: true });
     try {
@@ -593,8 +651,9 @@ class Component extends DCLogic {
     let canStep2 = false;
     if (d.industry === 'MUSIC') canStep2 = !!(d.catalogSize && d.streamThreshold);
     if (d.industry === 'FILM') canStep2 = !!(d.videoAssetType && d.mfnStatus && d.filmDistribution && d.hashReady);
-    if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.jibAutomation);
+    if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.jibAutomation && d.severanceTaxState);
     if (d.industry === 'PATENT') canStep2 = !!(d.licensingFocus && d.shipmentVerification && d.escrowReleases);
+    if (d.industry === 'MUSIC') canStep2 = canStep2 && d.lodDualChannel && d.minThresholdConsent;
     const canStep3 = !!(d.paymentLag && d.splitSheets && d.waitlistPriority);
     const canProceed = [canStep0, canStep1, canStep2, canStep3][step];
 
@@ -630,11 +689,29 @@ class Component extends DCLogic {
       toggleISRC: this.mkToggle('hasISRC'), toggleISWC: this.mkToggle('hasISWC'), toggleIPI: this.mkToggle('hasIPI'), toggleHelp: this.mkToggle('needsHelp'),
       toggleDivisionOrders: this.mkToggle('divisionOrders'), toggleLandDeeds: this.mkToggle('landDeeds'), toggleGisSurveys: this.mkToggle('gisSurveys'),
       toggleAch: this.mkToggle('ach'), toggleWire: this.mkToggle('wire'), toggleChecks: this.mkToggle('checks'),
+      toggleLodDualChannel: this.mkToggle('lodDualChannel'), toggleMinThresholdConsent: this.mkToggle('minThresholdConsent'),
+      severanceTaxState: this.mkField('severanceTaxState'), erpEndpoint: this.mkField('erpEndpoint'), bolMetadata: this.mkField('bolMetadata'),
+      addNriRow: () => this.addNriRow(),
 
       next: () => this.next(), back: () => this.back(), submit: () => this.submit()
     };
 
+    const nriRows = d.nriRows.map((row, i) => ({
+      name: row.name, interest: row.interest,
+      setName: (e) => this.setNriRow(i, 'name', e.target.value),
+      setInterest: (e) => this.setNriRow(i, 'interest', e.target.value),
+      remove: () => this.removeNriRow(i)
+    }));
+    const nriSum = d.nriRows.reduce((sum, r) => sum + (parseFloat(r.interest) || 0), 0);
+    const nriValid = Math.abs(nriSum - 1) < 0.000000005;
+
+    const accountType = this.state.accountType;
     return {
+      nriRows, nriSumDisplay: nriSum.toFixed(8), nriSumStatus: d.nriRows.some(r=>r.interest!=='') ? (nriValid ? '\u2713 balanced' : '\u2014 must equal 1.00000000') : '',
+      nriSumColor: nriValid ? 'oklch(0.5 0.17 145)' : 'oklch(0.55 0.18 30)',
+      isTexasSeverance: d.severanceTaxState === 'Texas',
+      hasAccountType: !!accountType,
+      accountTypeBadge: accountType === 'CORPORATE' ? 'Single-Owner Corporate Account · 5.0% metered fee' : (accountType === 'STANDARD' ? 'Standard Multi-Party Account · 38% / 12% split' : ''),
       d, roleOptions, stateOptions: STATES, showAffiliations, affiliationCategories, q44Text, q44OptionPriority, q44OptionStandard,
       submitted, notSubmitted: !submitted,
       isStep0: step===0, isStep1: step===1, isStep2: step===2, isStep3: step===3,
