@@ -393,9 +393,10 @@ summary::-webkit-details-marker{display:none}
             <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">4.1 What is your current payment settlement time lag? *</label>
             <select value="{{ d.paymentLag }}" onChange="{{ h.paymentLag }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
               <option value="">Select…</option>
-              <option value="Under 30 days">Under 30 days</option>
-              <option value="1 to 3 months">1 to 3 months</option>
-              <option value="4 to 6 months">4 to 6 months</option>
+              <option value="Under 30 Days">Under 30 Days</option>
+              <option value="30 to 60 Days">30 to 60 Days</option>
+              <option value="60 to 90 Days">60 to 90 Days</option>
+              <option value="Over 90 Days (Precious Metals Stream Lags)">Over 90 Days (Precious Metals Stream Lags)</option>
               <option value="6 to 12 months+">6 to 12 months+ (Opaque Distributor Delay)</option>
             </select>
 
@@ -586,9 +587,11 @@ class Component extends DCLogic {
 
     const roleOptionsByIndustry = {
       MUSIC: [
-        {v:'CREATOR_ARTIST_SONGWRITER', l:'Independent Creator / Recording Artist / Songwriter'},
-        {v:'B2B_OPERATING_PARTNER_STUDIO', l:'Recording Studio / Production Company (B2B Operating Partner)'},
-        {v:'RECORD_LABEL_ADMINISTRATOR', l:'Independent Record Label / Catalog Administrator'}
+        {v:'SONGWRITER', l:'Songwriter'},
+        {v:'RECORDING_ARTIST', l:'Recording Artist'},
+        {v:'CATALOG_ADMINISTRATOR', l:'Catalog Administrator'},
+        {v:'PUBLISHER', l:'Publisher'},
+        {v:'OTHER_NONE', l:'Other/None'}
       ],
       FILM: [
         {v:'FILMMAKER_RIGHTS_OWNER', l:'Independent Filmmaker / Rights Owner'},
@@ -650,7 +653,9 @@ class Component extends DCLogic {
     let canStep2 = false;
     if (d.industry === 'MUSIC') canStep2 = !!(d.catalogSize && d.streamThreshold);
     if (d.industry === 'FILM') canStep2 = !!(d.videoAssetType && d.mfnStatus && d.filmDistribution && d.hashReady);
-    if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.jibAutomation && d.severanceTaxState);
+    const nriSumCheck = d.nriRows.reduce((sum, r) => sum + (parseFloat(r.interest) || 0), 0);
+    const nriBalanced = Math.abs(nriSumCheck - 1) < 0.000000005;
+    if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.jibAutomation && d.severanceTaxState && nriBalanced);
     if (d.industry === 'PATENT') canStep2 = !!(d.licensingFocus && d.shipmentVerification && d.escrowReleases);
     if (d.industry === 'MUSIC') canStep2 = canStep2 && d.lodDualChannel && d.minThresholdConsent;
     const canStep3 = !!(d.paymentLag && d.splitSheets && d.waitlistPriority);
@@ -719,7 +724,7 @@ class Component extends DCLogic {
       nriSumColor: nriValid ? 'oklch(0.5 0.17 145)' : 'oklch(0.55 0.18 30)',
       isTexasSeverance: d.severanceTaxState === 'Texas',
       hasAccountType: !!accountType,
-      accountTypeBadge: accountType === 'CORPORATE' ? 'Single-Owner Corporate Account · 5.0% metered fee' : (accountType === 'STANDARD' ? 'Standard Multi-Party Account · 38% / 12% split' : ''),
+      accountTypeBadge: accountType === 'CORPORATE' ? 'Single-Owner Corporate Account · 5.5% software & platform fee' : (accountType === 'STANDARD' ? 'Standard Multi-Party Account · 38% / 12% split' : ''),
       d, roleOptions, stateOptions: STATES, showAffiliations, affiliationCategories, q44Text, q44OptionPriority, q44OptionStandard,
       submitted, notSubmitted: !submitted,
       isStep0: step===0, isStep1: step===1, isStep2: step===2, isStep3: step===3,
