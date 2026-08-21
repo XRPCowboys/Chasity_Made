@@ -77,7 +77,7 @@ summary::-webkit-details-marker{display:none}
 
   <div class="bj-section" style="padding:8px 56px 24px">
     <div style="max-width:900px;margin:0 auto">
-      <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:oklch(0.45 0.02 260);margin-bottom:10px">STEP 0 — CHOOSE YOUR ACCOUNT TYPE</div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:oklch(0.45 0.02 260);margin-bottom:10px">STEP 0: CHOOSE YOUR ACCOUNT TYPE</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
         <div onClick="{{ h.selectStandard }}" style="{{ standardCardStyle }}">
           <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:16.5px;margin-bottom:6px">Standard Multi-Party Account</div>
@@ -89,7 +89,7 @@ summary::-webkit-details-marker{display:none}
         </div>
       </div>
       <sc-if value="{{ accountTypeChosen }}" hint-placeholder-val="{{ false }}">
-        <p style="font-size:12.5px;color:oklch(0.45 0.18 145);margin:10px 2px 0">Selected — this routes you to the {{ accountTypeLabel }} dashboard and billing rails during Pre-Registration.</p>
+        <p style="font-size:12.5px;color:oklch(0.45 0.18 145);margin:10px 2px 0">Selected: this routes you to the {{ accountTypeLabel }} dashboard and billing rails during Pre-Registration.</p>
       </sc-if>
     </div>
   </div>

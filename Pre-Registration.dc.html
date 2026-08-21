@@ -327,7 +327,7 @@ summary::-webkit-details-marker{display:none}
               </div>
               <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:10px 0 0">Accepted formats: .csv, .xlsx, .pdf, .jpg, .png. You'll be able to upload these after your account is approved.</p>
 
-              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12b Net Revenue Interest (NRI) Division Order — 8-decimal validation *</label>
+              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12b Net Revenue Interest (NRI) Division Order: 8-decimal validation *</label>
               <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">Enter each interest holder's decimal share (0.00000000 format). The sum of all interests must equal exactly 1.00000000.</p>
               <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
                 <sc-for list="{{ d.nriRows }}" as="row" hint-placeholder-count="2">
@@ -341,7 +341,7 @@ summary::-webkit-details-marker{display:none}
               <button onClick="{{ h.addNriRow }}" style="background:none;border:1.5px dashed oklch(0.7 0.02 235);color:oklch(0.4 0.02 260);border-radius:8px;padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;margin-bottom:8px">+ Add Interest Holder</button>
               <div style="font-size:12.5px;font-weight:700;color:{{ nriSumColor }}">Sum of interests: {{ nriSumDisplay }} {{ nriSumStatus }}</div>
 
-              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12c Severance Tax Withholding — Asset State *</label>
+              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12c Severance Tax Withholding: Asset State *</label>
               <select value="{{ d.severanceTaxState }}" onChange="{{ h.severanceTaxState }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
                 <option value="">Select…</option>
                 <option value="Texas">Texas (4.6% crude oil / 7.5% natural gas)</option>
@@ -383,7 +383,7 @@ summary::-webkit-details-marker{display:none}
               <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 8px">Read-only API endpoint to sync with the manufacturer's ERP database to track wholesale run volumes.</p>
               <input type="text" placeholder="e.g., https://erp.manufacturer.com/api/v1" value="{{ d.erpEndpoint }}" onChange="{{ h.erpEndpoint }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
 
-              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.18 Bill of Lading (BOL) Metadata — Milestone Escrow Trigger</label>
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.18 Bill of Lading (BOL) Metadata: Milestone Escrow Trigger</label>
               <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 8px">Used as the on-chain XRPL escrow release trigger once freight clears customs ports of entry.</p>
               <input type="text" placeholder="BOL number / customs port of entry" value="{{ d.bolMetadata }}" onChange="{{ h.bolMetadata }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
             </sc-if>
