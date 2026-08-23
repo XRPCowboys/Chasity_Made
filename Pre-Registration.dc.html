@@ -432,6 +432,9 @@ summary::-webkit-details-marker{display:none}
               <button onClick="{{ h.submit }}" disabled="{{ nextDisabled }}" style="{{ nextButtonStyle }}">Submit Registration</button>
             </sc-if>
           </div>
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:12px;line-height:1.6;color:oklch(0.4 0.02 260);margin:16px 0 0;text-align:center">By submitting, you agree to our <a href="Terms.dc.html" style="color:oklch(0.55 0.2 38);font-weight:600">Website Terms of Use</a> and consent to our secure processing of your pre-registration profile.</p>
+          </sc-if>
 
         </div>
       </sc-if>
