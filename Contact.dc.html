@@ -72,8 +72,7 @@ summary::-webkit-details-marker{display:none}
         <p style="font-size:16px;line-height:1.6;color:oklch(0.2 0.02 260);margin:0;padding:20px 0">Thank you for reaching out. A member of our enterprise integration team will contact you within 24 business hours.</p>
       </sc-if>
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
-        <form name="contact" data-netlify="true" onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:16px">
-          <input type="hidden" name="form-name" value="contact" />
+        <form name="contact" onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:16px">
           <div style="display:flex;flex-direction:column;gap:6px">
             <label style="font-size:13px;font-weight:600;color:oklch(0.35 0.02 260)">Full Name</label>
             <input class="bj-input" type="text" name="name" required="{{ true }}" style="font-family:'Inter',sans-serif;font-size:14.5px;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.01 235);background:#fff;color:oklch(0.22 0.02 260)" />
@@ -96,7 +95,10 @@ summary::-webkit-details-marker{display:none}
             <label style="font-size:13px;font-weight:600;color:oklch(0.35 0.02 260)">Message</label>
             <textarea class="bj-textarea" name="message" required="{{ true }}" placeholder="How can we help you?" rows="4" style="font-family:'Inter',sans-serif;font-size:14.5px;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.01 235);background:#fff;color:oklch(0.22 0.02 260);resize:vertical"></textarea>
           </div>
-          <button type="submit" style="margin-top:6px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:15px;padding:14px 24px;border:none;border-radius:8px;font-family:'Inter',sans-serif;cursor:pointer">Send Message</button>
+          <button type="submit" disabled="{{ sending }}" style="{{ buttonStyle }}">{{ buttonLabel }}</button>
+          <sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:13px;line-height:1.55;color:oklch(0.5 0.18 30);margin:0">We couldn't send your message just now. Please try again, or email us directly at contact@splitsecondroyalties.com.</p>
+          </sc-if>
         </form>
       </sc-if>
     </div>
@@ -115,19 +117,55 @@ summary::-webkit-details-marker{display:none}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { submitted: false };
-  handleSubmit(e) {
+  state = { submitted: false, sending: false, failed: false };
+
+  async handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
-    const body = new URLSearchParams(new FormData(form)).toString();
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
-      .catch(() => {});
-    this.setState({ submitted: true });
+    if (this.state.sending) return;
+
+    const fd = new FormData(e.target);
+    const payload = {
+      name: fd.get('name') || '',
+      email: fd.get('email') || '',
+      role: fd.get('role') || '',
+      message: fd.get('message') || '',
+      source_page: 'Contact'
+    };
+
+    this.setState({ sending: true, failed: false });
+
+    const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_vkx6lvvUQdvuDEvSvlR-1A_dHYlu0MD';
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_submissions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+      // Surface real failures instead of showing a false "thank you".
+      if (!res.ok) throw new Error(`Supabase responded ${res.status}`);
+      this.setState({ submitted: true, sending: false });
+    } catch (err) {
+      console.error('Contact submit failed', err);
+      this.setState({ sending: false, failed: true });
+    }
   }
+
   renderVals() {
+    const sending = this.state.sending;
     return {
       submitted: this.state.submitted,
       notSubmitted: !this.state.submitted,
+      sending,
+      failed: this.state.failed,
+      buttonLabel: sending ? 'Sending…' : 'Send Message',
+      buttonStyle: `margin-top:6px;background:${sending ? 'oklch(0.75 0.08 38)' : 'oklch(0.62 0.2 38)'};color:#fff;font-weight:700;font-size:15px;padding:14px 24px;border:none;border-radius:8px;font-family:'Inter',sans-serif;cursor:${sending ? 'default' : 'pointer'}`,
       handleSubmit: (e) => this.handleSubmit(e)
     };
   }

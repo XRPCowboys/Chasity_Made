@@ -238,6 +238,15 @@ summary::-webkit-details-marker{display:none}
                 <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.needsHelp }}" onChange="{{ h.toggleHelp }}" style="width:17px;height:17px">No, I need assistance registering and aligning my track metadata (to prevent mechanical royalties from getting trapped in MLC "black box" pools)</label>
               </div>
 
+              <sc-if value="{{ d.hasISRC }}" hint-placeholder-val="{{ false }}">
+                <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.2b ISRC Codes</label>
+                <input type="text" placeholder="e.g., USRC17607839 (comma-separate multiple)" value="{{ d.isrcCodes }}" onChange="{{ h.isrcCodes }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
+              </sc-if>
+              <sc-if value="{{ d.hasISWC }}" hint-placeholder-val="{{ false }}">
+                <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.2c ISWC Codes</label>
+                <input type="text" placeholder="e.g., T-034.524.680-1 (comma-separate multiple)" value="{{ d.iswcCodes }}" onChange="{{ h.iswcCodes }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
+              </sc-if>
+
               <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.3 Does your primary music catalog average at least 1,000 streams annually per track on Spotify? *</label>
               <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">This check is critical to avoid Spotify's threshold reallocation rule, which redirects yields of tracks under 1,000 streams to mainstream catalogs.</p>
               <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
@@ -297,6 +306,27 @@ summary::-webkit-details-marker{display:none}
                 <div onClick="{{ h.hashYes }}" style="{{ hashYesStyle }}">Yes, we have digital master video files ready for secure AES-256 cloud encryption and DLT timestamping.</div>
                 <div onClick="{{ h.hashNo }}" style="{{ hashNoStyle }}">No, our master archives are currently physical or un-encrypted.</div>
               </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.8b Vault Cloud Coordinates (S3 / GCP)</label>
+              <input type="text" placeholder="e.g., s3://studio-masters/vault or gs://bucket/path" value="{{ d.filmVaultCoordinates }}" onChange="{{ h.filmVaultCoordinates }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.8c Screenplay / Film Registration IDs</label>
+              <input type="text" placeholder="e.g., WGA registration number, Copyright PA number" value="{{ d.filmRegistrationIds }}" onChange="{{ h.filmRegistrationIds }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.8d Distributor API Endpoint</label>
+              <input type="text" placeholder="e.g., https://distributor.com/api/reporting" value="{{ d.distributorApiEndpoint }}" onChange="{{ h.distributorApiEndpoint }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.8e Post-Production Sweat-Equity Template *</label>
+              <select value="{{ d.sweatEquityTemplate }}" onChange="{{ h.sweatEquityTemplate }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:16px">
+                <option value="Locked 15% Net (VFX / Editing Houses)">Locked 15% Net (VFX / Editing Houses)</option>
+                <option value="Locked 15% Net + Deferred Points">Locked 15% Net + Deferred Points</option>
+                <option value="Custom (configured post-onboarding)">Custom (configured post-onboarding)</option>
+                <option value="Not applicable">Not applicable</option>
+              </select>
+
+              <div style="background:oklch(0.97 0.01 235);border-radius:10px;padding:16px">
+                <label style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.55;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.mfnParityConsent }}" onChange="{{ h.toggleMfnParityConsent }}" style="width:17px;height:17px;margin-top:1px">I agree to programmatically enforce Most Favored Nations (MFN) contractual parity across all music sync placements. *</label>
+              </div>
             </sc-if>
 
             <sc-if value="{{ isOilGas }}" hint-placeholder-val="{{ false }}">
@@ -309,6 +339,23 @@ summary::-webkit-details-marker{display:none}
                 <div onClick="{{ h.scadaYes }}" style="{{ scadaYesStyle }}">Yes, we have active SCADA systems in place with read-only API capability.</div>
                 <div onClick="{{ h.scadaNo }}" style="{{ scadaNoStyle }}">No, we track production volumes manually.</div>
               </div>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.10b SCADA Ingress API: Read-Only Wellhead Flow-Meter Access</label>
+              <input type="text" placeholder="Flow-meter API endpoint" value="{{ d.scadaEndpoint }}" onChange="{{ h.scadaEndpoint }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
+              <input type="text" placeholder="API credentials / username" value="{{ d.scadaCredentials }}" onChange="{{ h.scadaCredentials }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
+              <select value="{{ d.scadaTokenProtocol }}" onChange="{{ h.scadaTokenProtocol }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+                <option value="">Token protocol…</option>
+                <option value="OAuth 2.0">OAuth 2.0</option>
+                <option value="API Key (header)">API Key (header)</option>
+                <option value="Bearer / JWT">Bearer / JWT</option>
+                <option value="Basic Auth">Basic Auth</option>
+                <option value="Other / To be provided">Other / To be provided</option>
+              </select>
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.10c Land Assets: Legal Descriptions</label>
+              <input type="text" placeholder="Legal land coordinates (section / township / range)" value="{{ d.landCoordinates }}" onChange="{{ h.landCoordinates }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
+              <input type="text" placeholder="County deed recording IDs" value="{{ d.countyDeedIds }}" onChange="{{ h.countyDeedIds }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
+              <input type="text" placeholder="Parcel tract numbers" value="{{ d.parcelTractNumbers }}" onChange="{{ h.parcelTractNumbers }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:20px">
 
               <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.11 Do you require automated calculation and collection of monthly Joint Interest Billings (JIB) and operational expenses among joint-venture partners? *</label>
               <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
@@ -379,6 +426,9 @@ summary::-webkit-details-marker{display:none}
               <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.17 ERP Database Sync Endpoint</label>
               <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 8px">Read-only API endpoint to sync with the manufacturer's ERP database to track wholesale run volumes.</p>
               <input type="text" placeholder="e.g., https://erp.manufacturer.com/api/v1" value="{{ d.erpEndpoint }}" onChange="{{ h.erpEndpoint }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
+
+              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.17b Licensee Manufacturing Locations</label>
+              <input type="text" placeholder="City / country of each contract manufacturing site" value="{{ d.manufacturingLocations }}" onChange="{{ h.manufacturingLocations }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:16px">
 
               <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.18 Bill of Lading (BOL) Metadata: Milestone Escrow Trigger</label>
               <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 8px">Used as the on-chain XRPL escrow release trigger once freight clears customs ports of entry.</p>
@@ -476,6 +526,12 @@ class Component extends DCLogic {
       catalogSize:'', hasISRC:false, hasISWC:false, hasIPI:false, needsHelp:false,
       streamThreshold:'', distributor:'', distributorOther:'',
       videoAssetType:'', mfnStatus:'', filmDistribution:'', hashReady:'',
+      isrcCodes:'', iswcCodes:'',
+      landCoordinates:'', countyDeedIds:'', parcelTractNumbers:'',
+      scadaEndpoint:'', scadaCredentials:'', scadaTokenProtocol:'',
+      filmVaultCoordinates:'', filmRegistrationIds:'', distributorApiEndpoint:'',
+      mfnParityConsent:false, sweatEquityTemplate:'Locked 15% Net (VFX / Editing Houses)',
+      manufacturingLocations:'',
       activeWells:'', scadaCompatible:'', jibAutomation:'', divisionOrders:false, landDeeds:false, gisSurveys:false,
       licensingFocus:'', shipmentVerification:'', escrowReleases:'', patentCoordinates:'', erpEndpoint:'', bolMetadata:'',
       paymentLag:'', ach:false, wire:false, checks:false, splitSheets:'', waitlistPriority:'',
@@ -542,6 +598,12 @@ class Component extends DCLogic {
       catalog_size: d.catalogSize, has_isrc: d.hasISRC, has_iswc: d.hasISWC, has_ipi: d.hasIPI, needs_help: d.needsHelp,
       stream_threshold: d.streamThreshold, distributor: d.distributor, distributor_other: d.distributorOther,
       video_asset_type: d.videoAssetType, mfn_status: d.mfnStatus, film_distribution: d.filmDistribution, hash_ready: d.hashReady,
+      isrc_codes: d.isrcCodes, iswc_codes: d.iswcCodes,
+      land_coordinates: d.landCoordinates, county_deed_ids: d.countyDeedIds, parcel_tract_numbers: d.parcelTractNumbers,
+      scada_endpoint: d.scadaEndpoint, scada_credentials: d.scadaCredentials, scada_token_protocol: d.scadaTokenProtocol,
+      film_vault_coordinates: d.filmVaultCoordinates, film_registration_ids: d.filmRegistrationIds,
+      distributor_api_endpoint: d.distributorApiEndpoint, mfn_parity_consent: d.mfnParityConsent,
+      sweat_equity_template: d.sweatEquityTemplate, manufacturing_locations: d.manufacturingLocations,
       active_wells: d.activeWells, scada_compatible: d.scadaCompatible, jib_automation: d.jibAutomation,
       division_orders: d.divisionOrders, land_deeds: d.landDeeds, gis_surveys: d.gisSurveys,
       licensing_focus: d.licensingFocus, shipment_verification: d.shipmentVerification, escrow_releases: d.escrowReleases,
@@ -655,7 +717,7 @@ class Component extends DCLogic {
     const canStep1 = !!(d.industry && d.role && d.primaryClassification && d.catalogCount !== '' && d.monthlyVolume !== '');
     let canStep2 = false;
     if (d.industry === 'MUSIC') canStep2 = !!(d.catalogSize && d.streamThreshold);
-    if (d.industry === 'FILM') canStep2 = !!(d.videoAssetType && d.mfnStatus && d.filmDistribution && d.hashReady);
+    if (d.industry === 'FILM') canStep2 = !!(d.videoAssetType && d.mfnStatus && d.filmDistribution && d.hashReady && d.mfnParityConsent && d.sweatEquityTemplate);
     const nriSumCheck = d.nriRows.reduce((sum, r) => sum + (parseFloat(r.interest) || 0), 0);
     const nriBalanced = Math.abs(nriSumCheck - 1) < 0.000000005;
     if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.jibAutomation && d.severanceTaxState && nriBalanced);
@@ -703,6 +765,13 @@ class Component extends DCLogic {
       waitYes: this.mkChoice('waitlistPriority','YES'), waitNo: this.mkChoice('waitlistPriority','NO'),
 
       toggleISRC: this.mkToggle('hasISRC'), toggleISWC: this.mkToggle('hasISWC'), toggleIPI: this.mkToggle('hasIPI'), toggleHelp: this.mkToggle('needsHelp'),
+      isrcCodes: this.mkField('isrcCodes'), iswcCodes: this.mkField('iswcCodes'),
+      landCoordinates: this.mkField('landCoordinates'), countyDeedIds: this.mkField('countyDeedIds'), parcelTractNumbers: this.mkField('parcelTractNumbers'),
+      scadaEndpoint: this.mkField('scadaEndpoint'), scadaCredentials: this.mkField('scadaCredentials'), scadaTokenProtocol: this.mkField('scadaTokenProtocol'),
+      filmVaultCoordinates: this.mkField('filmVaultCoordinates'), filmRegistrationIds: this.mkField('filmRegistrationIds'),
+      distributorApiEndpoint: this.mkField('distributorApiEndpoint'), sweatEquityTemplate: this.mkField('sweatEquityTemplate'),
+      manufacturingLocations: this.mkField('manufacturingLocations'),
+      toggleMfnParityConsent: this.mkToggle('mfnParityConsent'),
       toggleDivisionOrders: this.mkToggle('divisionOrders'), toggleLandDeeds: this.mkToggle('landDeeds'), toggleGisSurveys: this.mkToggle('gisSurveys'),
       toggleAch: this.mkToggle('ach'), toggleWire: this.mkToggle('wire'), toggleChecks: this.mkToggle('checks'),
       toggleLodDualChannel: this.mkToggle('lodDualChannel'), toggleMinThresholdConsent: this.mkToggle('minThresholdConsent'),
