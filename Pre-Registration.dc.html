@@ -357,46 +357,9 @@ summary::-webkit-details-marker{display:none}
               <input type="text" placeholder="County deed recording IDs" value="{{ d.countyDeedIds }}" onChange="{{ h.countyDeedIds }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
               <input type="text" placeholder="Parcel tract numbers" value="{{ d.parcelTractNumbers }}" onChange="{{ h.parcelTractNumbers }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:20px">
 
-              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.11 Do you require automated calculation and collection of monthly Joint Interest Billings (JIB) and operational expenses among joint-venture partners? *</label>
-              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
-                <div onClick="{{ h.jibYes }}" style="{{ jibYesStyle }}">Yes, we need automated B2B expense-sharing and tax withholding calculations.</div>
-                <div onClick="{{ h.jibNo }}" style="{{ jibNoStyle }}">No, we only require basic royalty split-sheet execution.</div>
-              </div>
-
-              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.12 Which of the following documents do you have digitized and ready for secure upload? (Select all)</label>
-              <div style="display:flex;flex-direction:column;gap:10px">
-                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.divisionOrders }}" onChange="{{ h.toggleDivisionOrders }}" style="width:17px;height:17px">Signed Division Orders (Tract Payout Parameters)</label>
-                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.landDeeds }}" onChange="{{ h.toggleLandDeeds }}" style="width:17px;height:17px">Registered County Land Deeds</label>
-                <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.gisSurveys }}" onChange="{{ h.toggleGisSurveys }}" style="width:17px;height:17px">GIS Geological Surveys</label>
-              </div>
-              <p style="font-size:11px;color:oklch(0.5 0.02 260);margin:10px 0 0">Accepted formats: .csv, .xlsx, .pdf, .jpg, .png. You'll be able to upload these after your account is approved.</p>
-
-              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12b Net Revenue Interest (NRI) Division Order: 8-decimal validation *</label>
-              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">Enter each interest holder's decimal share (0.00000000 format). The sum of all interests must equal exactly 1.00000000.</p>
-              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
-                <sc-for list="{{ nriRows }}" as="row" hint-placeholder-count="2">
-                  <div style="display:grid;grid-template-columns:1fr 140px auto;gap:8px;align-items:center">
-                    <input type="text" placeholder="Interest holder name" value="{{ row.name }}" onChange="{{ row.setName }}" style="padding:10px 12px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13px">
-                    <input type="text" placeholder="0.00000000" value="{{ row.interest }}" onChange="{{ row.setInterest }}" style="padding:10px 12px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13px;font-family:monospace">
-                    <button onClick="{{ row.remove }}" style="background:none;border:1.5px solid oklch(0.85 0.02 235);color:oklch(0.5 0.02 260);border-radius:8px;padding:9px 12px;cursor:pointer;font-size:12px">Remove</button>
-                  </div>
-                </sc-for>
-              </div>
-              <button onClick="{{ h.addNriRow }}" style="background:none;border:1.5px dashed oklch(0.7 0.02 235);color:oklch(0.4 0.02 260);border-radius:8px;padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;margin-bottom:8px">+ Add Interest Holder</button>
-              <div style="font-size:12.5px;font-weight:700;color:{{ nriSumColor }}">Sum of interests: {{ nriSumDisplay }} {{ nriSumStatus }}</div>
-
-              <label style="display:block;font-size:12.5px;font-weight:600;margin:20px 0 8px">3.12c Severance Tax Withholding: Asset State *</label>
-              <select value="{{ d.severanceTaxState }}" onChange="{{ h.severanceTaxState }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff">
-                <option value="">Select…</option>
-                <option value="Texas">Texas (4.6% crude oil / 7.5% natural gas)</option>
-                <option value="Oklahoma">Oklahoma</option>
-                <option value="New Mexico">New Mexico</option>
-                <option value="North Dakota">North Dakota</option>
-                <option value="Other">Other</option>
-              </select>
-              <sc-if value="{{ isTexasSeverance }}" hint-placeholder-val="{{ false }}">
-                <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:8px 0 0">Backend will automatically withhold and reserve 4.6% on crude oil and 7.5% on natural gas before stablecoin payout routing.</p>
-              </sc-if>
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.11 Primary Well Operators *</label>
+              <p style="font-size:11.5px;color:oklch(0.45 0.02 260);margin:0 0 10px">List the operators of the wells in which you hold an interest. Separate multiple operators with commas.</p>
+              <input type="text" placeholder="e.g., ExxonMobil, Diamondback Energy" value="{{ d.primaryOperators }}" onChange="{{ h.primaryOperators }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
             </sc-if>
 
             <sc-if value="{{ isPatent }}" hint-placeholder-val="{{ false }}">
@@ -457,17 +420,6 @@ summary::-webkit-details-marker{display:none}
               <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.checks }}" onChange="{{ h.toggleChecks }}" style="width:17px;height:17px">Physical Paper Checks (More than half of the industry standard)</label>
             </div>
 
-            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">4.3 Do you have signed, written split-sheets or joint-venture agreements finalized for all collaborators? *</label>
-            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
-              <div onClick="{{ h.splitYes }}" style="{{ splitYesStyle }}">Yes, all of our active splits are fully signed and documented.</div>
-              <div onClick="{{ h.splitNo }}" style="{{ splitNoStyle }}">No, we need template support to formalize split sheets with our collaborators.</div>
-            </div>
-
-            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">{{ q44Text }}</label>
-            <div style="display:flex;flex-direction:column;gap:8px">
-              <div onClick="{{ h.waitYes }}" style="{{ waitYesStyle }}">{{ q44OptionPriority }}</div>
-              <div onClick="{{ h.waitNo }}" style="{{ waitNoStyle }}">{{ q44OptionStandard }}</div>
-            </div>
           </sc-if>
 
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid oklch(0.9 0.01 235)">
@@ -492,8 +444,8 @@ summary::-webkit-details-marker{display:none}
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
         <div style="background:rgba(255,255,255,0.92);border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.12);padding:48px 40px;text-align:center">
           <div style="width:56px;height:56px;border-radius:50%;background:oklch(0.62 0.2 38);color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">✓</div>
-          <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:22px;margin-bottom:14px;color:oklch(0.2 0.02 260)">You're on the list</div>
-          <p style="font-size:14.5px;line-height:1.7;color:#000;max-width:480px;margin:0 auto">Thank you for registering with SplitSecond Royalties! Your B2B operator account has been waitlisted. Our onboarding team is reviewing your industry metadata parameters and will reach out to help you configure your secure, non-custodial Multi-Party Computation (MPC) wallet environment before we go live on Mainnet.</p>
+          <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:22px;margin-bottom:14px;color:oklch(0.2 0.02 260)">Thank you for registering</div>
+          <p style="font-size:14.5px;line-height:1.7;color:#000;max-width:480px;margin:0 auto">To protect your proprietary asset data, our onboarding team is preparing your personalized Mutual Non-Disclosure Agreement (MNDA) and pilot Letter of Intent (LOI). You will receive an e-signature request at your registered email address shortly.</p>
           <a href="index.html" style="text-decoration:none;display:inline-block;margin-top:24px;background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:14px;padding:14px 26px;border-radius:8px">Return Home</a>
         </div>
       </sc-if>
@@ -532,11 +484,10 @@ class Component extends DCLogic {
       filmVaultCoordinates:'', filmRegistrationIds:'', distributorApiEndpoint:'',
       mfnParityConsent:false, sweatEquityTemplate:'Locked 15% Net (VFX / Editing Houses)',
       manufacturingLocations:'',
-      activeWells:'', scadaCompatible:'', jibAutomation:'', divisionOrders:false, landDeeds:false, gisSurveys:false,
+      activeWells:'', scadaCompatible:'', primaryOperators:'',
       licensingFocus:'', shipmentVerification:'', escrowReleases:'', patentCoordinates:'', erpEndpoint:'', bolMetadata:'',
-      paymentLag:'', ach:false, wire:false, checks:false, splitSheets:'', waitlistPriority:'',
-      lodDualChannel:false, minThresholdConsent:false, severanceTaxState:'',
-      nriRows:[{name:'',interest:''},{name:'',interest:''}]
+      paymentLag:'', ach:false, wire:false, checks:false,
+      lodDualChannel:false, minThresholdConsent:false
     }
   };
 
@@ -577,10 +528,6 @@ class Component extends DCLogic {
     return items.filter(item => d.affiliations[item]);
   }
 
-  addNriRow() { this.setState(s => ({ data: { ...s.data, nriRows: [...s.data.nriRows, {name:'',interest:''}] } })); }
-  removeNriRow(i) { this.setState(s => ({ data: { ...s.data, nriRows: s.data.nriRows.filter((_,idx)=>idx!==i) } })); }
-  setNriRow(i, key, value) { this.setState(s => ({ data: { ...s.data, nriRows: s.data.nriRows.map((r,idx)=> idx===i ? {...r,[key]:value} : r) } })); }
-
   goStep(n) { this.setState({ step: n }); }
   next() { this.goStep(Math.min(this.state.step + 1, 3)); }
   back() { this.goStep(Math.max(this.state.step - 1, 0)); }
@@ -604,15 +551,13 @@ class Component extends DCLogic {
       film_vault_coordinates: d.filmVaultCoordinates, film_registration_ids: d.filmRegistrationIds,
       distributor_api_endpoint: d.distributorApiEndpoint, mfn_parity_consent: d.mfnParityConsent,
       sweat_equity_template: d.sweatEquityTemplate, manufacturing_locations: d.manufacturingLocations,
-      active_wells: d.activeWells, scada_compatible: d.scadaCompatible, jib_automation: d.jibAutomation,
-      division_orders: d.divisionOrders, land_deeds: d.landDeeds, gis_surveys: d.gisSurveys,
+      active_wells: d.activeWells, scada_compatible: d.scadaCompatible,
+      primary_operators: d.primaryOperators,
       licensing_focus: d.licensingFocus, shipment_verification: d.shipmentVerification, escrow_releases: d.escrowReleases,
       patent_coordinates: d.patentCoordinates, erp_endpoint: d.erpEndpoint, bol_metadata: d.bolMetadata,
       payment_lag: d.paymentLag, ach: d.ach, wire: d.wire, checks: d.checks,
-      split_sheets: d.splitSheets, waitlist_priority: d.waitlistPriority,
       account_type: this.state.accountType,
-      lod_dual_channel: d.lodDualChannel, min_threshold_consent: d.minThresholdConsent, severance_tax_state: d.severanceTaxState,
-      nri_division_orders: d.nriRows.filter(r => r.name || r.interest)
+      lod_dual_channel: d.lodDualChannel, min_threshold_consent: d.minThresholdConsent
     };
     this.setState({ submitted: true });
     try {
@@ -686,44 +631,16 @@ class Component extends DCLogic {
     }));
     const isFilmNow = d.industry === 'FILM';
     const isPatentNow = d.industry === 'PATENT';
-    const Q44 = {
-      MUSIC: {
-        text: "4.4 Would you like to prioritize a diagnostic catalog scan to search for historical unmatched mechanical royalties? *",
-        priority: "Yes, apply for priority catalog audit (Scan mechanical rights databases like the MLC to claim unallocated distributions before they are distributed pro-rata to major publishers).",
-        standard: "No, simply register my catalog for standard smart contract split-routing."
-      },
-      OIL_GAS: {
-        text: "4.4 Would you like to request an immediate audit of your active spacing units to check for assets currently held in revenue suspense or outstanding interest penalties? *",
-        priority: "Yes, apply for priority diagnostic onboarding (Analyze county land registries and Division Order Title Opinions for unresolved title defects, missing W-9s, or uncollected balances).",
-        standard: "No, simply register my royalty/working interests for standard automated distribution setup."
-      },
-      FILM: {
-        text: "4.4 Would you like to request an immediate audit of your theatrical, television, or streaming projects to identify unclaimed residuals or unpaid backend profit-share participations? *",
-        priority: "Yes, apply for priority backend audit (Perform cross-platform automated monitoring of domestic/foreign syndication, SVOD, and AVOD streams to detect underreporting, and audit guild databases for unclaimed residuals).",
-        standard: "No, simply register my titles for standard smart contract split-routing."
-      },
-      PATENT: {
-        text: "4.4 Would you like to authorize a forensic royalty audit of your active licensing contracts to search for underreported sales or unauthorized usage? *",
-        priority: "Yes, apply for priority licensing audit (Review licensee accounting records, regional sales limits, and distribution channels to identify uncollected licensing fees and verify manufacturing run volume).",
-        standard: "No, simply register my patent/brand assets for standard smart contract split-routing."
-      }
-    };
-    const q44 = Q44[d.industry] || Q44.MUSIC;
-    const q44Text = q44.text;
-    const q44OptionPriority = q44.priority;
-    const q44OptionStandard = q44.standard;
 
     const canStep0 = !!(d.firstName && d.lastName && emailValid && d.companyName && d.entityType && d.country && d.state);
     const canStep1 = !!(d.industry && d.role && d.primaryClassification && d.catalogCount !== '' && d.monthlyVolume !== '');
     let canStep2 = false;
     if (d.industry === 'MUSIC') canStep2 = !!(d.catalogSize && d.streamThreshold);
     if (d.industry === 'FILM') canStep2 = !!(d.videoAssetType && d.mfnStatus && d.filmDistribution && d.hashReady && d.mfnParityConsent && d.sweatEquityTemplate);
-    const nriSumCheck = d.nriRows.reduce((sum, r) => sum + (parseFloat(r.interest) || 0), 0);
-    const nriBalanced = Math.abs(nriSumCheck - 1) < 0.000000005;
-    if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.jibAutomation && d.severanceTaxState && nriBalanced);
+    if (d.industry === 'OIL_GAS') canStep2 = !!(d.activeWells !== '' && d.scadaCompatible && d.primaryOperators.trim());
     if (d.industry === 'PATENT') canStep2 = !!(d.licensingFocus && d.shipmentVerification && d.escrowReleases);
     if (d.industry === 'MUSIC') canStep2 = canStep2 && d.lodDualChannel && d.minThresholdConsent;
-    const canStep3 = !!(d.paymentLag && d.splitSheets && d.waitlistPriority);
+    const canStep3 = !!d.paymentLag;
     const canProceed = [canStep0, canStep1, canStep2, canStep3][step];
 
     const orange = 'oklch(0.62 0.2 38)';
@@ -758,11 +675,9 @@ class Component extends DCLogic {
       filmDistYes: this.mkChoice('filmDistribution','YES'), filmDistNo: this.mkChoice('filmDistribution','NO'),
       hashYes: this.mkChoice('hashReady','YES'), hashNo: this.mkChoice('hashReady','NO'),
       scadaYes: this.mkChoice('scadaCompatible','YES'), scadaNo: this.mkChoice('scadaCompatible','NO'),
-      jibYes: this.mkChoice('jibAutomation','YES'), jibNo: this.mkChoice('jibAutomation','NO'),
+      primaryOperators: this.mkField('primaryOperators'),
       shipYes: this.mkChoice('shipmentVerification','YES'), shipNo: this.mkChoice('shipmentVerification','NO'),
       escrowYes: this.mkChoice('escrowReleases','YES'), escrowNo: this.mkChoice('escrowReleases','NO'),
-      splitYes: this.mkChoice('splitSheets','YES'), splitNo: this.mkChoice('splitSheets','NO'),
-      waitYes: this.mkChoice('waitlistPriority','YES'), waitNo: this.mkChoice('waitlistPriority','NO'),
 
       toggleISRC: this.mkToggle('hasISRC'), toggleISWC: this.mkToggle('hasISWC'), toggleIPI: this.mkToggle('hasIPI'), toggleHelp: this.mkToggle('needsHelp'),
       isrcCodes: this.mkField('isrcCodes'), iswcCodes: this.mkField('iswcCodes'),
@@ -772,32 +687,18 @@ class Component extends DCLogic {
       distributorApiEndpoint: this.mkField('distributorApiEndpoint'), sweatEquityTemplate: this.mkField('sweatEquityTemplate'),
       manufacturingLocations: this.mkField('manufacturingLocations'),
       toggleMfnParityConsent: this.mkToggle('mfnParityConsent'),
-      toggleDivisionOrders: this.mkToggle('divisionOrders'), toggleLandDeeds: this.mkToggle('landDeeds'), toggleGisSurveys: this.mkToggle('gisSurveys'),
       toggleAch: this.mkToggle('ach'), toggleWire: this.mkToggle('wire'), toggleChecks: this.mkToggle('checks'),
       toggleLodDualChannel: this.mkToggle('lodDualChannel'), toggleMinThresholdConsent: this.mkToggle('minThresholdConsent'),
-      severanceTaxState: this.mkField('severanceTaxState'), erpEndpoint: this.mkField('erpEndpoint'), bolMetadata: this.mkField('bolMetadata'),
-      addNriRow: () => this.addNriRow(),
+      erpEndpoint: this.mkField('erpEndpoint'), bolMetadata: this.mkField('bolMetadata'),
 
       next: () => this.next(), back: () => this.back(), submit: () => this.submit()
     };
 
-    const nriRows = d.nriRows.map((row, i) => ({
-      name: row.name, interest: row.interest,
-      setName: (e) => this.setNriRow(i, 'name', e.target.value),
-      setInterest: (e) => this.setNriRow(i, 'interest', e.target.value),
-      remove: () => this.removeNriRow(i)
-    }));
-    const nriSum = d.nriRows.reduce((sum, r) => sum + (parseFloat(r.interest) || 0), 0);
-    const nriValid = Math.abs(nriSum - 1) < 0.000000005;
-
     const accountType = this.state.accountType;
     return {
-      nriRows, nriSumDisplay: nriSum.toFixed(8), nriSumStatus: d.nriRows.some(r=>r.interest!=='') ? (nriValid ? '\u2713 balanced' : '\u2014 must equal 1.00000000') : '',
-      nriSumColor: nriValid ? 'oklch(0.5 0.17 145)' : 'oklch(0.55 0.18 30)',
-      isTexasSeverance: d.severanceTaxState === 'Texas',
       hasAccountType: !!accountType,
       accountTypeBadge: accountType === 'CORPORATE' ? 'Single-Owner Corporate Account · 5.5% software & platform fee' : (accountType === 'STANDARD' ? 'Standard Multi-Party Account · 38% / 12% split' : ''),
-      d, roleOptions, stateOptions: STATES, showAffiliations, affiliationCategories, q44Text, q44OptionPriority, q44OptionStandard,
+      d, roleOptions, stateOptions: STATES, showAffiliations, affiliationCategories,
       submitted, notSubmitted: !submitted,
       isStep0: step===0, isStep1: step===1, isStep2: step===2, isStep3: step===3,
       isMusic: d.industry==='MUSIC', isFilm: d.industry==='FILM', isOilGas: d.industry==='OIL_GAS', isPatent: d.industry==='PATENT',
@@ -818,11 +719,10 @@ class Component extends DCLogic {
       filmDistYesStyle: this.pillStyle(d.filmDistribution==='YES'), filmDistNoStyle: this.pillStyle(d.filmDistribution==='NO'),
       hashYesStyle: this.pillStyle(d.hashReady==='YES'), hashNoStyle: this.pillStyle(d.hashReady==='NO'),
       scadaYesStyle: this.pillStyle(d.scadaCompatible==='YES'), scadaNoStyle: this.pillStyle(d.scadaCompatible==='NO'),
-      jibYesStyle: this.pillStyle(d.jibAutomation==='YES'), jibNoStyle: this.pillStyle(d.jibAutomation==='NO'),
+
       shipYesStyle: this.pillStyle(d.shipmentVerification==='YES'), shipNoStyle: this.pillStyle(d.shipmentVerification==='NO'),
       escrowYesStyle: this.pillStyle(d.escrowReleases==='YES'), escrowNoStyle: this.pillStyle(d.escrowReleases==='NO'),
-      splitYesStyle: this.pillStyle(d.splitSheets==='YES'), splitNoStyle: this.pillStyle(d.splitSheets==='NO'),
-      waitYesStyle: this.pillStyle(d.waitlistPriority==='YES'), waitNoStyle: this.pillStyle(d.waitlistPriority==='NO'),
+
       h
     };
   }
