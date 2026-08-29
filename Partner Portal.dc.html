@@ -78,14 +78,14 @@ summary::-webkit-details-marker{display:none}
         <div style="text-align:center;margin-bottom:28px">
           <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:oklch(0.62 0.2 38)">B2B PARTNER PORTAL</div>
           <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:30px;line-height:1.2;margin:12px 0 10px;color:oklch(0.2 0.02 260)">Secure partner sign-in</h1>
-          <p style="font-size:14px;line-height:1.65;color:oklch(0.4 0.02 260);margin:0">Enter the email address you used to pre-register. We'll send you a single-use sign-in link, so there is no password to manage.</p>
+          <p style="font-size:14px;line-height:1.65;color:oklch(0.4 0.02 260);margin:0">Enter the email address on your executed MNDA. If your portal is active, we'll send you a single-use sign-in link, so there is no password to manage.</p>
         </div>
 
         <div style="background:rgba(255,255,255,0.94);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:28px">
           <sc-if value="{{ linkSent }}" hint-placeholder-val="{{ false }}">
             <div style="text-align:center">
               <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;color:oklch(0.2 0.02 260)">Check your inbox</div>
-              <p style="font-size:13.5px;line-height:1.65;color:oklch(0.35 0.02 260);margin:0">We sent a sign-in link to <strong>{{ email }}</strong>. Open it on this device to enter the portal. The link expires in one hour.</p>
+              <p style="font-size:13.5px;line-height:1.65;color:oklch(0.35 0.02 260);margin:0">We sent a sign-in link to <strong>{{ email }}</strong>. Open it on this device to enter the portal. The link is single-use and expires in 15 minutes.</p>
             </div>
           </sc-if>
           <sc-if value="{{ notLinkSent }}" hint-placeholder-val="{{ true }}">
@@ -95,6 +95,9 @@ summary::-webkit-details-marker{display:none}
                 <input type="email" required="{{ true }}" value="{{ email }}" onChange="{{ h.setEmail }}" placeholder="you@company.com" style="padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;font-family:'Inter',sans-serif">
               </div>
               <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+              <sc-if value="{{ declined }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:12.5px;line-height:1.6;color:oklch(0.35 0.02 260);background:oklch(0.97 0.01 235);border:1.5px solid oklch(0.87 0.02 235);border-radius:8px;padding:12px 14px;margin:0">{{ declined }}</p>
+              </sc-if>
               <sc-if value="{{ authError }}" hint-placeholder-val="{{ false }}">
                 <p style="font-size:12.5px;line-height:1.55;color:oklch(0.5 0.18 30);margin:0">{{ authError }}</p>
               </sc-if>
@@ -102,7 +105,7 @@ summary::-webkit-details-marker{display:none}
           </sc-if>
         </div>
 
-        <p style="font-size:11.5px;line-height:1.6;color:oklch(0.45 0.02 260);margin:18px 0 0;text-align:center">Access is limited to registered B2B operating partners. Everything you upload here is stored in a private bucket that is not publicly readable.</p>
+        <p style="font-size:11.5px;line-height:1.6;color:oklch(0.45 0.02 260);margin:18px 0 0;text-align:center">Access is limited to B2B operating partners with a countersigned MNDA and an active portal. Everything you upload here is stored in a private bucket that is not publicly readable.</p>
       </div>
     </div>
   </sc-if>
@@ -209,7 +212,7 @@ const MAX_BYTES = 25 * 1024 * 1024;
 class Component extends DCLogic {
   state = {
     loading: true, session: null, email: '',
-    sending: false, linkSent: false, authError: '',
+    sending: false, linkSent: false, authError: '', declined: '',
     leaseFiles: [], leaseBusy: false, leaseMessage: '', leaseOk: false,
     scheduleFile: null, scheduleBusy: false, scheduleMessage: '', scheduleOk: false
   };
@@ -226,22 +229,35 @@ class Component extends DCLogic {
     });
   }
 
+  // Requests go through the request-portal-link function, which verifies the
+  // address is an approved partner before Supabase Auth is ever involved.
   async sendLink(e) {
     e.preventDefault();
     const email = this.state.email.trim();
     if (!email || this.state.sending) return;
-    this.setState({ sending: true, authError: '' });
-    const { error } = await this.sb.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: window.location.href.split('#')[0] }
-    });
-    if (error) this.setState({ sending: false, authError: error.message });
-    else this.setState({ sending: false, linkSent: true });
+    this.setState({ sending: true, authError: '', declined: '' });
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/request-portal-link`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+      if (data.allowed === false) {
+        this.setState({ sending: false, declined: data.message || 'That address is not approved for portal access.' });
+        return;
+      }
+      this.setState({ sending: false, linkSent: true });
+    } catch (err) {
+      console.error('Portal link request failed', err);
+      this.setState({ sending: false, authError: err.message || 'We could not send your sign-in link. Please try again shortly.' });
+    }
   }
 
   async signOut() {
     await this.sb.auth.signOut();
-    this.setState({ session: null, linkSent: false, leaseFiles: [], scheduleFile: null, leaseMessage: '', scheduleMessage: '' });
+    this.setState({ session: null, linkSent: false, declined: '', leaseFiles: [], scheduleFile: null, leaseMessage: '', scheduleMessage: '' });
   }
 
   fmt(bytes) {
@@ -342,6 +358,7 @@ class Component extends DCLogic {
       linkSent: s.linkSent,
       notLinkSent: !s.linkSent,
       authError: s.authError,
+      declined: s.declined,
       sending: s.sending,
       submitLabel: s.sending ? 'Sending…' : 'Email me a sign-in link',
       submitStyle: this.btn(s.sending, '', '').style,

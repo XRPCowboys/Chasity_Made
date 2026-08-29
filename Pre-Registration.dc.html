@@ -340,19 +340,7 @@ summary::-webkit-details-marker{display:none}
                 <div onClick="{{ h.scadaNo }}" style="{{ scadaNoStyle }}">No, we track production volumes manually.</div>
               </div>
 
-              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.10b SCADA Ingress API: Read-Only Wellhead Flow-Meter Access</label>
-              <input type="text" placeholder="Flow-meter API endpoint" value="{{ d.scadaEndpoint }}" onChange="{{ h.scadaEndpoint }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
-              <input type="text" placeholder="API credentials / username" value="{{ d.scadaCredentials }}" onChange="{{ h.scadaCredentials }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
-              <select value="{{ d.scadaTokenProtocol }}" onChange="{{ h.scadaTokenProtocol }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
-                <option value="">Token protocol…</option>
-                <option value="OAuth 2.0">OAuth 2.0</option>
-                <option value="API Key (header)">API Key (header)</option>
-                <option value="Bearer / JWT">Bearer / JWT</option>
-                <option value="Basic Auth">Basic Auth</option>
-                <option value="Other / To be provided">Other / To be provided</option>
-              </select>
-
-              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.10c Land Assets: Legal Descriptions</label>
+              <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.10b Land Assets: Legal Descriptions</label>
               <input type="text" placeholder="Legal land coordinates (section / township / range)" value="{{ d.landCoordinates }}" onChange="{{ h.landCoordinates }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
               <input type="text" placeholder="County deed recording IDs" value="{{ d.countyDeedIds }}" onChange="{{ h.countyDeedIds }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:10px">
               <input type="text" placeholder="Parcel tract numbers" value="{{ d.parcelTractNumbers }}" onChange="{{ h.parcelTractNumbers }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;margin-bottom:20px">
@@ -480,7 +468,6 @@ class Component extends DCLogic {
       videoAssetType:'', mfnStatus:'', filmDistribution:'', hashReady:'',
       isrcCodes:'', iswcCodes:'',
       landCoordinates:'', countyDeedIds:'', parcelTractNumbers:'',
-      scadaEndpoint:'', scadaCredentials:'', scadaTokenProtocol:'',
       filmVaultCoordinates:'', filmRegistrationIds:'', distributorApiEndpoint:'',
       mfnParityConsent:false, sweatEquityTemplate:'Locked 15% Net (VFX / Editing Houses)',
       manufacturingLocations:'',
@@ -547,7 +534,6 @@ class Component extends DCLogic {
       video_asset_type: d.videoAssetType, mfn_status: d.mfnStatus, film_distribution: d.filmDistribution, hash_ready: d.hashReady,
       isrc_codes: d.isrcCodes, iswc_codes: d.iswcCodes,
       land_coordinates: d.landCoordinates, county_deed_ids: d.countyDeedIds, parcel_tract_numbers: d.parcelTractNumbers,
-      scada_endpoint: d.scadaEndpoint, scada_credentials: d.scadaCredentials, scada_token_protocol: d.scadaTokenProtocol,
       film_vault_coordinates: d.filmVaultCoordinates, film_registration_ids: d.filmRegistrationIds,
       distributor_api_endpoint: d.distributorApiEndpoint, mfn_parity_consent: d.mfnParityConsent,
       sweat_equity_template: d.sweatEquityTemplate, manufacturing_locations: d.manufacturingLocations,
@@ -682,7 +668,6 @@ class Component extends DCLogic {
       toggleISRC: this.mkToggle('hasISRC'), toggleISWC: this.mkToggle('hasISWC'), toggleIPI: this.mkToggle('hasIPI'), toggleHelp: this.mkToggle('needsHelp'),
       isrcCodes: this.mkField('isrcCodes'), iswcCodes: this.mkField('iswcCodes'),
       landCoordinates: this.mkField('landCoordinates'), countyDeedIds: this.mkField('countyDeedIds'), parcelTractNumbers: this.mkField('parcelTractNumbers'),
-      scadaEndpoint: this.mkField('scadaEndpoint'), scadaCredentials: this.mkField('scadaCredentials'), scadaTokenProtocol: this.mkField('scadaTokenProtocol'),
       filmVaultCoordinates: this.mkField('filmVaultCoordinates'), filmRegistrationIds: this.mkField('filmRegistrationIds'),
       distributorApiEndpoint: this.mkField('distributorApiEndpoint'), sweatEquityTemplate: this.mkField('sweatEquityTemplate'),
       manufacturingLocations: this.mkField('manufacturingLocations'),
