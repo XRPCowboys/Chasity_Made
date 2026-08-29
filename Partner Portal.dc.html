@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#dceaf7"/><circle cx="50" cy="42" r="22" fill="#e8571f"/><text x="50" y="80" font-size="14" fill="#1a2033" text-anchor="middle" font-family="sans-serif">SS</text></svg></template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+body{margin:0}
+a{color:inherit}
+a:hover{color:oklch(0.55 0.2 38)}
+@media (max-width:1150px){
+.bj-nav{padding:10px 20px !important}
+.bj-nav-links{display:none !important}
+.bj-section{padding:24px 24px !important}
+.bj-grid2{grid-template-columns:1fr !important}
+.bj-footer{flex-direction:column !important;gap:12px !important;text-align:center !important}
+.bj-mobile-toggle{display:block !important}
+.bj-logo-link{margin-left:-30px !important;min-width:0 !important;flex-shrink:1 !important}
+.bj-logo-img{width:150px !important;height:150px !important;top:-4px !important}
+.bj-logo-text{margin-left:100px !important;font-size:17px !important;overflow:hidden !important;text-overflow:ellipsis !important}
+}
+@media (max-width:420px){
+.bj-logo-link{margin-left:-16px !important}
+.bj-logo-img{width:110px !important;height:110px !important;top:0px !important}
+.bj-logo-text{margin-left:72px !important;font-size:14px !important}
+}
+.bj-mobile-toggle{display:none}
+.bj-mobile-toggle summary{list-style:none;cursor:pointer;font-size:26px;line-height:1;color:oklch(0.22 0.02 260);padding:4px 6px}
+.bj-mobile-toggle summary::-webkit-details-marker{display:none}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background-image:url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235)">
+
+  <div class="bj-nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.5)">
+    <a href="index.html" class="bj-logo-link" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-40px">
+      <img src="10482.png" class="bj-logo-img" style="position:absolute;top:-6px;left:0;width:137px;height:137px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
+      <div class="bj-logo-text" style="margin-left:92px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
+    </a>
+    <div class="bj-nav-links" style="display:flex;gap:20px;font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260);align-items:center;white-space:nowrap">
+      <a href="index.html#proof" style="text-decoration:none">How It Works</a>
+      <a href="Portals.dc.html" style="text-decoration:none">Our Portals</a>
+      <a href="Get Started.dc.html" style="text-decoration:none">Onboarding</a>
+      <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ h.signOut }}" style="background:none;border:1.5px solid oklch(0.8 0.02 235);color:oklch(0.35 0.02 260);font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:9px 16px;border-radius:6px;cursor:pointer">Sign Out</button>
+      </sc-if>
+    </div>
+    <details class="bj-mobile-toggle" style="position:relative">
+      <summary>☰</summary>
+      <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;min-width:220px;max-width:calc(100vw - 32px);display:flex;flex-direction:column;gap:2px;z-index:70">
+        <a href="index.html#proof" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">How It Works</a>
+        <a href="Portals.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Our Portals</a>
+        <a href="Get Started.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Onboarding</a>
+      </div>
+    </details>
+  </div>
+
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div class="bj-section" style="padding:96px 56px;text-align:center">
+      <p style="font-size:14px;color:oklch(0.45 0.02 260);margin:0">Checking your session…</p>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ false }}">
+    <div class="bj-section" style="padding:64px 56px 40px">
+      <div style="max-width:460px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:28px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:oklch(0.62 0.2 38)">B2B PARTNER PORTAL</div>
+          <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:30px;line-height:1.2;margin:12px 0 10px;color:oklch(0.2 0.02 260)">Secure partner sign-in</h1>
+          <p style="font-size:14px;line-height:1.65;color:oklch(0.4 0.02 260);margin:0">Enter the email address you used to pre-register. We'll send you a single-use sign-in link, so there is no password to manage.</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.94);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:28px">
+          <sc-if value="{{ linkSent }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align:center">
+              <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;color:oklch(0.2 0.02 260)">Check your inbox</div>
+              <p style="font-size:13.5px;line-height:1.65;color:oklch(0.35 0.02 260);margin:0">We sent a sign-in link to <strong>{{ email }}</strong>. Open it on this device to enter the portal. The link expires in one hour.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notLinkSent }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ h.sendLink }}" style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <label style="font-size:12.5px;font-weight:600;color:oklch(0.3 0.02 260)">Registered business email</label>
+                <input type="email" required="{{ true }}" value="{{ email }}" onChange="{{ h.setEmail }}" placeholder="you@company.com" style="padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;font-family:'Inter',sans-serif">
+              </div>
+              <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+              <sc-if value="{{ authError }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:12.5px;line-height:1.55;color:oklch(0.5 0.18 30);margin:0">{{ authError }}</p>
+              </sc-if>
+            </form>
+          </sc-if>
+        </div>
+
+        <p style="font-size:11.5px;line-height:1.6;color:oklch(0.45 0.02 260);margin:18px 0 0;text-align:center">Access is limited to registered B2B operating partners. Everything you upload here is stored in a private bucket that is not publicly readable.</p>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+    <div class="bj-section" style="padding:48px 56px 20px">
+      <div style="max-width:1100px;margin:0 auto">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:oklch(0.62 0.2 38)">B2B PARTNER PORTAL — STAGE 2</div>
+        <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:32px;line-height:1.2;margin:12px 0 8px;color:oklch(0.2 0.02 260)">Technical asset onboarding</h1>
+        <p style="font-size:14.5px;line-height:1.7;color:#000;margin:0;max-width:720px">Signed in as <strong>{{ email }}</strong>. Complete both steps below so our team can configure your read-only operator data connections and your division-order routing.</p>
+      </div>
+    </div>
+
+    <div class="bj-section" style="padding:12px 56px 24px">
+      <div class="bj-grid2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1100px;margin:0 auto">
+
+        <div style="background:rgba(255,255,255,0.94);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:28px;border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column">
+          <div style="font-size:11.5px;font-weight:700;letter-spacing:0.08em;color:oklch(0.62 0.2 38);margin-bottom:8px">STEP 1</div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:19px;font-weight:700;margin-bottom:10px;color:oklch(0.22 0.02 260)">Lease &amp; covenant documents</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#000;margin:0 0 18px">Upload your executed lease agreements so our team can locate the Right-to-Audit and Information Provision clauses that authorize your operator data request. PDF or Word, multiple files accepted.</p>
+
+          <label style="display:block;border:1.5px dashed oklch(0.72 0.02 235);border-radius:10px;padding:22px;text-align:center;cursor:pointer;margin-bottom:14px;background:oklch(0.985 0.005 235)">
+            <input type="file" multiple="{{ true }}" accept=".pdf,.doc,.docx" onChange="{{ h.pickLeases }}" style="display:none">
+            <div style="font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260)">Choose files</div>
+            <div style="font-size:11.5px;color:oklch(0.5 0.02 260);margin-top:4px">PDF, DOC, DOCX &middot; 25 MB per file</div>
+          </label>
+
+          <sc-if value="{{ hasLeaseFiles }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+              <sc-for list="{{ leaseFiles }}" as="f" hint-placeholder-count="2">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px;color:oklch(0.3 0.02 260);background:oklch(0.97 0.01 235);border-radius:6px;padding:8px 12px">
+                  <span>{{ f.name }}</span>
+                  <span style="color:oklch(0.5 0.02 260);white-space:nowrap">{{ f.size }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <div style="margin-top:auto">
+            <button onClick="{{ h.uploadLeases }}" disabled="{{ leaseBusy }}" style="{{ leaseButtonStyle }}">{{ leaseButtonLabel }}</button>
+            <sc-if value="{{ leaseMessage }}" hint-placeholder-val="{{ false }}">
+              <p style="font-size:12.5px;line-height:1.55;color:{{ leaseMessageColor }};margin:12px 0 0">{{ leaseMessage }}</p>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.94);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:28px;border-top:3px solid oklch(0.62 0.2 38);display:flex;flex-direction:column">
+          <div style="font-size:11.5px;font-weight:700;letter-spacing:0.08em;color:oklch(0.62 0.2 38);margin-bottom:8px">STEP 2</div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:19px;font-weight:700;margin-bottom:10px;color:oklch(0.22 0.02 260)">Schedule A — asset &amp; NRI detail</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#000;margin:0 0 18px">Download the template, list each well with its API number and eight-decimal Net Revenue Interest, then upload the completed file. Interests across a single tract must total 1.00000000.</p>
+
+          <a href="schedule_a_template.csv" download="Schedule_A_Template.csv" style="display:block;text-align:center;text-decoration:none;border:1.5px solid oklch(0.62 0.2 38);color:oklch(0.55 0.2 38);font-weight:700;font-size:13.5px;padding:12px 18px;border-radius:8px;margin-bottom:14px">Download Schedule A template (.csv)</a>
+
+          <label style="display:block;border:1.5px dashed oklch(0.72 0.02 235);border-radius:10px;padding:22px;text-align:center;cursor:pointer;margin-bottom:14px;background:oklch(0.985 0.005 235)">
+            <input type="file" accept=".csv,.xlsx,.xls" onChange="{{ h.pickSchedule }}" style="display:none">
+            <div style="font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260)">Choose completed file</div>
+            <div style="font-size:11.5px;color:oklch(0.5 0.02 260);margin-top:4px">CSV, XLSX, XLS</div>
+          </label>
+
+          <sc-if value="{{ scheduleName }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px;color:oklch(0.3 0.02 260);background:oklch(0.97 0.01 235);border-radius:6px;padding:8px 12px;margin-bottom:14px">
+              <span>{{ scheduleName }}</span>
+              <span style="color:oklch(0.5 0.02 260);white-space:nowrap">{{ scheduleSize }}</span>
+            </div>
+          </sc-if>
+
+          <div style="margin-top:auto">
+            <button onClick="{{ h.uploadSchedule }}" disabled="{{ scheduleBusy }}" style="{{ scheduleButtonStyle }}">{{ scheduleButtonLabel }}</button>
+            <sc-if value="{{ scheduleMessage }}" hint-placeholder-val="{{ false }}">
+              <p style="font-size:12.5px;line-height:1.55;color:{{ scheduleMessageColor }};margin:12px 0 0">{{ scheduleMessage }}</p>
+            </sc-if>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bj-section" style="padding:0 56px 28px">
+      <div style="max-width:1100px;margin:0 auto;background:oklch(0.97 0.01 235);border:1.5px solid oklch(0.85 0.02 235);border-radius:10px;padding:18px 24px">
+        <div style="font-size:12.5px;font-weight:700;color:oklch(0.3 0.02 260);margin-bottom:6px">What happens next</div>
+        <p style="font-size:12.5px;line-height:1.7;color:oklch(0.35 0.02 260);margin:0">Our integration team reviews your lease clauses and Schedule A, then prepares the operator data request letters for your signature. Uploads are held in a private bucket readable only by SSR administrators; nothing you submit here is publicly accessible or listed on the marketing site.</p>
+      </div>
+    </div>
+  </sc-if>
+
+  <div class="bj-section" style="padding:0 56px 28px">
+    <div style="max-width:1180px;margin:0 auto;background:oklch(0.94 0.01 235);border:1.5px solid oklch(0.85 0.02 235);border-radius:10px;padding:16px 22px;font-size:11.5px;line-height:1.6;color:oklch(0.4 0.02 260)">Split Second Royalties LLC is strictly a B2B Software-as-a-Service (SaaS) technology provider. We are not a broker-dealer, investment advisor, custodian, or financial intermediary. The company does not raise capital, sponsor project-level pools, or hold custody of client funds. All white-label instances are managed independently by our licensed operating partners on isolated cloud subdomains.</div>
+  </div>
+
+  <div class="bj-footer" style="padding:36px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:oklch(0.35 0.02 260)">
+    <div>© 2026 SplitSecond Royalties</div>
+    <div style="display:flex;gap:20px"><a href="index.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Home</a><a href="Terms.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Terms</a><a href="Contact.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Contact</a></div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_vkx6lvvUQdvuDEvSvlR-1A_dHYlu0MD';
+const BUCKET = 'secure-lease-documents';
+const MAX_BYTES = 25 * 1024 * 1024;
+
+class Component extends DCLogic {
+  state = {
+    loading: true, session: null, email: '',
+    sending: false, linkSent: false, authError: '',
+    leaseFiles: [], leaseBusy: false, leaseMessage: '', leaseOk: false,
+    scheduleFile: null, scheduleBusy: false, scheduleMessage: '', scheduleOk: false
+  };
+
+  async componentDidMount() {
+    // The magic-link redirect returns with tokens in the URL hash; supabase-js
+    // consumes them on init, so we just read the resulting session.
+    if (!window.supabase) { this.setState({ loading: false, authError: 'Could not load the authentication library. Please reload the page.' }); return; }
+    this.sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { data } = await this.sb.auth.getSession();
+    this.setState({ session: data.session || null, email: data.session?.user?.email || '', loading: false });
+    this.sb.auth.onAuthStateChange((_e, session) => {
+      this.setState({ session: session || null, email: session?.user?.email || this.state.email });
+    });
+  }
+
+  async sendLink(e) {
+    e.preventDefault();
+    const email = this.state.email.trim();
+    if (!email || this.state.sending) return;
+    this.setState({ sending: true, authError: '' });
+    const { error } = await this.sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.href.split('#')[0] }
+    });
+    if (error) this.setState({ sending: false, authError: error.message });
+    else this.setState({ sending: false, linkSent: true });
+  }
+
+  async signOut() {
+    await this.sb.auth.signOut();
+    this.setState({ session: null, linkSent: false, leaseFiles: [], scheduleFile: null, leaseMessage: '', scheduleMessage: '' });
+  }
+
+  fmt(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+    return (bytes / 1024 / 1024).toFixed(1) + ' MB';
+  }
+
+  // Storage keys are namespaced per user id so one partner can never read or
+  // overwrite another partner's documents.
+  folder() { return this.state.session?.user?.id || 'unknown'; }
+
+  safeName(name) { return name.replace(/[^\w.\-]+/g, '_'); }
+
+  pickLeases(e) {
+    const files = Array.from(e.target.files || []);
+    const tooBig = files.find(f => f.size > MAX_BYTES);
+    if (tooBig) {
+      this.setState({ leaseFiles: [], leaseMessage: `"${tooBig.name}" is larger than 25 MB. Please split or compress it.`, leaseOk: false });
+      return;
+    }
+    this.setState({ leaseFiles: files, leaseMessage: '', leaseOk: false });
+  }
+
+  pickSchedule(e) {
+    const file = (e.target.files || [])[0] || null;
+    if (file && file.size > MAX_BYTES) {
+      this.setState({ scheduleFile: null, scheduleMessage: 'That file is larger than 25 MB.', scheduleOk: false });
+      return;
+    }
+    this.setState({ scheduleFile: file, scheduleMessage: '', scheduleOk: false });
+  }
+
+  async uploadLeases() {
+    const files = this.state.leaseFiles;
+    if (!files.length || this.state.leaseBusy) {
+      if (!files.length) this.setState({ leaseMessage: 'Choose at least one file first.', leaseOk: false });
+      return;
+    }
+    this.setState({ leaseBusy: true, leaseMessage: '' });
+    const stamp = Date.now();
+    try {
+      for (const f of files) {
+        const path = `${this.folder()}/leases/${stamp}-${this.safeName(f.name)}`;
+        const { error } = await this.sb.storage.from(BUCKET).upload(path, f, { upsert: false });
+        if (error) throw error;
+      }
+      this.setState({ leaseBusy: false, leaseFiles: [], leaseOk: true,
+        leaseMessage: `${files.length} document${files.length > 1 ? 's' : ''} uploaded securely. Our team will review the clauses and follow up by email.` });
+    } catch (err) {
+      console.error('Lease upload failed', err);
+      this.setState({ leaseBusy: false, leaseOk: false,
+        leaseMessage: `Upload failed: ${err.message || err}. Please try again, or email the files to contact@splitsecondroyalties.com.` });
+    }
+  }
+
+  async uploadSchedule() {
+    const file = this.state.scheduleFile;
+    if (!file || this.state.scheduleBusy) {
+      if (!file) this.setState({ scheduleMessage: 'Choose your completed Schedule A first.', scheduleOk: false });
+      return;
+    }
+    this.setState({ scheduleBusy: true, scheduleMessage: '' });
+    try {
+      const path = `${this.folder()}/schedule-a/${Date.now()}-${this.safeName(file.name)}`;
+      const { error } = await this.sb.storage.from(BUCKET).upload(path, file, { upsert: false });
+      if (error) throw error;
+      this.setState({ scheduleBusy: false, scheduleFile: null, scheduleOk: true,
+        scheduleMessage: 'Schedule A received. We will validate your NRI decimals and confirm by email.' });
+    } catch (err) {
+      console.error('Schedule A upload failed', err);
+      this.setState({ scheduleBusy: false, scheduleOk: false,
+        scheduleMessage: `Upload failed: ${err.message || err}. Please try again, or email the file to contact@splitsecondroyalties.com.` });
+    }
+  }
+
+  btn(busy, label, busyLabel) {
+    const on = !busy;
+    return {
+      label: busy ? busyLabel : label,
+      style: `width:100%;box-sizing:border-box;background:${on ? 'oklch(0.62 0.2 38)' : 'oklch(0.78 0.08 38)'};color:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;padding:13px 20px;border:none;border-radius:8px;cursor:${on ? 'pointer' : 'default'}`
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const signedIn = !!s.session;
+    const lease = this.btn(s.leaseBusy, 'Upload lease documents', 'Uploading…');
+    const sched = this.btn(s.scheduleBusy, 'Upload completed Schedule A', 'Uploading…');
+    const ok = 'oklch(0.45 0.15 145)';
+    const bad = 'oklch(0.5 0.18 30)';
+
+    return {
+      loading: s.loading,
+      showLogin: !s.loading && !signedIn,
+      signedIn,
+      email: s.email,
+      linkSent: s.linkSent,
+      notLinkSent: !s.linkSent,
+      authError: s.authError,
+      sending: s.sending,
+      submitLabel: s.sending ? 'Sending…' : 'Email me a sign-in link',
+      submitStyle: this.btn(s.sending, '', '').style,
+
+      leaseFiles: s.leaseFiles.map(f => ({ name: f.name, size: this.fmt(f.size) })),
+      hasLeaseFiles: s.leaseFiles.length > 0,
+      leaseBusy: s.leaseBusy,
+      leaseButtonLabel: lease.label,
+      leaseButtonStyle: lease.style,
+      leaseMessage: s.leaseMessage,
+      leaseMessageColor: s.leaseOk ? ok : bad,
+
+      scheduleName: s.scheduleFile ? s.scheduleFile.name : '',
+      scheduleSize: s.scheduleFile ? this.fmt(s.scheduleFile.size) : '',
+      scheduleBusy: s.scheduleBusy,
+      scheduleButtonLabel: sched.label,
+      scheduleButtonStyle: sched.style,
+      scheduleMessage: s.scheduleMessage,
+      scheduleMessageColor: s.scheduleOk ? ok : bad,
+
+      h: {
+        setEmail: (e) => this.setState({ email: e.target.value }),
+        sendLink: (e) => this.sendLink(e),
+        signOut: () => this.signOut(),
+        pickLeases: (e) => this.pickLeases(e),
+        pickSchedule: (e) => this.pickSchedule(e),
+        uploadLeases: () => this.uploadLeases(),
+        uploadSchedule: () => this.uploadSchedule()
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
