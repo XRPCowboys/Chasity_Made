@@ -395,7 +395,7 @@ class Component extends DCLogic {
       await this.authedFetch('update-profile', {
         dataIntegrationPreference: { method: this.state.method, ...this.state.pref }
       });
-      this.setState({ prefBusy: false, prefOk: true, prefMessage: 'Saved. Our integration team will follow up with your operator.' });
+      this.setState({ prefBusy: false, prefOk: true, prefMessage: 'Saved. Your customized operator permission letters have been generated and are ready for download. Please sign and send these letters directly to your operator contact to establish your secure data connections and activate your live reporting.' });
     } catch (err) {
       this.setState({ prefBusy: false, prefOk: false, prefMessage: err.message || 'Could not save. Please try again.' });
     }
