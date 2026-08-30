@@ -115,7 +115,22 @@ summary::-webkit-details-marker{display:none}
       <div style="max-width:1100px;margin:0 auto">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:oklch(0.62 0.2 38)">B2B PARTNER PORTAL — STAGE 2</div>
         <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:32px;line-height:1.2;margin:12px 0 8px;color:oklch(0.2 0.02 260)">Technical asset onboarding</h1>
-        <p style="font-size:14.5px;line-height:1.7;color:#000;margin:0;max-width:720px">Signed in as <strong>{{ email }}</strong>. Complete both steps below so our team can configure your read-only operator data connections and your division-order routing.</p>
+        <p style="font-size:14.5px;line-height:1.7;color:#000;margin:0;max-width:720px">Signed in as <strong>{{ email }}</strong>. Complete the steps below so our team can configure your read-only operator data connections and your division-order routing.</p>
+      </div>
+    </div>
+
+    <div class="bj-section" style="padding:12px 56px 0">
+      <div style="max-width:1100px;margin:0 auto;background:rgba(255,255,255,0.94);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:24px 28px">
+        <div style="font-family:'Fredoka',sans-serif;font-size:16.5px;font-weight:700;margin-bottom:10px;color:oklch(0.22 0.02 260)">Account Settings</div>
+        <label style="display:block;font-size:12.5px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">Internal Integration Contact Email</label>
+        <p style="font-size:12px;line-height:1.55;color:oklch(0.45 0.02 260);margin:0 0 10px">CC'd on operator data request letters generated on your behalf. Leave blank to use {{ email }}.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <input type="email" value="{{ integrationEmail }}" onChange="{{ h.setIntegrationEmail }}" placeholder="integrations@yourcompany.com" style="flex:1;min-width:220px;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px;font-family:'Inter',sans-serif">
+          <button onClick="{{ h.saveIntegrationEmail }}" disabled="{{ integrationEmailBusy }}" style="{{ integrationEmailButtonStyle }}">{{ integrationEmailButtonLabel }}</button>
+        </div>
+        <sc-if value="{{ integrationEmailMessage }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:12.5px;color:{{ integrationEmailMessageColor }};margin:10px 0 0">{{ integrationEmailMessage }}</p>
+        </sc-if>
       </div>
     </div>
 
@@ -183,6 +198,91 @@ summary::-webkit-details-marker{display:none}
       </div>
     </div>
 
+    <div class="bj-section" style="padding:12px 56px 24px">
+      <div style="max-width:1100px;margin:0 auto;background:rgba(255,255,255,0.94);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:28px;border-top:3px solid oklch(0.62 0.2 38)">
+        <div style="font-size:11.5px;font-weight:700;letter-spacing:0.08em;color:oklch(0.62 0.2 38);margin-bottom:8px">STEP 3</div>
+        <div style="font-family:'Fredoka',sans-serif;font-size:19px;font-weight:700;margin-bottom:10px;color:oklch(0.22 0.02 260)">Data Integration Preference</div>
+        <p style="font-size:13.5px;line-height:1.65;color:#000;margin:0 0 16px">Tell us which method your operator's IT team supports. We'll use these details to prepare your operator data request letter.</p>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+          <div onClick="{{ h.selectMethod_CLOUD }}" style="{{ methodCardStyle_CLOUD }}"><strong>Option A — Cloud Data Sharing</strong> <span style="color:oklch(0.5 0.02 260)">(highly preferred)</span></div>
+          <div onClick="{{ h.selectMethod_SFTP }}" style="{{ methodCardStyle_SFTP }}"><strong>Option B — Automated File Transfer</strong></div>
+          <div onClick="{{ h.selectMethod_API }}" style="{{ methodCardStyle_API }}"><strong>Option C — Read-Only API Ingestion</strong></div>
+          <div onClick="{{ h.selectMethod_CUSTOM }}" style="{{ methodCardStyle_CUSTOM }}"><strong>Option D — Operator Corporate Standard (Custom)</strong></div>
+        </div>
+
+        <sc-if value="{{ isMethodCloud }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">Operator Cloud Provider</label>
+              <select value="{{ pref.cloudProvider }}" onChange="{{ h.setCloudProvider }}" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px;background:#fff">
+                <option value="">Select…</option>
+                <option value="Snowflake">Snowflake</option>
+                <option value="AWS">AWS</option>
+                <option value="Google Cloud">Google Cloud</option>
+                <option value="Azure">Azure</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">Operator IT/Data Team Contact Email</label>
+              <input type="email" value="{{ pref.operatorItEmail }}" onChange="{{ h.setOperatorItEmail }}" placeholder="it@operator.com" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px">
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMethodSftp }}" hint-placeholder-val="{{ false }}">
+          <div style="background:oklch(0.97 0.01 235);border-radius:8px;padding:14px 16px;margin-bottom:14px;font-size:12.5px;line-height:1.6;color:oklch(0.35 0.02 260)">
+            <strong>SSR secure SFTP address:</strong> sftp.splitsecondroyalties.com &middot; <strong>Folder path:</strong> /inbound/{{ email }}/
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">Operator IT Contact Email</label>
+            <input type="email" value="{{ pref.operatorItEmail }}" onChange="{{ h.setOperatorItEmail }}" placeholder="it@operator.com" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px">
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMethodApi }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px">
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">SCADA Platform</label>
+              <input type="text" value="{{ pref.scadaPlatform }}" onChange="{{ h.setScadaPlatform }}" placeholder="eLynx, CygNet, Ignition, AVEVA PI, Other" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px">
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">API Endpoint URL</label>
+              <input type="text" value="{{ pref.apiEndpointUrl }}" onChange="{{ h.setApiEndpointUrl }}" placeholder="https://…" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px">
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">API Key / Token / Credentials</label>
+              <input type="password" value="{{ pref.apiCredentials }}" onChange="{{ h.setApiCredentials }}" placeholder="•••••••••••••" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px;font-family:monospace">
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMethodCustom }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px">
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">Describe Operator's Custom Method</label>
+              <textarea value="{{ pref.customMethodDescription }}" onChange="{{ h.setCustomMethodDescription }}" placeholder="Describe the operator's preferred delivery method…" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px;font-family:'Inter',sans-serif;min-height:80px;resize:vertical"></textarea>
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:oklch(0.3 0.02 260);margin-bottom:6px">Operator IT/Data Team Contact Email</label>
+              <input type="email" value="{{ pref.operatorItEmail }}" onChange="{{ h.setOperatorItEmail }}" placeholder="it@operator.com" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:13.5px">
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <button onClick="{{ h.savePreference }}" disabled="{{ prefBusy }}" style="{{ prefButtonStyle }}">{{ prefButtonLabel }}</button>
+          <button onClick="{{ h.downloadLetter }}" disabled="{{ letterBusy }}" style="{{ letterButtonStyle }}">{{ letterButtonLabel }}</button>
+        </div>
+        <sc-if value="{{ prefMessage }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:12.5px;color:{{ prefMessageColor }};margin:12px 0 0">{{ prefMessage }}</p>
+        </sc-if>
+        <sc-if value="{{ letterMessage }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:12.5px;color:{{ letterMessageColor }};margin:12px 0 0">{{ letterMessage }}</p>
+        </sc-if>
+      </div>
+    </div>
+
     <div class="bj-section" style="padding:0 56px 28px">
       <div style="max-width:1100px;margin:0 auto;background:oklch(0.97 0.01 235);border:1.5px solid oklch(0.85 0.02 235);border-radius:10px;padding:18px 24px">
         <div style="font-size:12.5px;font-weight:700;color:oklch(0.3 0.02 260);margin-bottom:6px">What happens next</div>
@@ -214,7 +314,11 @@ class Component extends DCLogic {
     loading: true, session: null, email: '',
     sending: false, linkSent: false, authError: '', declined: '',
     leaseFiles: [], leaseBusy: false, leaseMessage: '', leaseOk: false,
-    scheduleFile: null, scheduleBusy: false, scheduleMessage: '', scheduleOk: false
+    scheduleFile: null, scheduleBusy: false, scheduleMessage: '', scheduleOk: false,
+    integrationEmail: '', integrationEmailBusy: false, integrationEmailMessage: '', integrationEmailOk: false,
+    method: '', pref: { cloudProvider: '', operatorItEmail: '', scadaPlatform: '', apiEndpointUrl: '', apiCredentials: '', customMethodDescription: '' },
+    prefBusy: false, prefMessage: '', prefOk: false,
+    letterBusy: false, letterMessage: '', letterOk: false
   };
 
   async componentDidMount() {
@@ -255,9 +359,73 @@ class Component extends DCLogic {
     }
   }
 
+  async authedFetch(path, body) {
+    const token = this.state.session?.access_token;
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.error) throw new Error(data.error || `Request failed (${res.status})`);
+    return data;
+  }
+
+  setIntegrationEmail(e) { this.setState({ integrationEmail: e.target.value }); }
+
+  async saveIntegrationEmail() {
+    if (this.state.integrationEmailBusy) return;
+    this.setState({ integrationEmailBusy: true, integrationEmailMessage: '' });
+    try {
+      await this.authedFetch('update-profile', { integrationContactEmail: this.state.integrationEmail.trim() });
+      this.setState({ integrationEmailBusy: false, integrationEmailOk: true, integrationEmailMessage: 'Saved.' });
+    } catch (err) {
+      this.setState({ integrationEmailBusy: false, integrationEmailOk: false, integrationEmailMessage: err.message || 'Could not save. Please try again.' });
+    }
+  }
+
+  selectMethod(m) { this.setState({ method: m, prefMessage: '' }); }
+  setPrefField(key, value) { this.setState(s => ({ pref: { ...s.pref, [key]: value } })); }
+
+  async savePreference() {
+    if (!this.state.method) { this.setState({ prefMessage: 'Choose a method first.', prefOk: false }); return; }
+    if (this.state.prefBusy) return;
+    this.setState({ prefBusy: true, prefMessage: '' });
+    try {
+      await this.authedFetch('update-profile', {
+        dataIntegrationPreference: { method: this.state.method, ...this.state.pref }
+      });
+      this.setState({ prefBusy: false, prefOk: true, prefMessage: 'Saved. Our integration team will follow up with your operator.' });
+    } catch (err) {
+      this.setState({ prefBusy: false, prefOk: false, prefMessage: err.message || 'Could not save. Please try again.' });
+    }
+  }
+
+  async downloadLetter() {
+    if (this.state.letterBusy) return;
+    this.setState({ letterBusy: true, letterMessage: '' });
+    try {
+      const data = await this.authedFetch('generate-operator-letter', {});
+      const bin = atob(data.pdfBase64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const blob = new Blob([bytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = data.filename || 'Operator_Data_Request_Letter.pdf';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+      this.setState({ letterBusy: false, letterOk: true, letterMessage: 'Letter downloaded. Review it before sending to your operator.' });
+    } catch (err) {
+      this.setState({ letterBusy: false, letterOk: false, letterMessage: err.message || 'Could not generate the letter. Please try again.' });
+    }
+  }
+
   async signOut() {
     await this.sb.auth.signOut();
-    this.setState({ session: null, linkSent: false, declined: '', leaseFiles: [], scheduleFile: null, leaseMessage: '', scheduleMessage: '' });
+    this.setState({ session: null, linkSent: false, declined: '', leaseFiles: [], scheduleFile: null, leaseMessage: '', scheduleMessage: '',
+      integrationEmail: '', integrationEmailMessage: '', method: '', prefMessage: '', letterMessage: '',
+      pref: { cloudProvider: '', operatorItEmail: '', scadaPlatform: '', apiEndpointUrl: '', apiCredentials: '', customMethodDescription: '' } });
   }
 
   fmt(bytes) {
@@ -349,6 +517,15 @@ class Component extends DCLogic {
     const sched = this.btn(s.scheduleBusy, 'Upload completed Schedule A', 'Uploading…');
     const ok = 'oklch(0.45 0.15 145)';
     const bad = 'oklch(0.5 0.18 30)';
+    const method = s.method;
+    const methodCard = (key) => `padding:12px 16px;border-radius:8px;border:1.5px solid ${method===key ? 'oklch(0.62 0.2 38)' : 'oklch(0.85 0.02 235)'};background:${method===key ? 'oklch(0.97 0.05 38)' : '#fff'};font-size:13px;color:oklch(0.3 0.02 260);cursor:pointer`;
+    const smallBtn = (busy, label, busyLabel) => ({
+      label: busy ? busyLabel : label,
+      style: `background:${busy ? 'oklch(0.78 0.08 38)' : 'oklch(0.62 0.2 38)'};color:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;padding:11px 18px;border:none;border-radius:8px;cursor:${busy?'default':'pointer'};white-space:nowrap`
+    });
+    const saveBtn = smallBtn(s.integrationEmailBusy, 'Save', 'Saving…');
+    const prefBtn = smallBtn(s.prefBusy, 'Save Preference', 'Saving…');
+    const letterBtn = smallBtn(s.letterBusy, 'Download Operator Letter (PDF)', 'Generating…');
 
     return {
       loading: s.loading,
@@ -379,6 +556,33 @@ class Component extends DCLogic {
       scheduleMessage: s.scheduleMessage,
       scheduleMessageColor: s.scheduleOk ? ok : bad,
 
+      integrationEmail: s.integrationEmail,
+      integrationEmailBusy: s.integrationEmailBusy,
+      integrationEmailButtonLabel: saveBtn.label,
+      integrationEmailButtonStyle: saveBtn.style,
+      integrationEmailMessage: s.integrationEmailMessage,
+      integrationEmailMessageColor: s.integrationEmailOk ? ok : bad,
+
+      pref: s.pref,
+      isMethodCloud: method === 'CLOUD',
+      isMethodSftp: method === 'SFTP',
+      isMethodApi: method === 'API',
+      isMethodCustom: method === 'CUSTOM',
+      methodCardStyle_CLOUD: methodCard('CLOUD'),
+      methodCardStyle_SFTP: methodCard('SFTP'),
+      methodCardStyle_API: methodCard('API'),
+      methodCardStyle_CUSTOM: methodCard('CUSTOM'),
+      prefBusy: s.prefBusy,
+      prefButtonLabel: prefBtn.label,
+      prefButtonStyle: prefBtn.style,
+      prefMessage: s.prefMessage,
+      prefMessageColor: s.prefOk ? ok : bad,
+      letterBusy: s.letterBusy,
+      letterButtonLabel: letterBtn.label,
+      letterButtonStyle: letterBtn.style,
+      letterMessage: s.letterMessage,
+      letterMessageColor: s.letterOk ? ok : bad,
+
       h: {
         setEmail: (e) => this.setState({ email: e.target.value }),
         sendLink: (e) => this.sendLink(e),
@@ -386,7 +590,21 @@ class Component extends DCLogic {
         pickLeases: (e) => this.pickLeases(e),
         pickSchedule: (e) => this.pickSchedule(e),
         uploadLeases: () => this.uploadLeases(),
-        uploadSchedule: () => this.uploadSchedule()
+        uploadSchedule: () => this.uploadSchedule(),
+        setIntegrationEmail: (e) => this.setIntegrationEmail(e),
+        saveIntegrationEmail: () => this.saveIntegrationEmail(),
+        selectMethod_CLOUD: () => this.selectMethod('CLOUD'),
+        selectMethod_SFTP: () => this.selectMethod('SFTP'),
+        selectMethod_API: () => this.selectMethod('API'),
+        selectMethod_CUSTOM: () => this.selectMethod('CUSTOM'),
+        setCloudProvider: (e) => this.setPrefField('cloudProvider', e.target.value),
+        setOperatorItEmail: (e) => this.setPrefField('operatorItEmail', e.target.value),
+        setScadaPlatform: (e) => this.setPrefField('scadaPlatform', e.target.value),
+        setApiEndpointUrl: (e) => this.setPrefField('apiEndpointUrl', e.target.value),
+        setApiCredentials: (e) => this.setPrefField('apiCredentials', e.target.value),
+        setCustomMethodDescription: (e) => this.setPrefField('customMethodDescription', e.target.value),
+        savePreference: () => this.savePreference(),
+        downloadLetter: () => this.downloadLetter()
       }
     };
   }
