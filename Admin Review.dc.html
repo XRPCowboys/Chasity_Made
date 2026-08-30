@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#dceaf7"/><circle cx="50" cy="42" r="22" fill="#e8571f"/><text x="50" y="80" font-size="14" fill="#1a2033" text-anchor="middle" font-family="sans-serif">SS</text></svg></template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>body{margin:0}a{color:inherit}a:hover{color:oklch(0.55 0.2 38)}</style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background:oklch(0.96 0.01 235)">
+
+  <div style="padding:16px 40px;background:oklch(0.2 0.02 260);color:#fff;display:flex;justify-content:space-between;align-items:center">
+    <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:18px">SSR Admin Review</div>
+    <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ h.signOut }}" style="background:none;border:1.5px solid rgba(255,255,255,0.4);color:#fff;font-weight:600;font-size:13px;padding:8px 16px;border-radius:6px;cursor:pointer">Sign Out</button>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div style="padding:96px;text-align:center;color:oklch(0.45 0.02 260)">Checking your session…</div>
+  </sc-if>
+
+  <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:420px;margin:64px auto;padding:0 24px">
+      <div style="background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:28px">
+        <sc-if value="{{ linkSent }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center">
+            <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px">Check your inbox</div>
+            <p style="font-size:13px;color:oklch(0.4 0.02 260);margin:0">Sign-in link sent to <strong>{{ email }}</strong>.</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notLinkSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ h.sendLink }}" style="display:flex;flex-direction:column;gap:12px">
+            <label style="font-size:12.5px;font-weight:600">Admin email</label>
+            <input type="email" required="{{ true }}" value="{{ email }}" onChange="{{ h.setEmail }}" placeholder="you@splitsecondroyalties.com" style="padding:11px 13px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px">
+            <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+            <sc-if value="{{ authError }}" hint-placeholder-val="{{ false }}">
+              <p style="font-size:12px;color:oklch(0.5 0.18 30);margin:0">{{ authError }}</p>
+            </sc-if>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1000px;margin:0 auto;padding:32px 24px">
+      <h1 style="font-family:'Fredoka',sans-serif;font-size:24px;margin:0 0 6px">Pending approval</h1>
+      <p style="font-size:13.5px;color:oklch(0.45 0.02 260);margin:0 0 24px">Registrants who uploaded signed documents, awaiting MNDA/LOI review.</p>
+
+      <sc-if value="{{ loadingQueue }}" hint-placeholder-val="{{ false }}">
+        <p style="color:oklch(0.45 0.02 260)">Loading…</p>
+      </sc-if>
+      <sc-if value="{{ queueError }}" hint-placeholder-val="{{ false }}">
+        <p style="color:oklch(0.5 0.18 30)">{{ queueError }}</p>
+      </sc-if>
+      <sc-if value="{{ hasNoPending }}" hint-placeholder-val="{{ false }}">
+        <p style="color:oklch(0.45 0.02 260)">Nothing waiting on review.</p>
+      </sc-if>
+
+      <sc-for list="{{ pending }}" as="p" hint-placeholder-count="2">
+        <div style="background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.06);padding:20px 22px;margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+            <div>
+              <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:16px">{{ p.company_name }}</div>
+              <div style="font-size:12.5px;color:oklch(0.45 0.02 260);margin-top:2px">{{ p.first_name }} {{ p.last_name }} &middot; {{ p.business_email }} &middot; {{ p.industry }} &middot; {{ p.account_type }}</div>
+              <sc-if value="{{ p.isDelegated }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:12px;color:oklch(0.5 0.18 30);margin-top:4px">Delegated signatory: {{ p.delegate_signatory_name }} &middot; {{ p.delegate_signatory_email }}</div>
+              </sc-if>
+            </div>
+            <button onClick="{{ p.approve }}" disabled="{{ p.busy }}" style="{{ p.approveStyle }}">{{ p.approveLabel }}</button>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <sc-for list="{{ p.files }}" as="f" hint-placeholder-count="2">
+              <a href="{{ f.url }}" target="_blank" style="text-decoration:none;background:oklch(0.97 0.01 235);border:1.5px solid oklch(0.87 0.02 235);border-radius:6px;padding:8px 12px;font-size:12.5px;color:oklch(0.35 0.02 260)">{{ f.name }}</a>
+            </sc-for>
+          </div>
+          <sc-if value="{{ p.message }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:12.5px;color:{{ p.messageColor }};margin:10px 0 0">{{ p.message }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_vkx6lvvUQdvuDEvSvlR-1A_dHYlu0MD';
+
+class Component extends DCLogic {
+  state = {
+    loading: true, session: null, email: '', sending: false, linkSent: false, authError: '',
+    loadingQueue: false, queueError: '', pending: []
+  };
+
+  async componentDidMount() {
+    this.sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { data } = await this.sb.auth.getSession();
+    this.setState({ session: data.session || null, email: data.session?.user?.email || '', loading: false });
+    if (data.session) this.loadQueue(data.session);
+    this.sb.auth.onAuthStateChange((_e, session) => {
+      this.setState({ session: session || null, email: session?.user?.email || this.state.email });
+      if (session) this.loadQueue(session);
+    });
+  }
+
+  async sendLink(e) {
+    e.preventDefault();
+    const email = this.state.email.trim();
+    if (!email || this.state.sending) return;
+    this.setState({ sending: true, authError: '' });
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/request-admin-link`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.allowed === false) throw new Error(data.message || data.error || 'Not authorized.');
+      this.setState({ sending: false, linkSent: true });
+    } catch (err) {
+      this.setState({ sending: false, authError: err.message || 'Could not send the link.' });
+    }
+  }
+
+  async signOut() {
+    await this.sb.auth.signOut();
+    this.setState({ session: null, linkSent: false, pending: [] });
+  }
+
+  async loadQueue(session) {
+    this.setState({ loadingQueue: true, queueError: '' });
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/admin-list-pending`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: '{}'
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Could not load the queue.');
+      this.setState({ loadingQueue: false, pending: (data.pending || []).map(r => ({ ...r, busy: false, message: '', ok: false })) });
+    } catch (err) {
+      this.setState({ loadingQueue: false, queueError: err.message || 'Could not load the queue.' });
+    }
+  }
+
+  async approve(businessEmail) {
+    const token = this.state.session?.access_token;
+    this.setState(s => ({ pending: s.pending.map(r => r.business_email === businessEmail ? { ...r, busy: true, message: '' } : r) }));
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/approve-partner`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ businessEmail })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Approval failed.');
+      this.setState(s => ({ pending: s.pending.filter(r => r.business_email !== businessEmail) }));
+    } catch (err) {
+      this.setState(s => ({ pending: s.pending.map(r => r.business_email === businessEmail ? { ...r, busy: false, message: err.message || 'Approval failed.', ok: false } : r) }));
+    }
+  }
+
+  renderVals() {
+    const s = this.state;
+    const signedIn = !!s.session;
+    const on = !s.sending;
+    return {
+      loading: s.loading, showLogin: !s.loading && !signedIn, signedIn, email: s.email,
+      linkSent: s.linkSent, notLinkSent: !s.linkSent, authError: s.authError,
+      sending: s.sending, submitLabel: s.sending ? 'Sending…' : 'Send sign-in link',
+      submitStyle: `background:${on ? 'oklch(0.62 0.2 38)' : 'oklch(0.78 0.08 38)'};color:#fff;font-weight:700;font-size:14px;padding:12px 18px;border:none;border-radius:8px;cursor:${on?'pointer':'default'}`,
+      loadingQueue: s.loadingQueue, queueError: s.queueError, hasNoPending: !s.loadingQueue && !s.queueError && s.pending.length === 0,
+      pending: s.pending.map(r => ({
+        ...r,
+        isDelegated: r.signing_mode === 'DELEGATED',
+        approveLabel: r.busy ? 'Approving…' : 'Approve',
+        approveStyle: `background:${r.busy ? 'oklch(0.78 0.08 38)' : 'oklch(0.62 0.2 38)'};color:#fff;font-weight:700;font-size:13px;padding:10px 18px;border:none;border-radius:8px;cursor:${r.busy?'default':'pointer'};white-space:nowrap`,
+        messageColor: 'oklch(0.5 0.18 30)',
+        approve: () => this.approve(r.business_email)
+      })),
+      h: { setEmail: (e) => this.setState({ email: e.target.value }), sendLink: (e) => this.sendLink(e), signOut: () => this.signOut() }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

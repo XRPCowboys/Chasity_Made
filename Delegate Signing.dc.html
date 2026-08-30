@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#dceaf7"/><circle cx="50" cy="42" r="22" fill="#e8571f"/><text x="50" y="80" font-size="14" fill="#1a2033" text-anchor="middle" font-family="sans-serif">SS</text></svg></template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:inherit}a:hover{color:oklch(0.55 0.2 38)}</style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;color:oklch(0.22 0.02 260);font-family:'Inter',sans-serif;background:oklch(0.93 0.025 235)">
+  <div style="max-width:640px;margin:0 auto;padding:56px 24px">
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:oklch(0.62 0.2 38)">SPLIT SECOND ROYALTIES</div>
+      <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:26px;margin:10px 0 0;color:oklch(0.2 0.02 260)">Review &amp; sign onboarding documents</h1>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.1);padding:36px">
+
+      <sc-if value="{{ noEmail }}" hint-placeholder-val="{{ false }}">
+        <p style="font-size:14px;color:oklch(0.5 0.18 30);text-align:center;margin:0">This link is missing its registrant reference. Please use the link from the email you received.</p>
+      </sc-if>
+
+      <sc-if value="{{ packetLoading }}" hint-placeholder-val="{{ true }}">
+        <p style="text-align:center;color:oklch(0.45 0.02 260);margin:0">Loading your documents…</p>
+      </sc-if>
+
+      <sc-if value="{{ packetError }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center">
+          <p style="font-size:13.5px;color:oklch(0.5 0.18 30);margin:0 0 16px">{{ packetError }}</p>
+          <button onClick="{{ h.retryPacket }}" style="background:oklch(0.62 0.2 38);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border:none;border-radius:8px;cursor:pointer">Try again</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ packetReady }}" hint-placeholder-val="{{ false }}">
+        <p style="font-size:13.5px;line-height:1.65;color:#000;margin:0 0 22px;text-align:center">Download, sign, and upload these documents on behalf of <strong>{{ companyName }}</strong>.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px">
+          <a href="{{ mndaDownloadUrl }}" download="{{ mndaFilename }}" style="text-decoration:none;display:block;text-align:center;background:oklch(0.97 0.01 235);border:1.5px solid oklch(0.85 0.02 235);border-radius:10px;padding:16px;color:oklch(0.3 0.02 260)">
+            <div style="font-weight:700;font-size:13.5px">Download MNDA</div>
+          </a>
+          <a href="{{ loiDownloadUrl }}" download="{{ loiFilename }}" style="text-decoration:none;display:block;text-align:center;background:oklch(0.97 0.01 235);border:1.5px solid oklch(0.85 0.02 235);border-radius:10px;padding:16px;color:oklch(0.3 0.02 260)">
+            <div style="font-weight:700;font-size:13.5px">Download LOI</div>
+          </a>
+        </div>
+
+        <div style="border-top:1.5px solid oklch(0.9 0.01 235);padding-top:20px">
+          <div style="font-weight:700;font-size:14px;margin-bottom:10px">Upload your signed copies</div>
+          <label style="display:block;border:1.5px dashed oklch(0.72 0.02 235);border-radius:10px;padding:20px;text-align:center;cursor:pointer;margin-bottom:12px;background:oklch(0.985 0.005 235)">
+            <input type="file" multiple="{{ true }}" accept=".pdf,.doc,.docx" onChange="{{ h.pickSignedFiles }}" style="display:none">
+            <div style="font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260)">Choose signed MNDA &amp; LOI</div>
+            <div style="font-size:11.5px;color:oklch(0.5 0.02 260);margin-top:4px">PDF, DOC, DOCX &middot; 25 MB per file</div>
+          </label>
+          <sc-if value="{{ hasSignedFiles }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+              <sc-for list="{{ signedFiles }}" as="f" hint-placeholder-count="2">
+                <div style="display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:oklch(0.3 0.02 260);background:oklch(0.97 0.01 235);border-radius:6px;padding:8px 12px"><span>{{ f.name }}</span><span style="color:oklch(0.5 0.02 260)">{{ f.size }}</span></div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <button onClick="{{ h.uploadSignedFiles }}" disabled="{{ uploadBusy }}" style="{{ uploadButtonStyle }}">{{ uploadButtonLabel }}</button>
+          <sc-if value="{{ uploadMessage }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:12.5px;color:{{ uploadMessageColor }};margin:12px 0 0">{{ uploadMessage }}</p>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ uploadDone }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center">
+          <div style="width:52px;height:52px;border-radius:50%;background:oklch(0.62 0.2 38);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">✓</div>
+          <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin-bottom:10px">Submitted for review</div>
+          <p style="font-size:14px;line-height:1.7;color:#000;margin:0">Thank you. Our team will review the signed documents and notify {{ companyName }}'s registered contact once approved.</p>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_vkx6lvvUQdvuDEvSvlR-1A_dHYlu0MD';
+
+class Component extends DCLogic {
+  state = {
+    email: '', packetLoading: true, packetError: '', mnda: null, loi: null, companyName: '',
+    signedFiles: [], uploadBusy: false, uploadMessage: '', uploadOk: false, uploadDone: false
+  };
+
+  componentDidMount() {
+    const params = new URLSearchParams(window.location.search);
+    const email = (params.get('email') || '').trim().toLowerCase();
+    this.setState({ email });
+    if (email) this.generatePacket(email);
+    else this.setState({ packetLoading: false });
+  }
+
+  async generatePacket(email) {
+    this.setState({ packetLoading: true, packetError: '' });
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/generate-registrant-packet`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ businessEmail: email })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.error) throw new Error(data.error || 'Could not load your documents.');
+      this.setState({ packetLoading: false, mnda: data.mnda, loi: data.loi });
+    } catch (err) {
+      this.setState({ packetLoading: false, packetError: err.message || 'We could not load your documents.' });
+    }
+  }
+
+  base64ToBlobUrl(base64, type) {
+    const bin = atob(base64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return URL.createObjectURL(new Blob([bytes], { type }));
+  }
+
+  fmtBytes(b) { if (b < 1024) return b + ' B'; if (b < 1024 * 1024) return (b / 1024).toFixed(0) + ' KB'; return (b / 1024 / 1024).toFixed(1) + ' MB'; }
+
+  pickSignedFiles(e) {
+    const files = Array.from(e.target.files || []);
+    const tooBig = files.find(f => f.size > 25 * 1024 * 1024);
+    if (tooBig) { this.setState({ signedFiles: [], uploadMessage: `"${tooBig.name}" is larger than 25 MB.`, uploadOk: false }); return; }
+    this.setState({ signedFiles: files, uploadMessage: '' });
+  }
+
+  async uploadSignedFiles() {
+    const files = this.state.signedFiles;
+    if (!files.length) { this.setState({ uploadMessage: 'Choose your signed files first.', uploadOk: false }); return; }
+    if (this.state.uploadBusy) return;
+    this.setState({ uploadBusy: true, uploadMessage: '' });
+    const email = this.state.email;
+    try {
+      for (const f of files) {
+        const path = `${email}/${Date.now()}-${f.name.replace(/[^\w.\-]+/g, '_')}`;
+        const res = await fetch(`${SUPABASE_URL}/storage/v1/object/pending-signed-documents/${encodeURIComponent(path)}`, {
+          method: 'POST',
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': f.type || 'application/octet-stream' },
+          body: f
+        });
+        if (!res.ok) throw new Error(`Upload failed (${res.status})`);
+      }
+      const flagRes = await fetch(`${SUPABASE_URL}/functions/v1/flag-legal-package-sent`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ businessEmail: email })
+      });
+      if (!flagRes.ok) throw new Error('Could not record your upload.');
+      this.setState({ uploadBusy: false, uploadOk: true, uploadDone: true, signedFiles: [] });
+    } catch (err) {
+      this.setState({ uploadBusy: false, uploadOk: false, uploadMessage: err.message || 'Upload failed. Please try again.' });
+    }
+  }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      noEmail: !s.email,
+      packetLoading: s.packetLoading,
+      packetError: s.packetError,
+      packetReady: !s.packetLoading && !s.packetError && !!s.mnda && !s.uploadDone,
+      companyName: s.mnda ? (s.mnda.filename.replace('MNDA_', '').replace('.pdf', '').replace(/_/g, ' ')) : '',
+      mndaDownloadUrl: s.mnda ? this.base64ToBlobUrl(s.mnda.base64, 'application/pdf') : '',
+      mndaFilename: s.mnda ? s.mnda.filename : 'MNDA.pdf',
+      loiDownloadUrl: s.loi ? this.base64ToBlobUrl(s.loi.base64, 'application/pdf') : '',
+      loiFilename: s.loi ? s.loi.filename : 'LOI.pdf',
+      signedFiles: s.signedFiles.map(f => ({ name: f.name, size: this.fmtBytes(f.size) })),
+      hasSignedFiles: s.signedFiles.length > 0,
+      uploadBusy: s.uploadBusy,
+      uploadButtonLabel: s.uploadBusy ? 'Uploading…' : 'Submit signed documents for review',
+      uploadButtonStyle: `width:100%;box-sizing:border-box;background:${s.uploadBusy ? 'oklch(0.78 0.08 38)' : 'oklch(0.62 0.2 38)'};color:#fff;font-weight:700;font-size:14px;padding:13px 20px;border:none;border-radius:8px;cursor:${s.uploadBusy?'default':'pointer'}`,
+      uploadMessage: s.uploadMessage,
+      uploadMessageColor: s.uploadOk ? 'oklch(0.45 0.15 145)' : 'oklch(0.5 0.18 30)',
+      uploadDone: s.uploadDone,
+      h: { retryPacket: () => this.generatePacket(s.email), pickSignedFiles: (e) => this.pickSignedFiles(e), uploadSignedFiles: () => this.uploadSignedFiles() }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
