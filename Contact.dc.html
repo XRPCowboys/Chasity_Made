@@ -150,6 +150,15 @@ class Component extends DCLogic {
       });
       // Surface real failures instead of showing a false "thank you".
       if (!res.ok) throw new Error(`Supabase responded ${res.status}`);
+
+      // Best-effort admin email ping. A failure here should not block the
+      // submission itself — the row is already saved.
+      fetch(`${SUPABASE_URL}/functions/v1/notify-contact-submission`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch((notifyErr) => console.error('Contact notify failed', notifyErr));
+
       this.setState({ submitted: true, sending: false });
     } catch (err) {
       console.error('Contact submit failed', err);
